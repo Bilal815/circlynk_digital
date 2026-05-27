@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -31,12 +31,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install pelican markdown
 
-      - name: Build site
+      - name: Build Pelican site
         run: |
           pelican content -o output -s publishconf.py
           ls -R output
 
-      - name: Upload artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: output
