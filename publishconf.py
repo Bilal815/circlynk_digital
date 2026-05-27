@@ -23,5 +23,5 @@ LOAD_CONTENT_CACHE = True
 GOOGLE_ANALYTICS = ""
 GTM_CODE = ""
 
-PELICAN_CONFIG_FILE= '.github/workflows/pelican.yml'
+PELICAN_CONFIG_FILE= '.github/workflows/pelican_deploy_gh_pages'
 PELICAN_CONTENT_FOLDER= 'content/'
