@@ -5,7 +5,7 @@ from datetime import datetime
 
 AUTHOR          = 'CircLynk Digital'
 SITENAME        = 'CircLynk Digital'
-SITEURL         = 'circlynkdigital.com'
+SITEURL         = 'https://circlynkdigital.com'
 SITESUBTITLE    = 'Software & Digital Transformation'
 SITEDESCRIPTION = 'Custom software, free developer tools, and digital products for Pakistani SMEs and US startups.'
 
