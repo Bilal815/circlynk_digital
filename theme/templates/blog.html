@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}{{ SITENAME }} — Blog{% endblock %}
+{% block meta_desc %}Insights on software, automation, digital transformation, and building tech businesses from Pakistan for Pakistani and US markets.{% endblock %}
+{% block body_class %}page-blog{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <span class="section-label">CircLynk Digital · Blog</span>
+    <h1>Software. Automation.<br>Building from Pakistan.</h1>
+    <p class="page-header-desc">Practical insights on Python, digital transformation, and growing a software business — from Karachi to the US market.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="blog-layout">
+    <div class="blog-main">
+      {% from "partial/articles_list.html" import article_card %}
+      {% if articles_page %}
+        {% if articles_page.object_list %}
+          {% if articles_page.number == 1 %}
+            {{ article_card(articles_page.object_list[0], featured=True) }}
+            <div class="blog-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-top:2rem;">
+              {% for article in articles_page.object_list[1:] %}
+                {{ article_card(article) }}
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="blog-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;">
+              {% for article in articles_page.object_list %}
+                {{ article_card(article) }}
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endif %}
+        {% include "partial/pagination.html" %}
+      {% else %}
+        {% include "partial/articles_list.html" %}
+      {% endif %}
+    </div>
+    {% include "partial/sidebar.html" %}
+  </div>
+</div>
+
+{% endblock %}

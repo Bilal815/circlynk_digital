@@ -1,0 +1,25 @@
+{% if articles_page and articles_page.has_other_pages() %}
+<nav class="pagination" aria-label="Article pagination">
+  {% if articles_page.has_previous() %}
+  <a href="{{ SITEURL }}/{{ articles_previous_page.url }}" class="btn btn-ghost btn-sm page-btn page-btn-lg" aria-label="Previous page">
+    ← Newer
+  </a>
+  {% endif %}
+
+  {% for pg in articles_page.paginator.page_range %}
+    {% if pg == articles_page.number %}
+    <span class="page-btn active" aria-current="page">{{ pg }}</span>
+    {% elif pg == 1 or pg == articles_page.paginator.num_pages or (pg >= articles_page.number - 2 and pg <= articles_page.number + 2) %}
+    <a href="{{ SITEURL }}/{{ articles_paginator.page(pg).url }}" class="page-btn">{{ pg }}</a>
+    {% elif pg == articles_page.number - 3 or pg == articles_page.number + 3 %}
+    <span class="page-btn" style="border:none;width:auto;padding:0 .25rem;color:var(--text-muted)">…</span>
+    {% endif %}
+  {% endfor %}
+
+  {% if articles_page.has_next() %}
+  <a href="{{ SITEURL }}/{{ articles_next_page.url }}" class="btn btn-ghost btn-sm page-btn page-btn-lg" aria-label="Next page">
+    Older →
+  </a>
+  {% endif %}
+</nav>
+{% endif %}

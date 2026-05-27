@@ -1,0 +1,80 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- BRAND COL -->
+      <div class="footer-brand-col">
+        <a href="{{ SITEURL }}/" class="navbar-brand" style="margin-bottom:1rem;display:inline-flex;">
+          <div class="brand-logo-text">
+            <span class="brand-circlynk">CircLynk</span>
+            <span class="brand-digital">Digital</span>
+          </div>
+        </a>
+        <p class="footer-tagline">Software delivery and digital transformation for Pakistani SMEs and US startups. Built lean. Delivered right.</p>
+        <div class="footer-social">
+          {% if SOCIAL_MEDIA_LINKS %}
+            {% for icon, url in SOCIAL_MEDIA_LINKS %}
+            <a href="{{ url }}" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="{{ icon }}">
+              {% if 'linkedin' in icon %}in
+              {% elif 'twitter' in icon or 'x-' in icon %}𝕏
+              {% elif 'facebook' in icon %}f
+              {% elif 'instagram' in icon %}ig
+              {% else %}↗{% endif %}
+            </a>
+            {% endfor %}
+          {% else %}
+            <a href="https://linkedin.com" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+            <a href="https://twitter.com" class="social-link" target="_blank" rel="noopener" aria-label="Twitter">𝕏</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div>
+        <p class="footer-col-title">Services</p>
+        {% for svc in ["Strategy","Product Design","Web Development","Mobile Apps","Custom Software","Cloud Solutions","ITSM / ITAM","Enterprise Transformation"] %}
+        <a href="{{ SITEURL }}/services/{{ svc|lower|replace(' ','-')|replace('/','') }}/" class="footer-link">{{ svc }}</a>
+        {% endfor %}
+      </div>
+
+      <!-- INDUSTRIES -->
+      <div>
+        <p class="footer-col-title">Industries</p>
+        {% for ind in ["FinTech","eCommerce","Health & Wellness","Education","Startups","Enterprise","Web3 & Blockchain","AI"] %}
+        <a href="{{ SITEURL }}/industries/{{ ind|lower|replace(' ','-')|replace('&','and') }}/" class="footer-link">{{ ind }}</a>
+        {% endfor %}
+      </div>
+
+      <!-- TOOLS & PRODUCTS -->
+      <div>
+        <p class="footer-col-title">Tools & Products</p>
+        <a href="{{ SITEURL }}/online-compiler-python/" class="footer-link">Python Compiler <span style="color:#22c55e;font-size:.65rem">●</span></a>
+        <a href="{{ SITEURL }}/tools/" class="footer-link">All Free Tools</a>
+        <a href="{{ SITEURL }}/templates/" class="footer-link">Free Templates</a>
+        <a href="{{ SITEURL }}/marketplace/" class="footer-link">Premium Apps & Stores</a>
+        <a href="{{ SITEURL }}/marketplace/" class="footer-link">SaaS Starters</a>
+      </div>
+
+      <!-- COMPANY -->
+      <div>
+        <p class="footer-col-title">Company</p>
+        <a href="{{ SITEURL }}/about/" class="footer-link">About</a>
+        <a href="{{ SITEURL }}/blog/" class="footer-link">Blog</a>
+        <a href="{{ SITEURL }}/contact/" class="footer-link">Contact</a>
+        <a href="{{ SITEURL }}/privacy/" class="footer-link">Privacy Policy</a>
+        <a href="{{ SITEURL }}/terms/" class="footer-link">Terms of Service</a>
+        <a href="{{ SITEURL }}/sitemap.xml" class="footer-link">Sitemap</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {{ NOW | strftime('%Y') }} CircLynk Digital · Karachi, Pakistan</p>
+      <div class="footer-bottom-links">
+        <a href="{{ SITEURL }}/privacy/">Privacy</a>
+        <a href="{{ SITEURL }}/terms/">Terms</a>
+        <a href="{{ SITEURL }}/sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>

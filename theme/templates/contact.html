@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block title %}Contact | {{ SITENAME }}{% endblock %}
+{% block meta_desc %}Talk to CircLynk Digital about your project. Software development, digital transformation, and free tools for Pakistani SMEs and US startups.{% endblock %}
+{% block body_class %}page-contact{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <span class="section-label">Contact CircLynk Digital</span>
+    <h1>Let's talk about<br>your project.</h1>
+    <p class="page-header-desc">No pitch. No obligation. Just a real conversation about what you're trying to build — and the fastest, smartest way to get there.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="grid-2" style="gap:4rem;align-items:start;">
+
+      <!-- FORM -->
+      <div>
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="grid-2" style="gap:1rem;">
+            <div class="form-group">
+              <label class="form-label" for="cf-name">Full Name *</label>
+              <input type="text" id="cf-name" name="name" class="form-control" placeholder="Your name" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cf-email">Email Address *</label>
+              <input type="email" id="cf-email" name="email" class="form-control" placeholder="your@email.com" required autocomplete="email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cf-company">Company / Organization</label>
+            <input type="text" id="cf-company" name="company" class="form-control" placeholder="Your company" autocomplete="organization">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cf-service">What do you need?</label>
+            <select id="cf-service" name="service" class="form-control">
+              <option value="">Select a service…</option>
+              <optgroup label="Development">
+                <option>Custom Software Development</option>
+                <option>Web Development</option>
+                <option>Mobile App Development</option>
+                <option>API Integration</option>
+              </optgroup>
+              <optgroup label="Strategy & Design">
+                <option>Strategy & Product Management</option>
+                <option>Product Design / UX</option>
+                <option>MVP Development</option>
+                <option>Branding</option>
+              </optgroup>
+              <optgroup label="Enterprise">
+                <option>Enterprise Digital Transformation</option>
+                <option>ITSM / ITAM</option>
+                <option>Business Process Transformation</option>
+                <option>Cloud Solutions</option>
+              </optgroup>
+              <optgroup label="Other">
+                <option>Free Consultation</option>
+                <option>Python Compiler feedback</option>
+                <option>Other</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cf-budget">Budget range (optional)</label>
+            <select id="cf-budget" name="budget" class="form-control">
+              <option value="">Select a range…</option>
+              <option>Under $500 / Rs. 150,000</option>
+              <option>$500–$2,000 / Rs. 150k–600k</option>
+              <option>$2,000–$10,000 / Rs. 600k–3M</option>
+              <option>$10,000+ / Rs. 3M+</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cf-message">Tell me what you're building *</label>
+            <textarea id="cf-message" name="message" class="form-control" rows="5" placeholder="What problem are you trying to solve? The more context, the better our first conversation will be." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg w-full">Send Message →</button>
+          <p style="font-size:.75rem;color:var(--text-muted);margin-top:.75rem;text-align:center;">Typical response time: within 24 hours on business days.</p>
+          <div id="form-success" style="display:none;background:#dcfce7;border:1px solid #86efac;border-radius:var(--radius);padding:1rem;margin-top:1rem;color:#166534;font-size:.875rem;">
+            ✓ Message sent! I'll get back to you within 24 hours.
+          </div>
+        </form>
+      </div>
+
+      <!-- INFO -->
+      <div>
+        <div style="display:flex;flex-direction:column;gap:2rem;">
+          {% for item in [
+            ("📍","Location","Karachi, Pakistan. Available for remote projects globally. US EST timezone overlap available."),
+            ("⏱","Response time","Within 24 hours on business days. Usually faster."),
+            ("📅","First call","20 minutes. No pitch — just listening to understand your situation."),
+            ("💬","Preferred channels","Email, WhatsApp, LinkedIn, or this form. Whatever works for you.")
+          ] %}
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:44px;height:44px;background:var(--cl-blue-light);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">{{ item[0] }}</div>
+            <div>
+              <h4 style="font-size:.9rem;font-weight:700;margin-bottom:.25rem;">{{ item[1] }}</h4>
+              <p style="font-size:.85rem;color:var(--text-secondary);line-height:1.6;">{{ item[2] }}</p>
+            </div>
+          </div>
+          {% endfor %}
+
+          <div style="background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-xl);padding:1.5rem;">
+            <p style="font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.75rem;">Free Python Compiler</p>
+            <p style="font-size:.875rem;color:var(--text-secondary);margin-bottom:1rem;">Not ready to talk yet? Start with the free tool — no signup needed.</p>
+            <a href="{{ SITEURL }}/online-compiler-python/" class="btn btn-primary btn-sm">Try it now →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  var btn = this.querySelector('button[type=submit]');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  // TODO: Replace with your actual form endpoint (Formspree, Netlify, etc.)
+  // const res = await fetch('https://formspree.io/f/YOUR_ID', { method:'POST', body: new FormData(this), headers:{'Accept':'application/json'} });
+  await new Promise(r => setTimeout(r, 800));
+  this.style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+});
+</script>
+{% endblock %}

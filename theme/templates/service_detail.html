@@ -1,0 +1,29 @@
+{% extends "page.html" %}
+{% from "macros/context.html" import resolve_context %}
+{% from "macros/schema.html" import build_schema %}
+
+
+
+{% set ctx = resolve_context(page, article) %}
+
+{% block title %}
+{{ ctx.title }}
+{% endblock %}
+
+{% block meta_desc %}
+{{ ctx.description | striptags | replace('\n',' ') | replace('\r',' ') | truncate(155, True) | escape }}
+{% endblock %}
+
+{% block canonical %}
+{{ SITEURL }}/{{ ctx.base_path }}/{{ ctx.slug }}/
+{% endblock %}
+
+{% block body_class %}
+page-service service-{{ ctx.slug }}
+{% endblock %}
+
+{% block schema %}
+<script type="application/ld+json">
+{{ build_schema(ctx, page, article, SITEURL) | safe }}
+</script>
+{% endblock %}

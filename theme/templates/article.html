@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title|striptags }} | {{ SITENAME }}{% endblock %}
+{% block meta_desc %}{{ article.summary|striptags|truncate(160) }}{% endblock %}
+{% block canonical %}{{ SITEURL }}/{{ article.url }}{% endblock %}
+{% block robots %}index, follow{% endblock %}
+{% block body_class %}page-article{% endblock %}
+
+{% block schema_type %}Article{% endblock %}
+{% block schema_extra %}
+,"headline": "{{ article.title|striptags }}",
+"author": {"@type": "Person", "name": "{{ article.author.name if article.author else AUTHOR }}"},
+"datePublished": "{{ article.date.isoformat() }}",
+"dateModified": "{{ article.modified.isoformat() if article.modified else article.date.isoformat() }}",
+"publisher": {"@type": "Organization", "name": "{{ SITENAME }}", "url": "{{ SITEURL }}"}
+{% if article.image %},"image": "{{ article.image }}"{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<!-- BREADCRUMB -->
+<nav aria-label="Breadcrumb" style="background:var(--gray-50);border-bottom:1px solid var(--border);">
+  <div class="container" style="padding-top:.75rem;padding-bottom:.75rem;">
+    <ol style="display:flex;align-items:center;gap:.5rem;list-style:none;font-size:.8rem;color:var(--text-muted);" itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="{{ SITEURL }}/" itemprop="item" style="color:var(--cl-blue);"><span itemprop="name">Home</span></a>
+        <meta itemprop="position" content="1">
+      </li>
+      <span aria-hidden="true">›</span>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="{{ SITEURL }}/blog/" itemprop="item" style="color:var(--cl-blue);"><span itemprop="name">Blog</span></a>
+        <meta itemprop="position" content="2">
+      </li>
+      <span aria-hidden="true">›</span>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="{{ SITEURL }}/category/{{ article.category.slug }}/" itemprop="item" style="color:var(--cl-blue);"><span itemprop="name">{{ article.category }}</span></a>
+        <meta itemprop="position" content="3">
+      </li>
+      <span aria-hidden="true">›</span>
+      <li style="color:var(--text-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:300px;" aria-current="page">{{ article.title|striptags }}</li>
+    </ol>
+  </div>
+</nav>
+
+<!-- ARTICLE LAYOUT -->
+<div class="article-layout">
+
+  <!-- LEFT SIDEBAR (TOC) -->
+  <aside class="article-sidebar sidebar" aria-label="Article navigation">
+    <div class="sidebar-widget">
+      <p class="sidebar-widget-title">Contents</p>
+      <nav class="toc" id="toc-auto" aria-label="Table of contents"></nav>
+    </div>
+
+    {% if article.tags %}
+    <div class="sidebar-widget">
+      <p class="sidebar-widget-title">Tags</p>
+      <div class="tag-cloud">
+        {% for tag in article.tags %}
+        <a href="{{ SITEURL }}/tag/{{ tag.slug }}/" class="tag-pill">{{ tag }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="sidebar-widget sidebar-cta">
+      <p style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.15);padding-bottom:.5rem;">Free Tool</p>
+      <h4>Python Compiler</h4>
+      <p>Run Python in your browser. No setup. Free forever.</p>
+      <a href="{{ SITEURL }}/online-compiler-python/" class="btn btn-white btn-sm" style="margin-top:.75rem;display:flex;justify-content:center;">Try it →</a>
+    </div>
+  </aside>
+
+  <!-- MAIN ARTICLE -->
+  <div>
+    <article>
+
+      <header class="article-header">
+        <div class="article-meta-bar">
+          <a href="{{ SITEURL }}/category/{{ article.category.slug }}/" class="article-cat">{{ article.category }}</a>
+          <time class="article-date" datetime="{{ article.date.isoformat() }}">{{ article.date.strftime('%B %d, %Y') }}</time>
+          <span class="article-read">{{ article.content|striptags|wordcount // 200 + 1 }} min read</span>
+        </div>
+
+        <h1 class="article-title">{{ article.title }}</h1>
+        {% if article.subtitle %}<p class="article-subtitle">{{ article.subtitle }}</p>{% endif %}
+
+        <div class="author-row">
+          <div class="author-avatar" aria-hidden="true">{{ article.author.name if article.author else AUTHOR }}</div>
+          <div class="author-info-text">
+            <a href="{{ SITEURL }}/author/{{ article.author.slug }}/" class="author-name-link">{{ article.author.name if article.author else AUTHOR }}</a>
+            <span class="author-meta">CircLynk Digital · {{ article.date.strftime('%B %d, %Y') }}</span>
+          </div>
+        </div>
+      </header>
+
+      {% if article.image %}
+      <div class="article-hero-img">
+        <img src="{{ article.image }}" alt="{{ article.title|striptags }}" loading="eager" width="1200" height="525">
+      </div>
+      {% endif %}
+
+      <div class="prose">
+        {{ article.content }}
+      </div>
+
+      <!-- SHARE -->
+      <div class="article-share">
+        <span class="share-label">Share:</span>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ SITEURL }}/{{ article.url }}&title={{ article.title|striptags|urlencode }}" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Share on LinkedIn">LinkedIn</a>
+        <a href="https://twitter.com/intent/tweet?url={{ SITEURL }}/{{ article.url }}&text={{ article.title|striptags|urlencode }}" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Share on Twitter">Twitter</a>
+        <button data-copy-link onclick="copyLink()" class="share-btn" aria-label="Copy link to article">Copy link</button>
+      </div>
+
+      <!-- AUTHOR BIO -->
+      <div class="author-bio-box">
+        <div class="author-bio-avatar" aria-hidden="true">{{ article.author.name if article.author else AUTHOR }}</div>
+        <div>
+          <h4 class="author-bio-name">{{ article.author.name if article.author else AUTHOR }}</h4>
+          <p class="author-bio-text">Founder of CircLynk Digital. Building software and automation tools for Pakistani SMEs and US startups. Writing about digital transformation, Python, and building from Karachi.</p>
+          <a href="{{ SITEURL }}/author/{{ article.author.slug }}/" class="btn btn-ghost btn-sm" style="margin-top:.75rem;">More articles →</a>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- DISQUS -->
+    {% include "partial/disqus.html" %}
+  </div>
+
+</div>
+
+<!-- RELATED ARTICLES -->
+{% if article.related_posts %}
+<section class="section-sm" style="background:var(--gray-50);border-top:1px solid var(--border);" aria-label="Related articles">
+  <div class="container">
+    <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:1.5rem;">Related Articles</h3>
+    <div class="grid-3" style="gap:1.5rem;">
+      {% for related in article.related_posts[:3] %}
+      <article class="article-card card">
+        <div class="article-card-body">
+          <div class="article-meta">
+            <a href="{{ SITEURL }}/category/{{ related.category.slug }}/" class="article-cat">{{ related.category }}</a>
+            <span class="article-date">{{ related.date.strftime('%b %d, %Y') }}</span>
+          </div>
+          <h3 class="article-card-title"><a href="{{ SITEURL }}/{{ related.url }}">{{ related.title }}</a></h3>
+          <p class="article-excerpt">{{ related.summary|striptags|truncate(100) }}</p>
+          <a href="{{ SITEURL }}/{{ related.url }}" class="read-more-link" style="margin-top:.75rem;">Read →</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(function() {
+    var btn = document.querySelector('[data-copy-link]');
+    if (btn) { var o = btn.textContent; btn.textContent = 'Copied!'; setTimeout(function(){ btn.textContent = o; }, 2000); }
+  });
+}
+</script>
+{% endblock %}

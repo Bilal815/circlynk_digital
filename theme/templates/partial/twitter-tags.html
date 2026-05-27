@@ -1,0 +1,13 @@
+<meta name="twitter:card" content="summary_large_image">
+{% if YOUR_TWITTER_HANDLE %}<meta name="twitter:site" content="@{{ YOUR_TWITTER_HANDLE }}">{% endif %}
+{% if article is defined %}
+<meta name="twitter:title" content="{{ article.title|striptags }}">
+<meta name="twitter:description" content="{{ article.summary|striptags|truncate(200) }}">
+{% if article.image %}<meta name="twitter:image" content="{{ article.image }}">{% endif %}
+{% elif page is defined %}
+<meta name="twitter:title" content="{{ page.title }}">
+<meta name="twitter:description" content="{{ page.content|striptags|truncate(200) }}">
+{% else %}
+<meta name="twitter:title" content="{{ SITENAME }}">
+<meta name="twitter:description" content="{{ SITEDESCRIPTION }}">
+{% endif %}

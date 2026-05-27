@@ -1,0 +1,38 @@
+{% macro resolve_context(page=None, article=None) %}
+
+{% set ctx = namespace() %}
+
+{% set ctx.title =
+    page.title if page is defined and page.title
+    else article.title if article is defined and article.title
+    else "CircLynk Digital"
+%}
+
+{% set ctx.slug =
+    page.slug if page is defined and page.slug
+    else article.slug if article is defined and article.slug
+    else "home"
+%}
+
+{% set ctx.type =
+    page.type if page is defined and page.type
+    else "WebPage"
+%}
+
+{% set ctx.description =
+    (page.meta_description if page is defined and page.meta_description)
+    or (page.summary if page is defined and page.summary)
+    or (article.summary if article is defined and article.summary)
+    or (article.content|striptags if article is defined and article.content)
+    or "Digital transformation services and tools"
+%}
+
+{% set ctx.base_path =
+    "services" if ctx.type == "Service"
+    else "blog" if ctx.type == "Article"
+    else "page"
+%}
+
+{{ ctx }}
+
+{% endmacro %}

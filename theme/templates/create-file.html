@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title if page else 'Page' }} | {{ SITENAME }}{% endblock %}
+{% block robots %}noindex, nofollow{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="container-sm">
+    {% if page %}
+      <div class="prose">{{ page.content }}</div>
+    {% else %}
+      <div style="text-align:center;padding:4rem 0;color:var(--text-muted);">
+        <p style="font-size:1.5rem;margin-bottom:1rem;">🔧</p>
+        <p>This page is coming soon.</p>
+        <a href="{{ SITEURL }}/" class="btn btn-primary btn-sm" style="margin-top:1rem;">← Back Home</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

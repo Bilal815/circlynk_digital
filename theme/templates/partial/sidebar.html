@@ -1,0 +1,83 @@
+<aside class="sidebar blog-sidebar" aria-label="Blog sidebar">
+
+  <!-- COMPILER CTA -->
+  <div class="sidebar-widget sidebar-cta">
+    <p style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.15);padding-bottom:.5rem;">Free Tool · Live Now</p>
+    <h4>Python Compiler</h4>
+    <p>Run Python in your browser. No setup. No account. Free forever.</p>
+    <a href="{{ SITEURL }}/online-compiler-python/" class="btn btn-white btn-sm w-full text-center" style="margin-top:.75rem;display:flex;justify-content:center;">Try Compiler →</a>
+  </div>
+
+  <!-- SEARCH -->
+  {% if SEARCH_URL %}
+  <div class="sidebar-widget">
+    <p class="sidebar-widget-title">Search</p>
+    <form action="{{ SEARCH_URL }}" method="get" role="search">
+      <div style="display:flex;gap:.5rem;">
+        <input type="search" name="q" placeholder="Search articles…" class="form-control" style="flex:1;" aria-label="Search">
+        <button type="submit" class="btn btn-primary btn-sm">Go</button>
+      </div>
+    </form>
+  </div>
+  {% endif %}
+
+  <!-- CATEGORIES -->
+  {% if categories %}
+  <div class="sidebar-widget">
+    <p class="sidebar-widget-title">Categories</p>
+    <ul class="cat-list" role="list">
+      {% for cat, cat_articles in categories|sort(attribute='0') %}
+      <li>
+        <a href="{{ SITEURL }}/category/{{ cat.slug }}/" class="cat-link">
+          {{ cat }}
+          <span class="cat-count">{{ cat_articles|count }}</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <!-- RECENT ARTICLES -->
+  {% if articles %}
+  <div class="sidebar-widget">
+    <p class="sidebar-widget-title">Recent Posts</p>
+    <div style="display:flex;flex-direction:column;gap:.75rem;">
+      {% for a in articles[:5] %}
+      <div style="display:flex;flex-direction:column;gap:.2rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);">
+        {% if not loop.last %}{% endif %}
+        <a href="{{ SITEURL }}/{{ a.url }}" style="font-size:.82rem;font-weight:600;color:var(--gray-800);line-height:1.35;transition:color var(--transition);"
+           onmouseover="this.style.color='var(--cl-blue)'" onmouseout="this.style.color='var(--gray-800)'">{{ a.title }}</a>
+        <span style="font-size:.7rem;color:var(--text-muted);">{{ a.date.strftime('%b %d, %Y') }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- TAGS -->
+  {% if tags %}
+  <div class="sidebar-widget">
+    <p class="sidebar-widget-title">Tags</p>
+    <div class="tag-cloud">
+      {% for tag, tag_articles in tags|sort(attribute='0') %}
+      <a href="{{ SITEURL }}/tag/{{ tag.slug }}/" class="tag-pill">{{ tag }}</a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- NEWSLETTER -->
+  <div class="sidebar-widget" style="background:var(--gray-50);border-color:var(--border);">
+    <p class="sidebar-widget-title">Newsletter</p>
+    <p style="font-size:.8rem;color:var(--text-secondary);margin-bottom:.75rem;">Weekly insights on software, automation, and building from Pakistan.</p>
+    <form data-email-form style="display:flex;flex-direction:column;gap:.5rem;">
+      <input type="email" placeholder="your@email.com" class="form-control" style="font-size:.8rem;" required aria-label="Email address">
+      <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+    </form>
+    <div data-success style="display:none;font-size:.78rem;color:#166534;background:#dcfce7;border-radius:var(--radius);padding:.5rem .75rem;margin-top:.5rem;">
+      ✓ You're subscribed!
+    </div>
+  </div>
+
+</aside>

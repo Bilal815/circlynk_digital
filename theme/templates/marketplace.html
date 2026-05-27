@@ -1,0 +1,63 @@
+{% extends "page.html" %}
+{% from "macros/context.html" import resolve_context %}
+{% from "macros/schema.html" import build_schema %}
+
+{% set ctx = resolve_context(page, article) %}
+
+{% block title %}
+{{ ctx.title or 'Marketplace' }} | CircLynk Digital Marketplace
+{% endblock %}
+
+{% block meta_desc %}
+{{ ctx.description
+   | default('Digital products and services marketplace')
+   | striptags
+   | replace('\n',' ')
+   | replace('\r',' ')
+   | truncate(155, True)
+   | escape }}
+{% endblock %}
+
+{% block canonical %}
+{{ SITEURL }}/marketplace/
+{% endblock %}
+
+{% block body_class %}
+page-marketplace marketplace-landing
+{% endblock %}
+
+{% block schema %}
+<script type="application/ld+json">
+{{ build_schema(ctx, page, article, SITEURL) | safe }}
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container-sm">
+
+    {% if ctx and ctx.title %}
+      <h1>{{ ctx.title }}</h1>
+    {% else %}
+      <h1>Marketplace</h1>
+    {% endif %}
+
+    {% if ctx and ctx.description %}
+      <p class="lead">
+        {{ ctx.description }}
+      </p>
+    {% else %}
+      <p class="lead">
+        Digital products, templates, tools, and services marketplace.
+      </p>
+    {% endif %}
+
+    {% if ctx and ctx.content %}
+      <div class="prose">
+        {{ ctx.content | safe }}
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+{% endblock %}

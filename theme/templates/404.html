@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}404 — Page Not Found | {{ SITENAME }}{% endblock %}
+{% block robots %}noindex, nofollow{% endblock %}
+{% block body_class %}page-404-wrapper{% endblock %}
+
+{% block content %}
+<div class="page-404">
+  <div>
+    <div class="err-code" aria-hidden="true">404</div>
+    <h1 style="font-size:1.5rem;font-weight:700;color:var(--gray-900);margin-bottom:.75rem;">Page not found</h1>
+    <p style="color:var(--text-secondary);margin-bottom:2rem;max-width:400px;margin-left:auto;margin-right:auto;">The page you're looking for doesn't exist or has been moved. While you're here — try the free Python compiler.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="{{ SITEURL }}/" class="btn btn-primary btn-lg">← Go Home</a>
+      <a href="/online-compiler-python/" class="btn btn-outline btn-lg">Try Python Compiler</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

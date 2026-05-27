@@ -1,0 +1,83 @@
+{% macro article_card(article, featured=False) %}
+{% if featured %}
+<article class="article-featured" data-aos>
+  <div class="article-featured-img">
+    {% if article.image %}
+    <img src="{{ article.image }}" alt="{{ article.title|striptags }}" loading="eager" width="800" height="450">
+    {% else %}
+    <div style="background:linear-gradient(135deg,var(--cl-blue-light),var(--cl-teal-light));width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem;">📝</div>
+    {% endif %}
+  </div>
+  <div class="article-featured-body">
+    <span class="featured-badge">★ Featured</span>
+    <div class="article-meta" style="margin-bottom:.75rem;">
+      <a href="{{ SITEURL }}/category/{{ article.category.slug }}/" class="article-cat">{{ article.category }}</a>
+      <span class="article-date">{{ article.date.strftime('%B %d, %Y') }}</span>
+    </div>
+    <h2 class="article-featured-title">
+      <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+    </h2>
+    <p style="font-size:.9rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1.25rem;">
+      {{ article.summary|striptags|truncate(200) }}
+    </p>
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+      <a href="{{ SITEURL }}/{{ article.url }}" class="btn btn-primary btn-sm">Read Article →</a>
+      <span style="font-size:.75rem;color:var(--text-muted);">{{ article.content|striptags|wordcount // 200 + 1 }} min read</span>
+    </div>
+  </div>
+</article>
+{% else %}
+<article class="article-card card" data-aos>
+  {% if article.image %}
+  <a href="{{ SITEURL }}/{{ article.url }}" class="article-card-img" aria-label="{{ article.title|striptags }}">
+    <img src="{{ article.image }}" alt="{{ article.title|striptags }}" loading="lazy" width="400" height="225">
+  </a>
+  {% endif %}
+  <div class="article-card-body">
+    <div class="article-meta">
+      <a href="{{ SITEURL }}/category/{{ article.category.slug }}/" class="article-cat">{{ article.category }}</a>
+      <span class="article-date">{{ article.date.strftime('%b %d, %Y') }}</span>
+      <span class="article-read">{{ article.content|striptags|wordcount // 200 + 1 }} min</span>
+    </div>
+    <h3 class="article-card-title">
+      <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+    </h3>
+    <p class="article-excerpt">{{ article.summary|striptags|truncate(130) }}</p>
+    <div class="article-card-footer">
+      <div class="author-mini">
+        <div class="author-avatar-sm" aria-hidden="true">{{ article.author.name if article.author else AUTHOR }}</div>
+        <span class="author-name-sm">{{ article.author.name if article.author else AUTHOR }}</span>
+      </div>
+      <a href="{{ SITEURL }}/{{ article.url }}" class="read-more-link" aria-label="Read {{ article.title|striptags }}">
+        Read →
+      </a>
+    </div>
+  </div>
+</article>
+{% endif %}
+{% endmacro %}
+
+<!-- ARTICLES GRID -->
+{% if articles %}
+  {% set ns = namespace(shown=0) %}
+
+  {% if show_featured | default(True) and articles|length > 0 %}
+    {{ article_card(articles[0], featured=True) }}
+    {% set ns.shown = 1 %}
+  {% endif %}
+
+  {% if articles|length > ns.shown %}
+  <div class="blog-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-top:2rem;">
+    {% for article in articles[ns.shown:] %}
+      {{ article_card(article) }}
+    {% endfor %}
+  </div>
+  {% endif %}
+
+{% else %}
+<div style="text-align:center;padding:4rem 2rem;color:var(--text-muted);border:1px dashed var(--border);border-radius:var(--radius-xl);">
+  <p style="font-size:2rem;margin-bottom:.75rem;">📝</p>
+  <p style="font-weight:600;color:var(--gray-700);">No articles yet.</p>
+  <p style="font-size:.875rem;">Check back soon — content is on its way.</p>
+</div>
+{% endif %}

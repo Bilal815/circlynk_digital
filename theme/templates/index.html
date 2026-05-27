@@ -1,0 +1,276 @@
+{% extends "base.html" %}
+
+{% block title %}{{ SITENAME }} — Software & Digital Transformation | Karachi, Pakistan{% endblock %}
+{% block meta_desc %}CircLynk Digital builds custom software, free developer tools, and digital products for Pakistani SMEs and US startups. Free Python compiler live now — no signup needed.{% endblock %}
+{% block canonical %}
+{% if page is defined and page.slug %}
+  {{ SITEURL }}/{{ page.slug }}/
+{% elif article is defined and article.slug %}
+  {{ SITEURL }}/blog/{{ article.slug }}/
+{% else %}
+  {{ SITEURL }}/
+{% endif %}
+{% endblock %}
+{% block body_class %}page-home{% endblock %}
+
+{% block content %}
+
+<!-- ===== HERO ===== -->
+<section class="hero" aria-label="Hero">
+  <div class="container">
+    <div class="hero-inner">
+
+      <div class="hero-text">
+        <div class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          Python Compiler is live — no signup needed
+        </div>
+
+        <h1 class="hero-title">
+          Software that<br>
+          <span class="accent">actually</span> gets<br>
+          <span class="accent-teal">delivered.</span>
+        </h1>
+
+        <p class="hero-desc">
+          Custom software, free developer tools, and digital products for Pakistani SMEs and US startups.
+          Built lean. No fluff. One team, fully invested.
+        </p>
+
+        <div class="hero-actions">
+          <a href="/online-compiler-python/" class="btn btn-primary btn-lg">
+            🐍 Try Python Compiler
+          </a>
+          <a href="/services/" class="btn btn-outline btn-lg">
+            Our Services
+          </a>
+        </div>
+
+        <div class="hero-trust">
+          <div class="trust-item">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg>
+            No signup required
+          </div>
+          <div class="trust-item">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg>
+            Runs in your browser
+          </div>
+          <div class="trust-item">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg>
+            Free forever
+          </div>
+        </div>
+      </div>
+
+      <!-- TERMINAL VISUAL -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-badge badge-tl">
+          <span style="color:#22c55e">●</span> Runtime ready
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-bar">
+            <span class="win-dot r"></span>
+            <span class="win-dot y"></span>
+            <span class="win-dot g"></span>
+            <span class="card-tab">main.py</span>
+          </div>
+          <div class="hero-code-block">
+            <div><span class="code-kw">import</span> pandas <span class="code-kw">as</span> pd</div>
+            <div><span class="code-kw">import</span> datetime</div>
+            <div>&nbsp;</div>
+            <div><span class="code-cm"># Automate your Monday report</span></div>
+            <div>df = pd.<span class="code-fn">read_csv</span>(<span class="code-str">'sales.csv'</span>)</div>
+            <div>total = df[<span class="code-str">'revenue'</span>].<span class="code-fn">sum</span>()</div>
+            <div><span class="code-fn">print</span>(<span class="code-str">f"Week: Rs. <span class="code-num">{total:,.0f}</span>"</span>)</div>
+          </div>
+          <div class="hero-output">
+            <span class="output-prompt">▶</span> Week: Rs. 1,248,500
+            <span class="cursor-blink" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="hero-badge badge-br">
+          ⚡ 0ms server latency
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="stats-section section-sm" aria-label="Key stats">
+  <div class="container">
+    <div class="stats-grid">
+      {% for stat in [
+        ("0ms","Server latency on tools"),
+        ("100%","Runs in your browser"),
+        ("2 wks","Typical project delivery"),
+        ("Free","Python compiler, always")
+      ] %}
+      <div class="stat-card text-center" data-aos>
+        <div class="stat-number">{{ stat[0] }}</div>
+        <div class="stat-label">{{ stat[1] }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCTS STRIP ===== -->
+<section class="section" aria-label="Products and services">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:3rem;" data-aos>
+      <span class="section-label">What we offer</span>
+      <h2 class="section-title">Tools. Products. <span>Services.</span></h2>
+      <p class="section-desc mx-auto">From free browser-based tools to full custom software delivery — everything CircLynk Digital builds is designed to solve a real problem.</p>
+    </div>
+
+    <div class="grid-4" style="gap:1.5rem;">
+      {% set products = [
+        ("🐍","Python Compiler","Live","Run Python in your browser. Upload files, download outputs. No install, no signup.","/online-compiler-python/","Open Compiler →","green"),
+        ("⊞","Free Templates","Soon","Python scripts, Notion systems, spreadsheet templates for real business problems.","/templates/","Join Waitlist →","blue"),
+        ("◈","Premium Apps & Stores","Soon","Pre-built ecom stores, web apps, and SaaS starters. Buy today, launch tomorrow.","/marketplace/","Preview →","blue"),
+        ("→","Custom Development","Services","Software built for your specific problem. Fixed scope. Fixed price. Delivered.","/services/","See Services →","teal")
+      ] %}
+      {% for icon, title, badge, desc, url, cta, color in products %}
+      <div class="card service-card" data-aos data-aos-delay="{{ loop.index0 * 80 }}">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+          <div class="service-icon" style="margin-bottom:0;">{{ icon }}</div>
+          <span class="badge badge-{{ 'green' if color == 'green' else 'blue' if color == 'blue' else 'teal' }}">{{ badge }}</span>
+        </div>
+        <h3 class="service-card-title">{{ title }}</h3>
+        <p class="service-card-desc">{{ desc }}</p>
+        <a href="{{ SITEURL }}{{ url }}" class="service-card-link">{{ cta }}</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services-section section" aria-label="Services">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:3rem;" data-aos>
+      <span class="section-label">Services</span>
+      <h2 class="section-title">Everything you need to <span>build and grow.</span></h2>
+      <p class="section-desc mx-auto">From strategy to deployment — we cover the full digital product lifecycle.</p>
+    </div>
+
+    <div class="services-grid">
+      {% set services = [
+        ("◈","Strategy","Digital strategy, product definition, and roadmap planning that starts with your business problem — not technology."),
+        ("🎨","Product Design","UX/UI design, prototyping, and user research that creates products people actually want to use."),
+        ("✦","Branding","Brand strategy, identity, naming, and digital branding that makes you memorable in crowded markets."),
+        ("⚙","Web Development","From landing pages to full-stack web apps — built fast, built right, built to scale."),
+        ("📱","Mobile App Development","iOS, Android, and React Native apps with clean architecture and real-world performance."),
+        ("🔐","Application Security","Security audits, penetration testing, and OWASP-based code reviews for software you can trust."),
+        ("☁","Cloud Solutions","AWS, GCP, Azure infrastructure design, migration, and ongoing management."),
+        ("🏢","Enterprise Transformation","End-to-end digital transformation for enterprises — strategy, implementation, and change management."),
+        ("🔧","ITSM / ITAM","IT service and asset management implementation — ServiceNow, Jira, and custom solutions."),
+        ("🔄","Business Process Transformation","Redesign and automate the processes that slow your business down."),
+        ("👥","Business Process Outsourcing","Extend your team with trained specialists for ops, support, and back-office functions."),
+        ("🎬","Video Analytics","Computer vision and ML-based video analytics for retail, security, and industrial applications."),
+        ("🌐","IoT Solutions","Connected device systems from sensor to dashboard — prototyped, built, and deployed."),
+        ("📊","Product Management","Fractional product management for startups and SMEs who need PM expertise without the full-time hire."),
+        ("🚀","MVP Development","Fastest path from idea to working product — scoped right, built lean, launched fast."),
+        ("🏗","Infrastructure Management","Server, network, and cloud infrastructure management for teams who want to focus on their product.")
+      ] %}
+      {% for icon, title, desc in services %}
+      <div class="card service-card" data-aos data-aos-delay="{{ loop.index0 % 4 * 80 }}">
+        <div class="service-icon">{{ icon }}</div>
+        <h3 class="service-card-title">{{ title }}</h3>
+        <p class="service-card-desc">{{ desc }}</p>
+        <a href="{{ SITEURL }}/services/{{ title|lower|replace(' ','-') }}/" class="service-card-link">Learn more →</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ===== INDUSTRIES ===== -->
+<section class="section" style="background:var(--gray-50);" aria-label="Industries">
+  <div class="container">
+    <div class="grid-2" style="gap:4rem;align-items:center;">
+      <div data-aos>
+        <span class="section-label">Industries</span>
+        <h2 class="section-title">We've built for <span>every vertical.</span></h2>
+        <p class="section-desc" style="margin-bottom:2rem;">Deep domain expertise across the industries where software delivery actually matters.</p>
+        <a href="{{ SITEURL }}/industries/" class="btn btn-primary">Explore Industries →</a>
+      </div>
+      <div class="industries-grid" data-aos data-aos-delay="100">
+        {% set industries = [
+          ("🤖","Artificial Intelligence"),("🏢","Enterprise"),("🛒","eCommerce"),
+          ("🎓","Education"),("💳","FinTech"),("🍔","Food & Grocery"),
+          ("❤","Health & Wellness"),("🏪","Marketplace"),("📰","Media & Publishing"),
+          ("🤝","Non-Profit"),("🐾","Pet Care"),("📱","Social Media"),
+          ("🚀","Space Exploration"),("⚡","Startups"),("✈","Travel"),("⛓","Web3 & Blockchain")
+        ] %}
+        {% for icon, name in industries %}
+        <a href="{{ SITEURL }}/industries/{{ name|lower|replace(' ','-')|replace('&','and')|replace('/','') }}/" class="industry-card" data-aos data-aos-delay="{{ loop.index0 * 30 }}">
+          <div class="industry-icon">{{ icon }}</div>
+          <span class="industry-name">{{ name }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BLOG ===== -->
+{% if articles %}
+<section class="section" aria-label="Latest articles">
+  <div class="container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem;" data-aos>
+      <div>
+        <span class="section-label">From the blog</span>
+        <h2 class="section-title" style="margin-bottom:0;">Software. Automation.<br><span>Building from Pakistan.</span></h2>
+      </div>
+      <a href="{{ SITEURL }}/blog/" class="btn btn-ghost">All Articles →</a>
+    </div>
+
+    <div class="grid-3" style="gap:1.5rem;">
+      {% for article in articles[:3] %}
+      <article class="article-card card" data-aos data-aos-delay="{{ loop.index0 * 80 }}">
+        {% if article.image %}
+        <a href="{{ SITEURL }}/{{ article.url }}" class="article-card-img">
+          <img src="{{ article.image }}" alt="{{ article.title|striptags }}" loading="lazy" width="400" height="225">
+        </a>
+        {% endif %}
+        <div class="article-card-body">
+          <div class="article-meta">
+            <a href="{{ SITEURL }}/category/{{ article.category.slug }}/" class="article-cat">{{ article.category }}</a>
+            <span class="article-date">{{ article.date.strftime('%b %d, %Y') }}</span>
+          </div>
+          <h3 class="article-card-title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
+          <p class="article-excerpt">{{ article.summary|striptags|truncate(120) }}</p>
+          <div class="article-card-footer">
+            <div class="author-mini">
+              <div class="author-avatar-sm">{{ article.author.name if article.author else AUTHOR }}</div>
+              <span class="author-name-sm">{{ article.author.name if article.author else AUTHOR }}</span>
+            </div>
+            <a href="{{ SITEURL }}/{{ article.url }}" class="read-more-link">Read →</a>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ===== CTA ===== -->
+<section class="cta-section" aria-label="Call to action">
+  <div class="container">
+    <div style="max-width:640px;margin:0 auto;text-align:center;" data-aos>
+      <span class="section-label" style="color:var(--cl-teal);">Get started today</span>
+      <h2 class="section-title" style="color:var(--white);">Your first tool is<br>already <span style="color:var(--cl-teal);">waiting.</span></h2>
+      <p class="section-desc mx-auto" style="color:rgba(255,255,255,.65);margin-bottom:2.5rem;">Open the Python compiler, run your first script in 30 seconds, and see what browser-based development feels like. No signup. No install. Just code.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="{{ SITEURL }}/online-compiler-python/" class="btn btn-teal btn-xl">🐍 Open Python Compiler</a>
+        <a href="{{ SITEURL }}/contact/" class="btn btn-white btn-xl">Talk to us →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

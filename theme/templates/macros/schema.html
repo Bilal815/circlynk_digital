@@ -1,0 +1,43 @@
+{% macro build_schema(ctx, page=None, article=None, SITEURL="") %}
+
+{% set schema_type = ctx.type if ctx.type is defined else "WebPage" %}
+
+{
+  "@context": "https://schema.org",
+  "@type": "{{ schema_type }}",
+
+  "@id": "{{ SITEURL }}/{{ ctx.slug }}",
+  "url": "{{ SITEURL }}/{{ ctx.slug }}",
+
+  "name": "{{ ctx.title | default('CircLynk Digital') }}",
+  "description": "{{ ctx.description | default('') | striptags | replace('\n',' ') | truncate(160) }}",
+
+  "inLanguage": "en",
+
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "CircLynk Digital",
+    "url": "{{ SITEURL }}"
+  },
+
+  "publisher": {
+    "@type": "Organization",
+    "name": "CircLynk Digital",
+    "url": "{{ SITEURL }}"
+  }
+
+  {% if schema_type == "Service" %}
+  ,
+  "serviceType": "{{ ctx.service_type if ctx.service_type is defined else 'Digital Service' }}",
+  "category": "Technology Services"
+  {% endif %}
+
+  {% if schema_type == "Article" %}
+  ,
+  "headline": "{{ ctx.title }}",
+  "datePublished": "{{ article.date if article and article.date is defined else '' }}",
+  "dateModified": "{{ article.modified if article and article.modified is defined else article.date if article and article.date is defined else '' }}"
+  {% endif %}
+
+}
+{% endmacro %}

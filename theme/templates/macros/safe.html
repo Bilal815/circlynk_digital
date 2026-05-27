@@ -1,0 +1,3 @@
+{% macro get(obj, key, fallback='') %}
+{{ (obj and obj.get(key)) if obj is mapping else fallback }}
+{% endmacro %}  

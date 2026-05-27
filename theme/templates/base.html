@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG | default('en') }}" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- PRIMARY META -->
+  {% set _page = page if page is defined else None %}
+  {% set _article = article if article is defined else None %}
+
+  {% set _title =
+      (_page.title if _page and _page.title)
+      or (_article.title if _article and _article.title)
+      or SITENAME
+  %}
+
+  {% set _description =
+      (_page.meta_description if _page and _page.meta_description)
+      or (_page.summary if _page and _page.summary)
+      or (_article.summary if _article and _article.summary)
+      or (_article.content|striptags if _article and _article.content)
+      or SITEDESCRIPTION
+  %}
+  <meta name="author" content="{{ AUTHOR | default('CircLynk Digital') }}">
+  <meta name="robots" content="{% block robots %}index, follow{% endblock %}">
+  {% if REL_CANONICAL %}<link rel="canonical" href="{% block canonical %}
+{% if page is defined and page.slug %}
+  {{ SITEURL }}/{{ page.slug }}/
+{% elif article is defined and article.slug %}
+  {{ SITEURL }}/blog/{{ article.slug }}/
+{% else %}
+  {{ SITEURL }}/
+{% endif %}
+{% endblock %}">{% endif %}
+
+  <!-- OG + TWITTER -->
+  {% include "partial/og-tags.html" %}
+  {% include "partial/twitter-tags.html" %}
+
+  <!-- SCHEMA.ORG -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "{% block schema_type %}Organization{% endblock %}",
+
+    "name": "{{ SITENAME }}",
+    "url": "{{ SITEURL }}",
+    "logo": "{{ SITEURL }}/theme/assets/images/logo.svg",
+    "description": "{{ SITEDESCRIPTION | default('') }}",
+
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Karachi",
+      "addressCountry": "PK"
+    },
+
+    "sameAs": [
+      {% if SOCIAL_MEDIA_LINKS %}
+        {% for icon, url in SOCIAL_MEDIA_LINKS %}
+          "{{ url }}"{% if not loop.last %},{% endif %}
+        {% endfor %}
+      {% endif %}
+    ]
+
+    {% block schema_extra %}{% endblock %}
+  }
+  </script>
+
+  <!-- PERFORMANCE: Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- FONTS — subset for Lighthouse -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap&text=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+
+  <!-- BOOTSTRAP 5 -->
+  <link rel="stylesheet" href="/theme/vendor/bootstrap/css/bootstrap.min.css">
+
+  <!-- THEME CSS — load order matters -->
+  <link rel="stylesheet" href="/theme/assets/css/base.css">
+  <link rel="stylesheet" href="/theme/assets/css/navbar.css">
+  <link rel="stylesheet" href="/theme/assets/css/buttons.css">
+  <link rel="stylesheet" href="/theme/assets/css/hero.css">
+  <link rel="stylesheet" href="/theme/assets/css/cards.css">
+  <link rel="stylesheet" href="/theme/assets/css/layout.css">
+  <link rel="stylesheet" href="/theme/assets/css/utilities.css">
+  <link rel="stylesheet" href="/theme/assets/css/main.css">
+  <link rel="stylesheet" href="/theme/assets/css/components/articles.css">
+  {% block extra_css %}{% endblock %}
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/svg+xml" href="/theme/assets/images/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/theme/assets/images/favicon.ico">
+  <link rel="apple-touch-icon" href="/theme/assets/images/apple-touch-icon.png">
+
+  <!-- GOOGLE ANALYTICS -->
+  {% if GOOGLE_ANALYTICS %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ANALYTICS }}"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','{{ GOOGLE_ANALYTICS }}',{anonymize_ip:true});</script>
+  {% endif %}
+
+  {% block head_extra %}{% endblock %}
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+
+  <!-- HEADER -->
+  {% include "partial/header.html" %}
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content" tabindex="-1">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- FOOTER -->
+  {% include "partial/footer.html" %}
+
+  <!-- SCRIPTS — deferred for Lighthouse -->
+  <script src="/theme/vendor/jquery/jquery.min.js" defer></script>
+  <script src="/theme/vendor/jquery/jquery-4.0.0.min.js" defer></script>
+  <script src="/theme/vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+  <script src="/theme/assets/js/main.js" defer></script>
+  {% block extra_scripts %}{% endblock %}
+
+</body>
+</html>
