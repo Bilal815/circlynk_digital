@@ -1,0 +1,105 @@
+/* ============================================================
+   UTILITIES.CSS — Spacing, text, display helpers
+   ============================================================ */
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+
+.text-blue  { color: var(--cl-blue); }
+.text-teal  { color: var(--cl-teal); }
+.text-muted { color: var(--text-muted); }
+.text-white { color: var(--white); }
+.text-sm    { font-size: .875rem; }
+.text-xs    { font-size: .75rem; }
+.text-lg    { font-size: 1.125rem; }
+.text-xl    { font-size: 1.25rem; }
+.fw-600     { font-weight: 600; }
+.fw-700     { font-weight: 700; }
+
+.mt-0  { margin-top: 0; }
+.mt-4  { margin-top: var(--space-4); }
+.mt-6  { margin-top: var(--space-6); }
+.mt-8  { margin-top: var(--space-8); }
+.mt-12 { margin-top: var(--space-12); }
+.mb-0  { margin-bottom: 0; }
+.mb-4  { margin-bottom: var(--space-4); }
+.mb-6  { margin-bottom: var(--space-6); }
+.mb-8  { margin-bottom: var(--space-8); }
+.mb-12 { margin-bottom: var(--space-12); }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+.p-4 { padding: var(--space-4); }
+.p-6 { padding: var(--space-6); }
+.p-8 { padding: var(--space-8); }
+
+.rounded    { border-radius: var(--radius); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.rounded-full { border-radius: var(--radius-full); }
+
+.shadow    { box-shadow: var(--shadow); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+
+.bg-subtle { background: var(--bg-subtle); }
+.bg-white  { background: var(--white); }
+.bg-blue   { background: var(--cl-blue); }
+.bg-teal   { background: var(--cl-teal); }
+.bg-dark   { background: var(--gray-900); }
+
+.border     { border: 1px solid var(--border); }
+.border-top { border-top: 1px solid var(--border); }
+
+.d-none   { display: none; }
+.d-block  { display: block; }
+.d-flex   { display: flex; }
+.d-grid   { display: grid; }
+
+.w-full   { width: 100%; }
+.h-full   { height: 100%; }
+.max-w-prose { max-width: var(--max-w-prose); }
+
+.overflow-hidden { overflow: hidden; }
+.position-relative { position: relative; }
+
+/* GRADIENT TEXT */
+.gradient-text {
+  background: linear-gradient(135deg, var(--cl-blue), var(--cl-teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* SECTION SEPARATOR */
+.section-sep {
+  width: 60px; height: 3px;
+  background: linear-gradient(90deg, var(--cl-blue), var(--cl-teal));
+  border-radius: var(--radius-full);
+  margin: var(--space-4) 0 var(--space-6);
+}
+
+.section-sep.center { margin-left: auto; margin-right: auto; }
+
+/* LIST STYLED */
+.check-list { display: flex; flex-direction: column; gap: var(--space-3); }
+.check-item { display: flex; align-items: flex-start; gap: var(--space-3); font-size: .9rem; color: var(--text-secondary); }
+.check-icon { color: var(--cl-teal); flex-shrink: 0; margin-top: 2px; font-size: 1rem; }
+
+/* HIGHLIGHT BOX */
+.highlight-box {
+  background: var(--cl-blue-light);
+  border: 1px solid rgba(24,95,165,.15);
+  border-left: 4px solid var(--cl-blue);
+  border-radius: var(--radius);
+  padding: var(--space-4) var(--space-5);
+  font-size: .875rem;
+  color: var(--cl-blue-dark);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+}
+@media (min-width: 769px) {
+  .hide-desktop { display: none !important; }
+}
