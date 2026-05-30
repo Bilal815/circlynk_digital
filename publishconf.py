@@ -18,8 +18,8 @@ CACHE_CONTENT = False
 LOAD_CONTENT_CACHE = False
 
 # Ensure correct feeds
-FEED_ALL_ATOM = 'feeds/all.atom.xml'
-CATEGORY_FEED_ATOM = 'feeds/{slug}.atom.xml'
+FEED_ALL_ATOM = 'all.atom.xml'
+CATEGORY_FEED_ATOM = '{slug}.atom.xml'
 
 # Production-safe
 WITH_FUTURE_DATES = False

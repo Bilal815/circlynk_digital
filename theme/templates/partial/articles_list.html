@@ -11,7 +11,7 @@
   <div class="article-featured-body">
     <span class="featured-badge">★ Featured</span>
     <div class="article-meta" style="margin-bottom:.75rem;">
-      <a href="{{ SITEURL }}/category/{{ article.category.slug }}/" class="article-cat">{{ article.category }}</a>
+      <a href="{{ SITEURL }}/{{ article.category.slug }}/" class="article-cat">{{ article.category }}</a>
       <span class="article-date">{{ article.date.strftime('%B %d, %Y') }}</span>
     </div>
     <h2 class="article-featured-title">
@@ -35,7 +35,7 @@
   {% endif %}
   <div class="article-card-body">
     <div class="article-meta">
-      <a href="{{ SITEURL }}/category/{{ article.category.slug }}/" class="article-cat">{{ article.category }}</a>
+      <a href="{{ SITEURL }}/{{ article.category.slug }}/" class="article-cat">{{ article.category }}</a>
       <span class="article-date">{{ article.date.strftime('%b %d, %Y') }}</span>
       <span class="article-read">{{ article.content|striptags|wordcount // 200 + 1 }} min</span>
     </div>

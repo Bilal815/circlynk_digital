@@ -28,7 +28,7 @@
     <ul class="cat-list" role="list">
       {% for cat, cat_articles in categories|sort(attribute='0') %}
       <li>
-        <a href="{{ SITEURL }}/category/{{ cat.slug }}/" class="cat-link">
+        <a href="{{ SITEURL }}/{{ cat.slug }}/" class="cat-link">
           {{ cat }}
           <span class="cat-count">{{ cat_articles|count }}</span>
         </a>

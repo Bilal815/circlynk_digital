@@ -26,7 +26,7 @@ AUTHOR_FEED_ATOM      = None
 AUTHOR_FEED_RSS       = None
 
 # Limitting related posts
-RELATED_POSTS_MAX = 10
+#RELATED_POSTS_MAX = 10
 
 # URLs — clean SEO-friendly
 ARTICLE_URL      = '{slug}/'
@@ -74,12 +74,9 @@ PLUGINS = [
     'yuicompressor',
     #'sitemap',
     #'seo',
-    'related_posts',
+    #'related_posts',
     #'neighbors',
 ]
-
-# Yuicompressor
-#YUICOMPRESSOR_EXECUTABLE = 'yui_compressor.py'
 
 # Sitemap settings
 SITEMAP = {

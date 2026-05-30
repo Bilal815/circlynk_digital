@@ -46,7 +46,7 @@ page-article
       </li>
       <span aria-hidden="true">›</span>
       <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <a href="{{ SITEURL }}/category/{{ article.category.slug }}/" itemprop="item" style="color:var(--cl-blue);"><span itemprop="name">{{ article.category }}</span></a>
+        <a href="{{ SITEURL }}/{{ article.category.slug }}/" itemprop="item" style="color:var(--cl-blue);"><span itemprop="name">{{ article.category }}</span></a>
         <meta itemprop="position" content="3">
       </li>
       <span aria-hidden="true">›</span>
@@ -90,7 +90,7 @@ page-article
 
       <header class="article-header">
         <div class="article-meta-bar">
-          <a href="{{ SITEURL }}/category/{{ article.category.slug }}/" class="article-cat">{{ article.category }}</a>
+          <a href="{{ SITEURL }}/{{ article.category.slug }}/" class="article-cat">{{ article.category }}</a>
           <time class="article-date" datetime="{{ article.date.isoformat() }}">{{ article.date.strftime('%B %d, %Y') }}</time>
           <span class="article-read">{{ article.content|striptags|wordcount // 200 + 1 }} min read</span>
         </div>
@@ -153,7 +153,7 @@ page-article
       <article class="article-card card">
         <div class="article-card-body">
           <div class="article-meta">
-            <a href="{{ SITEURL }}/category/{{ related.category.slug }}/" class="article-cat">{{ related.category }}</a>
+            <a href="{{ SITEURL }}/{{ related.category.slug }}/" class="article-cat">{{ related.category }}</a>
             <span class="article-date">{{ related.date.strftime('%b %d, %Y') }}</span>
           </div>
           <h3 class="article-card-title"><a href="{{ SITEURL }}/{{ related.url }}">{{ related.title }}</a></h3>

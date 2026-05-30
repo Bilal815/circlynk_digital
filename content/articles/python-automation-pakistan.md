@@ -1,7 +1,7 @@
 Title: How Pakistani businesses can save 10+ hours a week with Python automation
 Slug: python-automation-for-pakistani-businesses
 Date: 2025-01-15
-Category: automation
+Category: process-automation
 author: CircLynk Digital
 Tags: python, automation, pakistan, smb
 
