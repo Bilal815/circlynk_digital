@@ -1,19 +1,32 @@
 {% extends "base.html" %}
+{% from "macros/context.html" import resolve_context %}
 
-{% block title %}{{ article.title|striptags }} | {{ SITENAME }}{% endblock %}
-{% block meta_desc %}{{ article.summary|striptags|truncate(160) }}{% endblock %}
-{% block canonical %}{{ SITEURL }}/{{ article.url }}{% endblock %}
-{% block robots %}index, follow{% endblock %}
-{% block body_class %}page-article{% endblock %}
+{% set ctx = resolve_context(page, article) %}
 
-{% block schema_type %}Article{% endblock %}
-{% block schema_extra %}
-,"headline": "{{ article.title|striptags }}",
-"author": {"@type": "Person", "name": "{{ article.author.name if article.author else AUTHOR }}"},
-"datePublished": "{{ article.date.isoformat() }}",
-"dateModified": "{{ article.modified.isoformat() if article.modified else article.date.isoformat() }}",
-"publisher": {"@type": "Organization", "name": "{{ SITENAME }}", "url": "{{ SITEURL }}"}
-{% if article.image %},"image": "{{ article.image }}"{% endif %}
+{% block title %}
+{{ ctx.title }} | {{ SITENAME }}
+{% endblock %}
+
+{% block meta_desc %}
+{{ ctx.description | striptags | truncate(160, True) }}
+{% endblock %}
+
+{% block canonical %}
+{{ SITEURL }}/{{ ctx.url }}
+{% endblock %}
+
+{% block robots %}
+index, follow
+{% endblock %}
+
+{% block body_class %}
+page-article
+{% endblock %}
+
+{% block schema %}
+<script type="application/ld+json">
+{{ build_schema(ctx, page, article, SITEURL) | safe }}
+</script>
 {% endblock %}
 
 {% block content %}
@@ -117,7 +130,7 @@
         <div class="author-bio-avatar" aria-hidden="true">{{ article.author.name if article.author else AUTHOR }}</div>
         <div>
           <h4 class="author-bio-name">{{ article.author.name if article.author else AUTHOR }}</h4>
-          <p class="author-bio-text">Founder of CircLynk Digital. Building software and automation tools for Pakistani SMEs and US startups. Writing about digital transformation, Python, and building from Karachi.</p>
+          <p class="author-bio-text">Founder of CircLynk Digital. Building software and automation tools for SMEs and startups. Writing about digital transformation, Python, and building from Karachi.</p>
           <a href="{{ SITEURL }}/author/{{ article.author.slug }}/" class="btn btn-ghost btn-sm" style="margin-top:.75rem;">More articles →</a>
         </div>
       </div>

@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}{{ SITENAME }} — Software & Digital Transformation | Karachi, Pakistan{% endblock %}
-{% block meta_desc %}CircLynk Digital builds custom software, free developer tools, and digital products for Pakistani SMEs and US startups. Free Python compiler live now — no signup needed.{% endblock %}
+{% block title %}{{ SITENAME }} — Software & Digital Transformation{% endblock %}
+{% block meta_desc %}CircLynk Digital builds custom software, free developer tools, and digital products for SMEs and startups. Free Python compiler live now — no signup needed.{% endblock %}
 {% block canonical %}
 {% if page is defined and page.slug %}
   {{ SITEURL }}/{{ page.slug }}/
 {% elif article is defined and article.slug %}
-  {{ SITEURL }}/blog/{{ article.slug }}/
+  {{ SITEURL }}/{{ article.slug }}/
 {% else %}
   {{ SITEURL }}/
 {% endif %}
@@ -33,7 +33,7 @@
         </h1>
 
         <p class="hero-desc">
-          Custom software, free developer tools, and digital products for Pakistani SMEs and US startups.
+          Custom software, free developer tools, and digital products for SMEs and startups.
           Built lean. No fluff. One team, fully invested.
         </p>
 
@@ -81,10 +81,10 @@
             <div><span class="code-cm"># Automate your Monday report</span></div>
             <div>df = pd.<span class="code-fn">read_csv</span>(<span class="code-str">'sales.csv'</span>)</div>
             <div>total = df[<span class="code-str">'revenue'</span>].<span class="code-fn">sum</span>()</div>
-            <div><span class="code-fn">print</span>(<span class="code-str">f"Week: Rs. <span class="code-num">{total:,.0f}</span>"</span>)</div>
+            <div><span class="code-fn">print</span>(<span class="code-str">f"Week: $<span class="code-num">{total:,.0f}</span>"</span>)</div>
           </div>
           <div class="hero-output">
-            <span class="output-prompt">▶</span> Week: Rs. 1,248,500
+            <span class="output-prompt">▶</span> Week: $1,248,500
             <span class="cursor-blink" aria-hidden="true"></span>
           </div>
         </div>
