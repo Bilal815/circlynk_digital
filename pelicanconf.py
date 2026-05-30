@@ -43,7 +43,6 @@ TEMPLATE_PAGES = {
     'blog.html': 'blog/index.htmlc',
     'contact.html': 'contact.html',
     '404.html': '404.html',
-    'service_detail.html': 'service_detail/index.html',
     'marketplace.html': 'marketplace/index.html',
     'services.html': 'services/index.html',
     'service_detail.html': 'service_detail/index.html',
@@ -101,6 +100,13 @@ MARKDOWN = {
     },
     'output_format': 'html5',
 }
+
+# Language
+LANGUAGE = [DEFAULT_LANG, 'ur']
+
+# Location
+COMPANY_LOCALITY = "South Carolina"
+COMPANY_COUNTRY = "United States"
 
 # SOCIAL
 SOCIAL_MEDIA_LINKS = (

@@ -12,7 +12,7 @@
   "name": "{{ ctx.title | default('CircLynk Digital') }}",
   "description": "{{ ctx.description | default('') | striptags | replace('\n',' ') | truncate(160) }}",
 
-  "inLanguage": "en",
+  "inLanguage": LANGUAGE[0],
 
   "isPartOf": {
     "@type": "WebSite",

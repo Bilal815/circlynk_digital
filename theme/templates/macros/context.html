@@ -5,7 +5,7 @@
 {% set ctx.title =
     page.title if page is defined and page.title
     else article.title if article is defined and article.title
-    else "CircLynk Digital"
+    else ""
 %}
 
 {% set ctx.slug =
@@ -24,7 +24,7 @@
     or (page.summary if page is defined and page.summary)
     or (article.summary if article is defined and article.summary)
     or (article.content|striptags if article is defined and article.content)
-    or "Digital transformation services and tools"
+    or ""
 %}
 
 {% set ctx.base_path =

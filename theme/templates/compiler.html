@@ -1,11 +1,41 @@
 {% extends "base.html" %}
 
-{% block title %}Python Online Compiler — Free Browser IDE | CircLynk Digital{% endblock %}
-{% block meta_desc %}Run Python in your browser instantly. No install, no signup. File upload/download, package support, error intelligence. Powered by Pyodide. Free forever — CircLynk Digital.{% endblock %}
-{% block canonical %}{{ SITEURL }}/online-compiler-python/{% endblock %}
-{% block body_class %}page-compiler{% endblock %}
+{% from "macros/context.html" import resolve_context %}
 
-{% block schema_type %}SoftwareApplication{% endblock %}
+{% set ctx = resolve_context(page, article) %}
+
+
+{% block title %}
+{{ ctx.title }}
+{% endblock %}
+
+{% block meta_desc %}
+{{ ctx.description
+   | striptags
+   | replace('\n',' ')
+   | replace('\r',' ')
+   | truncate(155, True)
+   | escape }}
+{% endblock %}
+
+{% block canonical %}
+{{ SITEURL }}/{{ ctx.slug }}/
+{% endblock %}
+
+{% block body_class %}
+page-tools tools-{{ ctx.slug }}
+{% endblock %}
+
+{% block schema_type %}
+SoftwareApplication
+{% endblock %}
+
+{% block schema %}
+<script type="application/ld+json">
+{{ build_schema(ctx, page, article, SITEURL) | safe }}
+</script>
+{% endblock %}
+
 {% block schema_extra %}
 ,"name": "CircLynk Python Compiler",
 "applicationCategory": "DeveloperApplication",

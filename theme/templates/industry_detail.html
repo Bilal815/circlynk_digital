@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block canonical %}
-{{ SITEURL }}/{{ ctx.base_path if ctx.base_path is defined else 'industries' }}/{{ ctx.slug }}/
+{{ SITEURL }}/{{ ctx.base_path+"/" if ctx.base_path is defined else '' }}{{ ctx.slug }}/
 {% endblock %}
 
 {% block body_class %}
