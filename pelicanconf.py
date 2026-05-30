@@ -71,11 +71,15 @@ EXTRA_PATH_METADATA = {
 # PLUGINS
 PLUGIN_PATHS = ['plugins']
 PLUGINS = [
+    'yuicompressor',
     #'sitemap',
     #'seo',
     'related_posts',
     #'neighbors',
 ]
+
+# Yuicompressor
+#YUICOMPRESSOR_EXECUTABLE = 'yui_compressor.py'
 
 # Sitemap settings
 SITEMAP = {
