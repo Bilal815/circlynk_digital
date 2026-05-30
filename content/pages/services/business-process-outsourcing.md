@@ -1,5 +1,5 @@
 Title: Business Process Outsourcing
-Slug: services/business-process-outsourcing
+Slug: business-process-outsourcing
 Template: service_detail
 Parent_slug: services
 Service_name: Business Process Outsourcing

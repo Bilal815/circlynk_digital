@@ -1,5 +1,5 @@
 Title: Infrastructure Management
-Slug: services/infrastructure-management
+Slug: infrastructure-management
 Template: service_detail
 Parent_slug: services
 Service_name: Infrastructure Management

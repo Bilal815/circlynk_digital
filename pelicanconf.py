@@ -19,28 +19,31 @@ NOW            = datetime.now()
 THEME = 'theme'
 
 # FEED
-FEED_ALL_ATOM         = 'feeds/all.atom.xml'
-CATEGORY_FEED_ATOM    = 'feeds/{slug}.atom.xml'
+FEED_ALL_ATOM         = 'all.atom.xml'
+CATEGORY_FEED_ATOM    = '{slug}.atom.xml'
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM      = None
 AUTHOR_FEED_RSS       = None
 
+# Limitting related posts
+RELATED_POSTS_MAX = 10
+
 # URLs — clean SEO-friendly
-ARTICLE_URL      = '{category}/{slug}/'
-ARTICLE_SAVE_AS  = '{category}/{slug}/index.html'
+ARTICLE_URL      = '{slug}/'
+ARTICLE_SAVE_AS  = '{slug}/index.html'
 PAGE_URL         = '{slug}/'
 PAGE_SAVE_AS     = '{slug}/index.html'
-CATEGORY_URL     = 'category/{slug}/'
-CATEGORY_SAVE_AS = 'category/{slug}/index.html'
-TAG_URL          = 'tag/{slug}/'
-TAG_SAVE_AS      = 'tag/{slug}/index.html'
-AUTHOR_URL       = 'author/{slug}/'
-AUTHOR_SAVE_AS   = 'author/{slug}/index.html'
+CATEGORY_URL     = '{slug}/'
+CATEGORY_SAVE_AS = '{slug}/index.html'
+TAG_URL          = '{slug}/'
+TAG_SAVE_AS      = '{slug}/index.html'
+AUTHOR_URL       = '{slug}/'
+AUTHOR_SAVE_AS   = '{slug}/index.html'
 
 # Template Page Routing
 TEMPLATE_PAGES = {
     'compiler.html': 'online-compiler-python/index.html',
-    'blog.html': 'blog/index.htmlc',
+    'blog.html': 'blog/index.html',
     'contact.html': 'contact.html',
     '404.html': '404.html',
     'marketplace.html': 'marketplace/index.html',
@@ -48,7 +51,6 @@ TEMPLATE_PAGES = {
     'service_detail.html': 'service_detail/index.html',
     'industries.html': 'industries/index.html',
     'industry_detail.html': 'industry_detail/index.html',
-    #'page.html': 'page.html',
 }
 
 # PAGINATION
@@ -75,11 +77,21 @@ PLUGINS = [
     #'neighbors',
 ]
 
-# SITEMAP PLUGIN
+# Sitemap settings
 SITEMAP = {
-    'format':     'xml',
-    'priorities': {'articles': 0.8, 'indexes': 0.6, 'pages': 0.7},
-    'changefreqs': {'articles': 'weekly', 'indexes': 'daily', 'pages': 'monthly'},
+    'siteurl': SITEURL,
+    'format': 'xml',
+    'priorities': {
+        'articles': 1,
+        'indexes': 1,
+        'pages': 1
+    },
+    'changefreqs': {
+        'articles': 'daily',
+        'pages': 'daily',
+        'indexes': 'daily',
+    },
+    'exclude': ['404', 'archives', 'tags', 'authors'],  # ex: ['404', 'archives', 'tags', 'authors']
 }
 
 # SEO PLUGIN
@@ -92,7 +104,7 @@ RELATED_POSTS_MAX = 3
 # MARKDOWN
 MARKDOWN = {
     'extension_configs': {
-        'markdown.extensions.codehilite': {'css_class': 'highlight'},
+        'markdown.extensions.codehilite': {},
         'markdown.extensions.extra': {},
         'markdown.extensions.toc': {'permalink': True},
         'markdown.extensions.meta': {},

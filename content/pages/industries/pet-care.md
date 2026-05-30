@@ -1,5 +1,5 @@
 Title: Pet Care
-Slug: industries/pet-care
+Slug: pet-care
 Template: industry_detail
 Parent_slug: industries
 Industry_name: Pet Care

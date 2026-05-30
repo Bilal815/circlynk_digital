@@ -1,5 +1,5 @@
 Title: FinTech
-Slug: industries/fintech
+Slug: fintech
 Template: industry_detail
 Parent_slug: industries
 Industry_name: FinTech

@@ -1,5 +1,5 @@
 Title: Enterprise Digital Transformation
-Slug: services/enterprise-digital-transformation
+Slug: enterprise-digital-transformation
 Template: service_detail
 Parent_slug: services
 Service_name: Enterprise Digital Transformation

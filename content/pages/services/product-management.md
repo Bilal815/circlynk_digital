@@ -1,5 +1,5 @@
 Title: Product Management
-Slug: services/product-management
+Slug: product-management
 Template: service_detail
 Parent_slug: services
 Service_name: Product Management

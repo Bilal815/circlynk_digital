@@ -1,5 +1,5 @@
 Title: Social Media
-Slug: industries/social-media
+Slug: social-media
 Template: industry_detail
 Parent_slug: industries
 Industry_name: Social Media

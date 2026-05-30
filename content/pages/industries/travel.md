@@ -1,5 +1,5 @@
 Title: Travel
-Slug: industries/travel
+Slug: travel
 Template: industry_detail
 Parent_slug: industries
 Industry_name: Travel

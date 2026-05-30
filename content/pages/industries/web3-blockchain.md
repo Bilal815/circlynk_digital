@@ -1,5 +1,5 @@
 Title: Web3 & Blockchain
-Slug: industries/web3-blockchain
+Slug: web3-blockchain
 Template: industry_detail
 Parent_slug: industries
 Industry_name: Web3 & Blockchain

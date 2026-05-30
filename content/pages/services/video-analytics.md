@@ -1,5 +1,5 @@
 Title: Video Analytics
-Slug: services/video-analytics
+Slug: video-analytics
 Template: service_detail
 Parent_slug: services
 Service_name: Video Analytics

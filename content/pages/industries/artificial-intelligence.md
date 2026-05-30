@@ -1,5 +1,5 @@
 Title: Artificial Intelligence
-Slug: industries/artificial-intelligence
+Slug: artificial-intelligence
 Template: industry_detail
 Parent_slug: industries
 Industry_name: Artificial Intelligence

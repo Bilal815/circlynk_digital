@@ -1,5 +1,5 @@
 Title: Education
-Slug: industries/education
+Slug: education
 Template: industry_detail
 Parent_slug: industries
 Industry_name: Education

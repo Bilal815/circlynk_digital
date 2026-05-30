@@ -1,5 +1,5 @@
 Title: Non-Profit
-Slug: industries/non-profit
+Slug: non-profit
 Template: industry_detail
 Parent_slug: industries
 Industry_name: Non-Profit

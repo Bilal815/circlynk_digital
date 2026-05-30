@@ -1,5 +1,5 @@
 Title: Mobile App Development
-Slug: services/mobile-app-development
+Slug: mobile-app-development
 Template: service_detail
 Parent_slug: services
 Service_name: Mobile App Development

@@ -1,5 +1,5 @@
 Title: eCommerce
-Slug: industries/ecommerce
+Slug: ecommerce
 Template: industry_detail
 Parent_slug: industries
 Industry_name: eCommerce

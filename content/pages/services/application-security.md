@@ -1,5 +1,5 @@
 Title: Application Security
-Slug: services/application-security
+Slug: application-security
 Template: service_detail
 Parent_slug: services
 Service_name: Application Security

@@ -1,5 +1,5 @@
 Title: IoT Solutions
-Slug: services/iot-solutions
+Slug: iot-solutions
 Template: service_detail
 Parent_slug: services
 Service_name: IoT Solutions

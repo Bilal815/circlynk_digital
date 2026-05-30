@@ -5,12 +5,12 @@
 {% set ctx = resolve_context(page, article) %}
 
 {% block title %}
-{{ ctx.title or 'Marketplace' }} | CircLynk Digital Marketplace
+{{ ctx.title or '' }}
 {% endblock %}
 
 {% block meta_desc %}
 {{ ctx.description
-   | default('Digital products and services marketplace')
+   | default('')
    | striptags
    | replace('\n',' ')
    | replace('\r',' ')

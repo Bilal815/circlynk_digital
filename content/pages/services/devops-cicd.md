@@ -1,5 +1,5 @@
 Title: DevOps & CI/CD
-Slug: services/devops-cicd
+Slug: devops-cicd
 Template: service_detail
 Parent_slug: services
 Service_name: DevOps & CI/CD

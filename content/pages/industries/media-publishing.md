@@ -1,5 +1,5 @@
 Title: Media & Publishing
-Slug: industries/media-publishing
+Slug: media-publishing
 Template: industry_detail
 Parent_slug: industries
 Industry_name: Media & Publishing

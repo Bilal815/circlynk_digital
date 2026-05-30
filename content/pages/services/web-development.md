@@ -1,5 +1,5 @@
 Title: Web Development
-Slug: services/web-development
+Slug: web-development
 Template: service_detail
 Parent_slug: services
 Service_name: Web Development

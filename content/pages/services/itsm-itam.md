@@ -1,5 +1,5 @@
 Title: ITSM / ITAM
-Slug: services/itsm-itam
+Slug: itsm-itam
 Template: service_detail
 Parent_slug: services
 Service_name: ITSM / ITAM

@@ -1,5 +1,5 @@
 Title: Cloud Solutions
-Slug: services/cloud-solutions
+Slug: cloud-solutions
 Template: service_detail
 Parent_slug: services
 Service_name: Cloud Solutions

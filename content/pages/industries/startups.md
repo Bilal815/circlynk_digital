@@ -1,5 +1,5 @@
 Title: Startups
-Slug: industries/startups
+Slug: startups
 Template: industry_detail
 Parent_slug: industries
 Industry_name: Startups

@@ -1,5 +1,5 @@
 Title: Health & Wellness
-Slug: industries/health-wellness
+Slug: health-wellness
 Template: industry_detail
 Parent_slug: industries
 Industry_name: Health & Wellness

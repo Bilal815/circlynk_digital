@@ -1,5 +1,5 @@
 Title: MVP Development
-Slug: services/mvp-development
+Slug: mvp-development
 Template: service_detail
 Parent_slug: services
 Service_name: MVP Development

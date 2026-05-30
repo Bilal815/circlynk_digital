@@ -1,5 +1,5 @@
 Title: Custom Software Development
-Slug: services/custom-software-development
+Slug: custom-software-development
 Template: service_detail
 Parent_slug: services
 Service_name: Custom Software Development

@@ -1,5 +1,5 @@
 Title: Space Exploration
-Slug: industries/space-exploration
+Slug: space-exploration
 Template: industry_detail
 Parent_slug: industries
 Industry_name: Space Exploration

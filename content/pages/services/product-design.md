@@ -1,5 +1,5 @@
 Title: Product Design
-Slug: services/product-design
+Slug: product-design
 Template: service_detail
 Parent_slug: services
 Service_name: Product Design

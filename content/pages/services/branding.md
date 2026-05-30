@@ -1,5 +1,5 @@
 Title: Branding
-Slug: services/branding
+Slug: branding
 Template: service_detail
 Parent_slug: services
 Service_name: Branding

@@ -1,5 +1,5 @@
 Title: Marketing & Growth
-Slug: services/marketing-growth
+Slug: marketing-growth
 Template: service_detail
 Parent_slug: services
 Service_name: Marketing & Growth

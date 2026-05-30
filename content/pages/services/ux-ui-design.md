@@ -1,5 +1,5 @@
 Title: UX/UI Design
-Slug: services/ux-ui-design
+Slug: ux-ui-design
 Template: service_detail
 Parent_slug: services
 Service_name: UX/UI Design

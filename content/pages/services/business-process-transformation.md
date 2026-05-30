@@ -1,5 +1,5 @@
 Title: Business Process Transformation
-Slug: services/business-process-transformation
+Slug: business-process-transformation
 Template: service_detail
 Parent_slug: services
 Service_name: Business Process Transformation

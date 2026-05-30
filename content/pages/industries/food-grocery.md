@@ -1,5 +1,5 @@
 Title: Food & Grocery
-Slug: industries/food-grocery
+Slug: food-grocery
 Template: industry_detail
 Parent_slug: industries
 Industry_name: Food & Grocery

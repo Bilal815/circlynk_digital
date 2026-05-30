@@ -1,5 +1,5 @@
 Title: Strategy
-Slug: services/strategy
+Slug: strategy
 Template: service_detail
 Parent_slug: services
 Service_name: Strategy

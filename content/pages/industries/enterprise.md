@@ -1,5 +1,5 @@
 Title: Enterprise
-Slug: industries/enterprise
+Slug: enterprise
 Template: industry_detail
 Parent_slug: industries
 Industry_name: Enterprise
