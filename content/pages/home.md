@@ -1,4 +1,4 @@
-Title: CircLynk Digital
+Title: CircLynk Digital | Software & Digital Transformation
 Description: Run Python in your browser. No install. No signup. Powered by Pyodide. Free forever.
 Slug: home
 Template: index

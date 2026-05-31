@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
-{% block title %}{{ SITENAME }} — Software & Digital Transformation{% endblock %}
-{% block meta_desc %}CircLynk Digital builds custom software, free developer tools, and digital products for SMEs and startups. Free Python compiler live now — no signup needed.{% endblock %}
+{% block title %}{% endblock %}
+{% block meta_desc %}{% endblock %}
 {% block canonical %}
 {% if page is defined and page.slug %}
   {{ SITEURL }}/{{ page.slug }}
 {% elif article is defined and article.slug %}
   {{ SITEURL }}/{{ article.slug }}/
 {% else %}
-  {{ SITEURL }}/
+  {{ SITEURL }}
 {% endif %}
 {% endblock %}
 {% block body_class %}page-home{% endblock %}
