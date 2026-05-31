@@ -1,0 +1,43 @@
+{% macro render_menu(config, siteurl) %}
+
+<ul class="navbar-nav">
+
+  {% for group in config["groups"] %}
+  <li class="nav-item has-mega">
+
+    <a href="{{ siteurl }}{{ group['url'] }}"
+       class="nav-link has-dropdown" aria-expanded="false">
+      {{ group["title"] }}
+      <svg class="chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+      </svg>
+    </a>
+
+    <div class="mega-menu" role="menu">
+
+      {% for item in group["items"] %}
+      <a href="{{ siteurl }}{{ item[1] }}"
+         class="mega-link"
+         role="menuitem">
+        {{ item[0] }}
+      </a>
+      {% endfor %}
+
+    </div>
+
+  </li>
+  {% endfor %}
+
+    <!-- CTA -->
+    {% if config.cta %}
+    <li class="navbar-actions">
+      <a href="{{ config.cta.url }}"
+         class="btn btn-primary btn-sm">
+        {{ config.cta.text }}
+      </a>
+    </li>
+    {% endif %}
+
+</ul>
+
+{% endmacro %}

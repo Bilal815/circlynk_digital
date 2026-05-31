@@ -1,6 +1,7 @@
 /* ============================================================
-   NAVBAR.CSS — Sticky, accessible, mega-menu
+   NAVBAR BASE
    ============================================================ */
+
 .site-header {
   position: sticky;
   top: 0;
@@ -12,213 +13,313 @@
   box-shadow: var(--shadow-sm);
 }
 
+/* container-aligned navbar */
 .navbar {
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+
   min-height: 88px;
-  height: auto;
-  padding: 10px 0;
+
   display: flex;
   align-items: center;
+
   justify-content: space-between;
   gap: var(--space-8);
+
+  padding: 0 var(--space-6);
 }
 
-/* LOGO */
-/* =========================
-   BRAND WRAPPER (same as before)
-========================= */
+/* ============================================================
+   BRAND
+   ============================================================ */
 
 .navbar-brand {
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  flex-shrink: 0;
   text-decoration: none;
+  flex-shrink: 0;
+
+  margin-left: -6px;
 }
 
-/* =========================
-   IMAGE LOGO CONTROL LAYER
-   (replaces text system)
-========================= */
-
 .brand-logo-img {
-  height: 90px;               /* controls visual weight */
+  height: 90px;
   width: auto;
-  display: block;
   object-fit: contain;
-  filter: none;
 }
 
-/* =========================
-   OPTIONAL: LIGHT THEME TUNING
-========================= */
+/* ============================================================
+   NAV STRUCTURE (FIXED CENTERING)
+   ============================================================ */
 
-:root {
-  --cl-blue: #185FA5;
-  --cl-teal: #0EA5A4;
-}
-
-/* =========================
-   OPTIONAL: LOGO VISUAL BALANCE
-   (simulates “CircLynk / DIGITAL” hierarchy)
-========================= */
-
-.brand-logo-img {
-  padding: 2px 0;
-}
-
-/* If logo has too much contrast or needs soft alignment */
-.navbar-brand:hover .brand-logo-img {
-  opacity: 0.92;
-  transition: opacity 0.2s ease;
-}
-
-
-/* Text-based Logo */
-.brand-logo-text {
-  display: none; /* enable only if image fails or for SEO mode */
-}
-
-@media (max-width: 480px) {
-  .brand-logo-text {
-    display: none;
-  }
-
-  .brand-logo-img {
-    height: 42px;
-  }
-}
-
-/* NAV LINKS */
 .navbar-nav {
   display: flex;
   align-items: center;
-  gap: .25rem;
+  gap: .75rem;
+
+  flex: 1;
+
+  /* IMPORTANT: prevents CTA affecting centering math */
+  justify-content: center;
 }
 
-.nav-item { position: relative; }
+/* ONLY nav items participate in centering */
+.navbar-nav > .nav-item:not(.navbar-actions) {
+  display: flex;
+}
 
-.nav-link {
+/* ============================================================
+   CTA (OUTSIDE CENTER FLOW VISUALLY)
+   ============================================================ */
+
+.navbar-actions {
   display: flex;
   align-items: center;
-  gap: .25rem;
+  justify-content: flex-end;
+
+  margin-left: auto;
+  margin-right: 30px;
+
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   NAV ITEMS
+   ============================================================ */
+
+.nav-item {
+  position: relative;
+}
+
+/* FIX: hover + open consistency restored */
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: .35rem;
+
   padding: .45rem .75rem;
   font-size: .875rem;
   font-weight: 500;
+
   color: var(--gray-700);
   border-radius: var(--radius);
-  transition: color var(--transition), background var(--transition);
+
   white-space: nowrap;
+  line-height: 1;
+
+  transition: all .2s ease;
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover,
+.nav-item:hover > .nav-link,
+.nav-item.open > .nav-link {
   color: var(--cl-blue);
   background: var(--cl-blue-light);
 }
+
+/* ============================================================
+   DROPDOWN ICON
+   ============================================================ */
 
 .nav-link .chevron {
-  width: 14px; height: 14px;
-  transition: transform var(--transition);
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
-.nav-item:hover .chevron { transform: rotate(180deg); }
+/* ============================================================
+   HAMBURGER
+   ============================================================ */
 
-/* MEGA DROPDOWN */
-.mega-menu {
-  display: none;
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-xl);
-  padding: var(--space-6);
-  min-width: 640px;
-  z-index: 100;
-}
-
-.nav-item:hover .mega-menu,
-.nav-item:focus-within .mega-menu { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-4); }
-
-.mega-menu-single { min-width: 220px; grid-template-columns: 1fr; }
-
-.mega-col h6 {
-  font-size: .7rem;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: var(--space-3);
-  padding-bottom: var(--space-2);
-  border-bottom: 1px solid var(--border);
-}
-
-.mega-link {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-3);
-  font-size: .8125rem;
-  color: var(--gray-700);
-  border-radius: var(--radius);
-  transition: all var(--transition);
-  margin-bottom: 2px;
-}
-
-.mega-link:hover {
-  background: var(--cl-blue-light);
-  color: var(--cl-blue);
-}
-
-.mega-link-icon {
-  width: 28px; height: 28px;
-  background: var(--gray-100);
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-size: .8rem;
-  transition: background var(--transition);
-}
-
-.mega-link:hover .mega-link-icon { background: var(--cl-blue); color: #fff; }
-
-/* NAV ACTIONS */
-.navbar-actions { display: flex; align-items: center; gap: var(--space-3); flex-shrink: 0; }
-
-/* HAMBURGER */
 .navbar-toggler {
   display: none;
+
   flex-direction: column;
-  gap: 5px;
-  padding: var(--space-2);
-  background: none;
-  border: none;
+  justify-content: center;
+  align-items: center;
+
+  width: 44px;
+  height: 44px;
+
+  padding: 0;
+  background: transparent;
+  border: 0;
+
   cursor: pointer;
 }
 
 .navbar-toggler span {
-  display: block;
-  width: 22px; height: 2px;
+  width: 22px;
+  height: 2px;
   background: var(--gray-700);
-  border-radius: 1px;
-  transition: all var(--transition);
+  margin: 2px 0;
+  display: block;
 }
 
-.navbar-toggler.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
-.navbar-toggler.open span:nth-child(2) { opacity: 0; }
-.navbar-toggler.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+/* ============================================================
+   MEGA MENU (FIXED ALIGNMENT)
+   ============================================================ */
 
-/* MOBILE NAV */
+.mega-menu {
+  display: none;
+
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  margin-top: 30px;
+
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+
+  padding: var(--space-6);
+  min-width: 640px;
+
+  z-index: 9999;
+
+  text-align: left;
+}
+
+/* OPEN STATE */
+.nav-item:hover > .mega-menu,
+.nav-item:focus-within > .mega-menu,
+.nav-item.open > .mega-menu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+
+  justify-items: start; /* FIX: restores proper text alignment */
+}
+
+/* ============================================================
+   MEGA LINKS (RESTORED HOVER BEHAVIOR)
+   ============================================================ */
+
+.mega-link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  padding: .5rem .75rem;
+
+  color: var(--gray-700);
+  border-radius: var(--radius);
+
+  transition: all .2s ease;
+  width: 100%;
+}
+
+.mega-link:hover,
+.nav-item.open .mega-link:hover {
+  background: var(--cl-blue-light);
+  color: var(--cl-blue);
+}
+
+/* ============================================================
+   HOVER BRIDGE
+   ============================================================ */
+
+.nav-item.has-mega::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 25px;
+}
+
+/* ============================================================
+   MOBILE (UNCHANGED)
+   ============================================================ */
+
 @media (max-width: 1024px) {
-  .navbar-toggler { display: flex; }
-  .navbar-nav { display: none; flex-direction: column; align-items: stretch; position: fixed; top: 68px; left: 0; right: 0; bottom: 0; background: var(--white); padding: var(--space-6); gap: 0; overflow-y: auto; z-index: 999; }
-  .navbar-nav.open { display: flex; }
-  .nav-link { padding: var(--space-3) var(--space-4); font-size: 1rem; border-radius: var(--radius); }
-  .mega-menu { display: none !important; position: static; transform: none; box-shadow: none; border: none; background: var(--gray-50); min-width: auto; padding: var(--space-3) var(--space-4); border-radius: var(--radius); margin-top: var(--space-2); }
-  .nav-item.mobile-open .mega-menu { display: grid !important; grid-template-columns: 1fr; }
-  .mega-col h6 { font-size: .65rem; }
-  .navbar-actions .btn-ghost { display: none; }
+
+  .navbar {
+    padding: 0 var(--space-4);
+  }
+
+  .navbar-toggler {
+    display: flex;
+  }
+
+  .navbar-nav {
+    display: none;
+
+    position: fixed;
+    top: 88px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: calc(100dvh - 88px);
+
+    flex-direction: column;
+
+    background: var(--white);
+
+    padding: var(--space-6);
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+
+    z-index: 9998;
+  }
+
+  .navbar-nav.open {
+    display: flex;
+  }
+
+  .navbar-nav {
+    justify-content: flex-start;
+    gap: .5rem;
+  }
+
+  .navbar-actions {
+    margin-top: var(--space-6);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border);
+
+    display: flex;
+    justify-content: center;
+
+    margin-right: 0;
+  }
+
+  .navbar-actions a {
+    min-width: 180px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mega-menu {
+    position: static;
+    transform: none;
+    margin-top: 0;
+
+    box-shadow: none;
+    border: none;
+
+    min-width: auto;
+
+    padding: var(--space-3);
+  }
+
+  .nav-item.mobile-open .mega-menu {
+    display: grid !important;
+    grid-template-columns: 1fr;
+  }
+
+  .nav-item.mobile-open > .nav-link {
+    background: var(--cl-blue-light);
+    color: var(--cl-blue);
+  }
 }

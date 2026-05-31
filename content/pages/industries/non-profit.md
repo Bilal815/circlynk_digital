@@ -2,8 +2,6 @@ Title: Non-Profit
 Slug: non-profit
 Template: industry_detail
 Parent_slug: industries
-Industry_name: Non-Profit
-Industry_icon: 🤝
 
 Grant management, donor platforms, volunteer coordination, and impact reporting. We build affordable, maintainable software for organizations doing important work.
 

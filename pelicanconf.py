@@ -9,7 +9,12 @@ SITEURL         = 'https://circlynkdigital.com'
 SITESUBTITLE    = 'Software & Digital Transformation'
 SITEDESCRIPTION = 'Custom software, free developer tools, and digital products for Pakistani SMEs and US startups.'
 
+
+
 PATH           = 'content'
+THEME_STATIC   = '/theme/assets'
+SITELOGO       = THEME_STATIC + '/images/circlynk_digital_logo.png'
+SITELOGOALT    = 'CircLynk Digital Brand Logo'
 TIMEZONE       = 'Asia/Karachi'
 DEFAULT_LANG   = 'en'
 DEFAULT_LOCALE = 'en_US'
@@ -72,7 +77,7 @@ EXTRA_PATH_METADATA = {
 PLUGIN_PATHS = ['plugins']
 PLUGINS = [
     'yuicompressor',
-    #'sitemap',
+    'sitemap',
     #'seo',
     #'related_posts',
     #'neighbors',
@@ -80,19 +85,21 @@ PLUGINS = [
 
 # Sitemap settings
 SITEMAP = {
-    'siteurl': SITEURL,
     'format': 'xml',
+
     'priorities': {
-        'articles': 1,
-        'indexes': 1,
-        'pages': 1
+        'articles': 1.0,
+        'indexes': 0.8,
+        'pages': 0.8
     },
+
     'changefreqs': {
         'articles': 'daily',
         'pages': 'daily',
         'indexes': 'daily',
     },
-    'exclude': ['404', 'archives', 'tags', 'authors'],  # ex: ['404', 'archives', 'tags', 'authors']
+
+    'exclude': ['404', 'archives', 'tags', 'authors']
 }
 
 # SEO PLUGIN
@@ -147,12 +154,89 @@ LOAD_CONTENT_CACHE = True
 # DIRECT TEMPLATES
 DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', '404']
 
-# MENUITEMS (fallback nav)
-MENUITEMS = (
-    ('Services', '/services/'),
-    ('Industries', '/industries/'),
-    ('Tools', '/online-compiler-python/'),
-    ('Blog', '/blog/'),
-    ('About', '/about/'),
-    ('Contact', '/contact/'),
-)
+# MEGAMENU
+NAVIGATION_CONFIG = {
+    "groups": [
+        {
+            "title": "Services",
+            "url": "/services/",
+            "items": [
+                ("Strategy", "/strategy/"),
+                ("Product Design", "/product-design/"),
+                ("Branding", "/branding/"),
+                ("UX/UI Design", "/uxui-design/"),
+                ("Product Management", "/product-management/"),
+                ("MVP Development", "/mvp-development/"),
+                ("Web Development", "/web-development/"),
+                ("Mobile Apps", "/mobile-app-development/"),
+                ("Custom Software", "/custom-software/"),
+                ("Application Security", "/application-security/"),
+                ("Cloud Solutions", "/cloud-solutions/"),
+                ("IoT Solutions", "/iot-solutions/"),
+                ("Enterprise Digital Transformation", "/enterprise-digital-transformation/"),
+                ("ITSM / ITAM", "/itsm-istam/"),
+                ("Business Process Transformation", "/business-process-transformation/"),
+                ("Business Process Outsourcing", "/business-process-outsourcing/"),
+                ("Video Analytics", "/video-analytics/"),
+                ("Infrastructure Management", "/infrastructure-management/"),
+            ]
+        },
+        {
+            "title": "Industries",
+            "url": "/industries/",
+            "items": [
+                ("AI", "/artificial-intelligence/"),
+                ("Enterprise", "/enterprise/"),
+                ("eCommerce", "/ecommerce/"),
+                ("Education", "/education/"),
+                ("FinTech", "/fintech/"),
+                ("Education", "/education/"),
+                ("Food & Grocery", "/food-and-grocery/"),
+                ("Health & Wellness", "/health-and-wellness/"),
+                ("Marketplaces", "/marketplaces/"),
+                ("Media & Publishing", "/media-and-publishing/"),
+                ("Non-Profit", "/non-profit/"),
+                ("Pet Care", "/pet-care/"),
+                ("Social Media", "/social-media/"),
+                ("Space Exploration", "/space-exploration/"),
+                ("Startups", "/startups/"),
+                ("Travel", "/travel/"),
+                ("Web3 & Blockchain", "/web3-and-blockchain/")
+            ]
+        },
+        {
+            "title": "Tools",
+            "url": "/tools/",
+            "items": [
+                ("Python Compiler", "/online-compiler-python/"),
+                ("JSON Formatter", "/json-formatter/"),
+                ("SQL Generatr", "/sql-generator/"),
+                ("Explore All Tools", "/tools/"),
+                
+            ]
+        },
+        {
+            "title": "Company",
+            "url": "/",
+            "items": [
+                ("Marketplace", "/marketplace/"),
+                ("Blog", "/blog/"),
+                ("About", "/about/"),
+                ("Contact", "/contact/")
+            ]
+        }
+    ],
+    "cta": {
+        "text": "Try Compiler →",
+        "url": "/online-compiler-python/"
+    }
+}
+
+# Announcements Bar
+ANNOUNCEMENTS = [
+    "🚀 Python Compiler — Live Now. No signup required.",
+    "🛠️ Free tools & templates dropping weekly.",
+    "📦 Pre-built web apps & ecom stores — coming soon.",
+    "🤝 Serving SMEs & startups.",
+    "⚡ CircLynk Digital — Software. Built right."
+]

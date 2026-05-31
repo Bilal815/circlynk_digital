@@ -1,0 +1,18 @@
+{% macro render_announcements(items) %}
+
+{% if items %}
+<div class="announce-bar" role="banner" aria-label="Site announcements">
+  <div class="announce-track" aria-hidden="true">
+
+    {% for i in range(2) %}
+      {% for item in items %}
+        <span>{{ item }}</span>
+        <span aria-hidden="true"> · </span>
+      {% endfor %}
+    {% endfor %}
+
+  </div>
+</div>
+{% endif %}
+
+{% endmacro %}

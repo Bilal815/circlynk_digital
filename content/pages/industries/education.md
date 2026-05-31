@@ -2,8 +2,6 @@ Title: Education
 Slug: education
 Template: industry_detail
 Parent_slug: industries
-Industry_name: Education
-Industry_icon: 🎓
 
 LMS platforms, student management systems, assessment tools, and content delivery. We understand the compliance, accessibility, and engagement requirements of educational software.
 

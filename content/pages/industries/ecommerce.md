@@ -2,8 +2,6 @@ Title: eCommerce
 Slug: ecommerce
 Template: industry_detail
 Parent_slug: industries
-Industry_name: eCommerce
-Industry_icon: 🛒
 
 From Shopify stores to custom marketplace platforms. We build ecom systems that convert, scale, and integrate with the tools your operations team already uses.
 

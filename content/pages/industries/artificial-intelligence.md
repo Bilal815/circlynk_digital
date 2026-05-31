@@ -2,8 +2,6 @@ Title: Artificial Intelligence
 Slug: artificial-intelligence
 Template: industry_detail
 Parent_slug: industries
-Industry_name: Artificial Intelligence
-Industry_icon: 🤖
 
 We build AI-powered products — from ML pipelines to LLM integrations. We've worked with AI startups on everything from dataset tooling to inference optimization.
 

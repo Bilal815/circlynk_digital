@@ -2,8 +2,6 @@ Title: Pet Care
 Slug: pet-care
 Template: industry_detail
 Parent_slug: industries
-Industry_name: Pet Care
-Industry_icon: 🐾
 
 Booking systems, pet health records, e-commerce for pet products, and community platforms for the fastest-growing consumer segment in the US.
 

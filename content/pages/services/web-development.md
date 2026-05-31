@@ -3,6 +3,9 @@ Slug: web-development
 Template: service_detail
 Parent_slug: services
 Service_name: Web Development
+nav_group: services
+nav_order: 1
+menu_label: Web Development
 
 From landing pages to full-stack web apps. Built fast, built right, built to scale. React, Next.js, Django, Laravel — we choose the right stack for your problem.
 

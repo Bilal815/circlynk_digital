@@ -2,8 +2,6 @@ Title: Enterprise
 Slug: enterprise
 Template: industry_detail
 Parent_slug: industries
-Industry_name: Enterprise
-Industry_icon: 🏢
 
 Large organizations have complex requirements, legacy constraints, and change-resistant cultures. We navigate all three — delivery discipline, stakeholder management, and technical depth.
 

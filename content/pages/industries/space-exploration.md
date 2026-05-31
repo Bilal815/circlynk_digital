@@ -2,8 +2,6 @@ Title: Space Exploration
 Slug: space-exploration
 Template: industry_detail
 Parent_slug: industries
-Industry_name: Space Exploration
-Industry_icon: 🚀
 
 Mission planning tools, telemetry dashboards, simulation software, and data pipelines for NewSpace companies pushing the frontier.
 

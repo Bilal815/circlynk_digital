@@ -1,146 +1,27 @@
-<!-- SKIP LINK -->
+{% from "macros/navigation.html" import render_menu %}
+{% from "macros/announcement.html" import render_announcements %}
+
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- ANNOUNCE BAR -->
-<div class="announce-bar" role="banner" aria-label="Site announcements">
-  <div class="announce-track" aria-hidden="true">
-    {% for item in [
-      "🚀 Python Compiler — Live Now. No signup required.",
-      "🛠️ Free tools & templates dropping weekly.",
-      "📦 Pre-built web apps & ecom stores — coming soon.",
-      "🤝 Serving SMEs & startups.",
-      "⚡ CircLynk Digital — Software. Built right."
-    ] %}
-    <span>{{ item }}</span>
-    <span aria-hidden="true"> &nbsp;·&nbsp; </span>
-    {% endfor %}
-    {% for item in [
-      "🚀 Python Compiler — Live Now. No signup required.",
-      "🛠️ Free tools & templates dropping weekly.",
-      "📦 Pre-built web apps & ecom stores — coming soon.",
-      "🤝 Serving SMEs & startups.",
-      "⚡ CircLynk Digital — Software. Built right."
-    ] %}
-    <span>{{ item }}</span>
-    <span aria-hidden="true"> &nbsp;·&nbsp; </span>
-    {% endfor %}
-  </div>
-</div>
+{{ render_announcements(ANNOUNCEMENTS) }}
 
-<!-- HEADER -->
 <header class="site-header" role="banner">
-  <nav class="navbar container" aria-label="Main navigation">
+  <nav class="navbar container">
 
-    <!-- LOGO -->
-    <a href="{{ SITEURL }}/" class="navbar-brand" aria-label="{{ SITENAME }} home">
-      <img src="/theme/assets/images/circlynk_digital_logo.png" alt="CircLynk Digital Logo" class="brand-logo-img">
-      <div class="brand-logo-text">
-        <span class="brand-circlynk">CircLynk</span>
-        <span class="brand-digital">Digital</span>
-      </div>
+    <!-- BRAND -->
+    <a href="{{ SITEURL }}/" class="navbar-brand">
+      <img class="brand-logo-img" src="{{ SITELOGO }}" alt="{{ SITELOGOALT }}">
     </a>
 
-    <!-- HAMBURGER -->
-    <button class="navbar-toggler" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
-      <span></span><span></span><span></span>
+    <!-- HAMBURGER (MOBILE ONLY TOGGLER) -->
+    <button class="navbar-toggler" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
-
-    <!-- NAV LINKS -->
-    <ul class="navbar-nav" id="main-nav" role="list">
-
-      <li class="nav-item has-mega">
-        <a href="{{ SITEURL }}/services/" class="nav-link" aria-haspopup="true">
-          Services
-          <svg class="chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
-        </a>
-        <div class="mega-menu" role="menu">
-          <div class="mega-col">
-            <h6>Strategy & Design</h6>
-            {% for svc in ["Strategy","Product Design","Branding","UX/UI Design","Product Management","MVP Development"] %}
-            <a href="{{ SITEURL }}/services/{{ svc|lower|replace(' ','--')|replace('/','') }}/" class="mega-link" role="menuitem">
-              <span class="mega-link-icon">◈</span>{{ svc }}
-            </a>
-            {% endfor %}
-          </div>
-          <div class="mega-col">
-            <h6>Development</h6>
-            {% for svc in ["Web Development","Mobile App Development","Custom Software","Application Security","Cloud Solutions","IoT Solutions"] %}
-            <a href="{{ SITEURL }}/services/{{ svc|lower|replace(' ','-') }}/" class="mega-link" role="menuitem">
-              <span class="mega-link-icon">⚙</span>{{ svc }}
-            </a>
-            {% endfor %}
-          </div>
-          <div class="mega-col">
-            <h6>Enterprise</h6>
-            {% for svc in ["Enterprise Digital Transformation","ITSM / ITAM","Business Process Transformation","Business Process Outsourcing","Video Analytics","Infrastructure Management"] %}
-            <a href="{{ SITEURL }}/services/{{ svc|lower|replace(' ','-')|replace('/','') }}/" class="mega-link" role="menuitem">
-              <span class="mega-link-icon">🏢</span>{{ svc }}
-            </a>
-            {% endfor %}
-          </div>
-        </div>
-      </li>
-
-      <li class="nav-item has-mega">
-        <a href="{{ SITEURL }}/industries/" class="nav-link" aria-haspopup="true">
-          Industries
-          <svg class="chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
-        </a>
-        <div class="mega-menu mega-menu-single" role="menu">
-          <div class="mega-col">
-            <h6>Industries we serve</h6>
-            {% for ind in ["Artificial Intelligence","Enterprise","eCommerce","Education","FinTech","Food & Grocery","Health & Wellness","Marketplace","Media & Publishing","Non-Profit","Pet Care","Social Media","Space Exploration","Startups","Travel","Web3 & Blockchain"] %}
-            <a href="{{ SITEURL }}/industries/{{ ind|lower|replace(' ','-')|replace('&','and')|replace('/','') }}/" class="mega-link" role="menuitem">{{ ind }}</a>
-            {% endfor %}
-          </div>
-        </div>
-      </li>
-
-      <li class="nav-item has-mega">
-        <a href="/tools/" class="nav-link" aria-haspopup="true">
-          Tools
-          <svg class="chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
-        </a>
-        <div class="mega-menu mega-menu-single" role="menu">
-          <div class="mega-col">
-            <h6>Free Developer Tools</h6>
-            <a href="/online-compiler-python/" class="mega-link" role="menuitem">
-              <span class="mega-link-icon">🐍</span>Python Compiler
-              <span class="badge badge-green" style="margin-left:auto;font-size:.6rem">Live</span>
-            </a>
-            <a href="/tools/json-formatter/" class="mega-link" role="menuitem">
-              <span class="mega-link-icon">{ }</span>JSON Formatter
-              <span class="badge badge-blue" style="margin-left:auto;font-size:.6rem">Soon</span>
-            </a>
-            <a href="/tools/sql-generator/" class="mega-link" role="menuitem">
-              <span class="mega-link-icon">🗄</span>SQL Generator
-              <span class="badge badge-blue" style="margin-left:auto;font-size:.6rem">Soon</span>
-            </a>
-            <a href="/tools/" class="mega-link" role="menuitem">
-              <span class="mega-link-icon">→</span>All Tools
-            </a>
-          </div>
-        </div>
-      </li>
-
-      <li class="nav-item">
-        <a href="/marketplace/" class="nav-link">Marketplace</a>
-      </li>
-
-      <li class="nav-item">
-        <a href="/blog/" class="nav-link">Blog</a>
-      </li>
-
-      <li class="nav-item">
-        <a href="/about/" class="nav-link">About</a>
-      </li>
-    </ul>
-
-    <!-- ACTIONS -->
-    <div class="navbar-actions">
-      <a href="/contact/" class="btn btn-ghost btn-sm">Contact</a>
-      <a href="/online-compiler-python/" class="btn btn-primary btn-sm">Try Compiler →</a>
-    </div>
+    
+    <!-- MENU -->
+    {{ render_menu(NAVIGATION_CONFIG, SITEURL) }}
 
   </nav>
 </header>

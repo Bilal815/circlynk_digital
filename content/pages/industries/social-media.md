@@ -2,8 +2,6 @@ Title: Social Media
 Slug: social-media
 Template: industry_detail
 Parent_slug: industries
-Industry_name: Social Media
-Industry_icon: 📱
 
 Community platforms, creator tools, content moderation systems, and social analytics. We understand the infrastructure and moderation challenges at scale.
 

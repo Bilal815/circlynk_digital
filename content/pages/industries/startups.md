@@ -2,8 +2,6 @@ Title: Startups
 Slug: startups
 Template: industry_detail
 Parent_slug: industries
-Industry_name: Startups
-Industry_icon: ⚡
 
 We're built for startups — fast, lean, and honest about tradeoffs. We help you move from idea to MVP to product-market fit with the right technical decisions at each stage.
 
