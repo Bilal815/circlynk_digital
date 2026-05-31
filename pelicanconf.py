@@ -210,7 +210,7 @@ NAVIGATION_CONFIG = {
             "items": [
                 ("Python Compiler", "/online-compiler-python/"),
                 ("JSON Formatter", "/json-formatter/"),
-                ("SQL Generatr", "/sql-generator/"),
+                ("SQL Generator", "/sql-generator/"),
                 ("Explore All Tools", "/tools/"),
                 
             ]
