@@ -7,21 +7,26 @@
 
   <!-- PRIMARY META -->
   {% set _page = page if page is defined else None %}
-  {% set _article = article if article is defined else None %}
+{% set _article = article if article is defined else None %}
 
-  {% set _title =
-      (_page.title if _page and _page.title)
-      or (_article.title if _article and _article.title)
-      or SITENAME
-  %}
+<title>
+{% block title %}
+{{ (_page.title if _page and _page.title)
+   or (_article.title if _article and _article.title)
+   or SITESUBTITLE }}
+{% endblock %}
+</title>
 
-  {% set _description =
-      (_page.meta_description if _page and _page.meta_description)
-      or (_page.summary if _page and _page.summary)
-      or (_article.summary if _article and _article.summary)
-      or (_article.content|striptags if _article and _article.content)
-      or SITEDESCRIPTION
-  %}
+<meta
+  name="description"
+  content="{% block meta_desc %}
+{{ (_page.description if _page and _page.description)
+   or (_page.meta_description if _page and _page.meta_description)
+   or (_page.summary if _page and _page.summary)
+   or (_article.summary if _article and _article.summary)
+   or SITEDESCRIPTION }}
+{% endblock %}"
+>
   <meta name="author" content="{{ AUTHOR | default('CircLynk Digital') }}">
   <meta name="robots" content="{% block robots %}index, follow{% endblock %}">
   {% if REL_CANONICAL %}<link rel="canonical" href="{% block canonical %}
