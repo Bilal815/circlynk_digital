@@ -7,7 +7,7 @@ AUTHOR          = 'CircLynk Digital'
 SITENAME        = 'CircLynk Digital'
 SITEURL         = 'https://circlynkdigital.com'
 SITESUBTITLE    = 'Software & Digital Transformation'
-SITEDESCRIPTION = 'Custom software, free developer tools, and digital products for Pakistani SMEs and US startups.'
+SITEDESCRIPTION = 'Custom software, free developer tools, and digital products for SMEs and startups.'
 
 
 
@@ -148,8 +148,8 @@ JINJA_ENVIRONMENT = {
 }
 
 # CACHE
-CACHE_CONTENT    = True
-LOAD_CONTENT_CACHE = True
+CACHE_CONTENT    = False
+LOAD_CONTENT_CACHE = False
 
 # DIRECT TEMPLATES
 DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', '404']
