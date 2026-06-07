@@ -59,7 +59,7 @@ AUTHOR_URL       = '{slug}/'
 AUTHOR_SAVE_AS   = '{slug}/index.html'
 
 # Template Page Routing
-TEMPLATE_PAGES = {
+"""TEMPLATE_PAGES = {
     'compiler.html': 'online-compiler-python/index.html',
     'blog.html': 'blog/index.html',
     'contact.html': 'contact/index.html',
@@ -69,7 +69,7 @@ TEMPLATE_PAGES = {
     'service_detail.html': 'service_detail/index.html',
     'industries.html': 'industries/index.html',
     'industry_detail.html': 'industry_detail/index.html',
-}
+}"""
 
 # PAGINATION
 DEFAULT_PAGINATION = 10
