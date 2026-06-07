@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- PRIMARY META -->
+
+  <title>
+Python Online Compiler
+  </title>
+
+  <meta name="description"
+        content="Run Python in your browser. No install. No signup. Powered by Pyodide. Free forever.
+">
+
+  <link rel="canonical"
+        href="https://circlynkdigital.com/online-compiler-python">
+
+  <meta name="robots"
+        content="          index, follow
+">
+
+  <!-- OG + TWITTER -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Python Online Compiler | CircLynk Digital">
+<meta property="og:description" content="">
+<meta property="og:url" content="https://circlynkdigital.com/online-compiler-python/">
+<meta property="og:site_name" content="CircLynk Digital">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@circlynk"><meta name="twitter:title" content="Python Online Compiler">
+<meta name="twitter:description" content="">
+
+  <!-- SCHEMA.ORG -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication
+",
+
+    "name": "CircLynk Digital",
+    "url": "https://circlynkdigital.com",
+    "logo": "https://circlynkdigital.com/theme/assets/images/logo.svg",
+    "description": "Custom software, free developer tools, and digital products for SMEs and startups.",
+
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": South Carolina,
+      "addressCountry": South Carolina
+    },
+
+    "sameAs": [
+          "https://linkedin.com/company/circlynk",          "https://twitter.com/circlynk"    ]
+
+,"name": "CircLynk Python Compiler",
+"applicationCategory": "DeveloperApplication",
+"operatingSystem": "Any (browser-based)",
+"offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+"featureList": "Python runtime, file upload, file download, package installation, error intelligence"
+  }
+  </script>
+
+  <!-- PERFORMANCE: Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- FONTS — subset for Lighthouse -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap&text=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+
+  <!-- BOOTSTRAP 5 -->
+  <link rel="stylesheet" href="/theme/vendor/bootstrap/css/bootstrap.min.css">
+
+  <!-- THEME CSS — load order matters -->
+  <link rel="stylesheet" href="/theme/assets/css/base.css">
+  <link rel="stylesheet" href="/theme/assets/css/navbar.css">
+  <link rel="stylesheet" href="/theme/assets/css/buttons.css">
+  <link rel="stylesheet" href="/theme/assets/css/hero.css">
+  <link rel="stylesheet" href="/theme/assets/css/cards.css">
+  <link rel="stylesheet" href="/theme/assets/css/layout.css">
+  <link rel="stylesheet" href="/theme/assets/css/utilities.css">
+  <link rel="stylesheet" href="/theme/assets/css/main.css">
+  <link rel="stylesheet" href="/theme/assets/css/components/articles.css">
+<style>
+/* ---- COMPILER PAGE SPECIFIC ---- */
+:root {
+  --editor-bg:  #1e1e2e;
+  --editor-fg:  #cdd6f4;
+  --output-bg:  #181825;
+  --panel-border: rgba(255,255,255,.06);
+}
+
+.compiler-page { background: var(--gray-950); color: var(--white); min-height: 100vh; }
+
+/* Hero */
+.compiler-hero {
+  background: linear-gradient(180deg, #0d1117 0%, #111827 100%);
+  padding: 3rem 0 2rem;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.compiler-hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.compiler-hero h1 {
+  font-family: var(--font-sans);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: .5rem;
+}
+
+.compiler-hero p {
+  font-size: .9rem;
+  color: rgba(255,255,255,.55);
+  max-width: 560px;
+}
+
+.compiler-badges { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: 1rem; }
+.cbadge {
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .2rem .65rem;
+  border-radius: 9999px;
+  border: 1px solid;
+}
+.cbadge-green { color: #4ade80; border-color: rgba(74,222,128,.3); background: rgba(74,222,128,.08); }
+.cbadge-blue  { color: #60a5fa; border-color: rgba(96,165,250,.3); background: rgba(96,165,250,.08); }
+.cbadge-teal  { color: #2dd4bf; border-color: rgba(45,212,191,.3); background: rgba(45,212,191,.08); }
+.cbadge-amber { color: #fbbf24; border-color: rgba(251,191,36,.3); background: rgba(251,191,36,.08); }
+
+/* COMPILER WORKSPACE */
+.compiler-workspace {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: calc(100vh - 340px);
+  min-height: 480px;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.04);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .6rem 1rem;
+  background: rgba(0,0,0,.3);
+  border-bottom: 1px solid var(--panel-border);
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+.panel-title {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.panel-actions { display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; }
+
+/* EDITOR PANEL */
+.editor-panel {
+  background: var(--editor-bg);
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--panel-border);
+}
+
+.code-editor {
+  flex: 1;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: .85rem;
+  line-height: 1.85;
+  color: var(--editor-fg);
+  caret-color: var(--cl-teal);
+  tab-size: 4;
+  -moz-tab-size: 4;
+}
+
+.code-editor::selection { background: rgba(14,165,164,.25); }
+
+/* OUTPUT PANEL */
+.output-panel {
+  background: var(--output-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.output-console {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: .82rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,.75);
+}
+
+.output-line { display: block; white-space: pre-wrap; word-break: break-all; }
+.output-line.success { color: #4ade80; }
+.output-line.error   { color: #f87171; }
+.output-line.warn    { color: #fbbf24; }
+.output-line.info    { color: #60a5fa; }
+.output-line.system  { color: rgba(255,255,255,.3); font-style: italic; }
+.output-line.prompt  { color: rgba(255,255,255,.25); }
+
+/* STATUS BAR */
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .4rem 1rem;
+  background: rgba(0,0,0,.4);
+  border-top: 1px solid var(--panel-border);
+  font-size: .68rem;
+  color: rgba(255,255,255,.3);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  margin-right: .35rem;
+  transition: background .3s;
+}
+
+.status-dot.ready   { background: #4ade80; box-shadow: 0 0 6px #4ade80; }
+.status-dot.busy    { background: #fbbf24; animation: pulse-busy .7s ease-in-out infinite; }
+.status-dot.loading { background: #60a5fa; animation: pulse-busy .7s ease-in-out infinite; }
+.status-dot.error   { background: #f87171; }
+
+@keyframes pulse-busy { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+/* TOOLBAR BUTTONS */
+.tool-btn {
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  font-weight: 600;
+  padding: .3rem .75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.65);
+  background: rgba(255,255,255,.05);
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+}
+
+.tool-btn:hover { background: rgba(255,255,255,.1); color: var(--white); }
+.tool-btn.run   { background: var(--cl-teal); border-color: var(--cl-teal); color: var(--white); }
+.tool-btn.run:hover { background: var(--cl-teal-dark); }
+.tool-btn.run:disabled { opacity: .5; cursor: not-allowed; }
+.tool-btn.danger { border-color: rgba(248,113,113,.3); color: #f87171; }
+.tool-btn.danger:hover { background: rgba(248,113,113,.1); }
+
+/* PACKAGE SELECT */
+.pkg-select {
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.65);
+  border-radius: var(--radius-sm);
+  padding: .3rem .5rem;
+  cursor: pointer;
+  outline: none;
+  max-width: 130px;
+}
+
+.pkg-select option { background: #1e1e2e; color: #cdd6f4; }
+
+/* FILE INPUT */
+.file-input-btn { position: relative; overflow: hidden; }
+.file-input-btn input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; font-size: 0; }
+
+/* FEATURES BELOW COMPILER */
+.compiler-features {
+  background: #0d1117;
+  border-top: 1px solid var(--panel-border);
+  padding: 3rem 0;
+}
+
+/* PIPELINE SECTION */
+.pipeline-section {
+  background: #111827;
+  border-top: 1px solid var(--panel-border);
+  padding: 4rem 0;
+}
+
+/* WAITLIST SECTION */
+.waitlist-section {
+  background: linear-gradient(135deg, rgba(24,95,165,.15), rgba(14,165,164,.1));
+  border-top: 1px solid var(--panel-border);
+  padding: 4rem 0;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .compiler-workspace { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; height: auto; min-height: 700px; }
+  .editor-panel { border-right: none; border-bottom: 1px solid var(--panel-border); }
+}
+
+/* Base message component */
+.ui-message {
+  opacity: 0;
+  transform: translateY(-6px);
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 12px;
+  margin-top: 0;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+  pointer-events: none;
+}
+
+.ui-message.show {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 60px;
+  margin-top: 12px;
+  padding: 10px 12px;
+}
+
+.ui-message.success {
+  background: rgba(14, 165, 164, 0.12);
+  border-color: rgba(14, 165, 164, 0.35);
+  color: #0EA5A4;
+}
+
+.ui-message.error {
+  background: rgba(239, 68, 68, 0.10);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #ef4444;
+}
+</style>
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/svg+xml" href="/theme/assets/images/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/theme/assets/images/favicon.ico">
+  <link rel="apple-touch-icon" href="/theme/assets/images/apple-touch-icon.png">
+
+  <!-- GOOGLE ANALYTICS -->
+
+</head>
+
+<body class="page-tools tools-online-compiler-python
+">
+  
+  <!-- HEADER -->
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+
+<div class="announce-bar" role="banner" aria-label="Site announcements">
+  <div class="announce-track" aria-hidden="true">
+
+        <span>🚀 Python Compiler — Live Now. No signup required.</span>
+        <span aria-hidden="true"> · </span>
+        <span>🛠️ Free tools & templates dropping weekly.</span>
+        <span aria-hidden="true"> · </span>
+        <span>📦 Pre-built web apps & ecom stores — coming soon.</span>
+        <span aria-hidden="true"> · </span>
+        <span>🤝 Serving SMEs & startups.</span>
+        <span aria-hidden="true"> · </span>
+        <span>⚡ CircLynk Digital — Software. Built right.</span>
+        <span aria-hidden="true"> · </span>
+        <span>🚀 Python Compiler — Live Now. No signup required.</span>
+        <span aria-hidden="true"> · </span>
+        <span>🛠️ Free tools & templates dropping weekly.</span>
+        <span aria-hidden="true"> · </span>
+        <span>📦 Pre-built web apps & ecom stores — coming soon.</span>
+        <span aria-hidden="true"> · </span>
+        <span>🤝 Serving SMEs & startups.</span>
+        <span aria-hidden="true"> · </span>
+        <span>⚡ CircLynk Digital — Software. Built right.</span>
+        <span aria-hidden="true"> · </span>
+
+  </div>
+</div>
+
+
+
+<header class="site-header" role="banner">
+  <nav class="navbar container">
+
+    <!-- BRAND -->
+    <a href="/" class="navbar-brand">
+      <img class="brand-logo-img" src="/theme/assets/images/circlynk_digital_logo.png" alt="CircLynk Digital Brand Logo">
+    </a>
+
+    <!-- HAMBURGER (MOBILE ONLY TOGGLER) -->
+    <button class="navbar-toggler" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    
+    <!-- MENU -->
+    
+<ul class="navbar-nav">
+
+  <li class="nav-item has-mega">
+
+    <a href="/services/"
+       class="nav-link has-dropdown" aria-expanded="false">
+      Services
+      <svg class="chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+      </svg>
+    </a>
+
+    <div class="mega-menu" role="menu">
+
+      <a href="/strategy/"
+         class="mega-link"
+         role="menuitem">
+        Strategy
+      </a>
+      <a href="/product-design/"
+         class="mega-link"
+         role="menuitem">
+        Product Design
+      </a>
+      <a href="/branding/"
+         class="mega-link"
+         role="menuitem">
+        Branding
+      </a>
+      <a href="/ux-ui-design/"
+         class="mega-link"
+         role="menuitem">
+        UX/UI Design
+      </a>
+      <a href="/product-management/"
+         class="mega-link"
+         role="menuitem">
+        Product Management
+      </a>
+      <a href="/mvp-development/"
+         class="mega-link"
+         role="menuitem">
+        MVP Development
+      </a>
+      <a href="/web-development/"
+         class="mega-link"
+         role="menuitem">
+        Web Development
+      </a>
+      <a href="/mobile-app-development/"
+         class="mega-link"
+         role="menuitem">
+        Mobile Apps
+      </a>
+      <a href="/custom-software/"
+         class="mega-link"
+         role="menuitem">
+        Custom Software
+      </a>
+      <a href="/application-security/"
+         class="mega-link"
+         role="menuitem">
+        Application Security
+      </a>
+      <a href="/cloud-solutions/"
+         class="mega-link"
+         role="menuitem">
+        Cloud Solutions
+      </a>
+      <a href="/iot-solutions/"
+         class="mega-link"
+         role="menuitem">
+        IoT Solutions
+      </a>
+      <a href="/enterprise-digital-transformation/"
+         class="mega-link"
+         role="menuitem">
+        Enterprise Digital Transformation
+      </a>
+      <a href="/itsm-istam/"
+         class="mega-link"
+         role="menuitem">
+        ITSM / ITAM
+      </a>
+      <a href="/business-process-transformation/"
+         class="mega-link"
+         role="menuitem">
+        Business Process Transformation
+      </a>
+      <a href="/business-process-outsourcing/"
+         class="mega-link"
+         role="menuitem">
+        Business Process Outsourcing
+      </a>
+      <a href="/video-analytics/"
+         class="mega-link"
+         role="menuitem">
+        Video Analytics
+      </a>
+      <a href="/infrastructure-management/"
+         class="mega-link"
+         role="menuitem">
+        Infrastructure Management
+      </a>
+
+    </div>
+
+  </li>
+  <li class="nav-item has-mega">
+
+    <a href="/industries/"
+       class="nav-link has-dropdown" aria-expanded="false">
+      Industries
+      <svg class="chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+      </svg>
+    </a>
+
+    <div class="mega-menu" role="menu">
+
+      <a href="/artificial-intelligence/"
+         class="mega-link"
+         role="menuitem">
+        AI
+      </a>
+      <a href="/enterprise/"
+         class="mega-link"
+         role="menuitem">
+        Enterprise
+      </a>
+      <a href="/ecommerce/"
+         class="mega-link"
+         role="menuitem">
+        eCommerce
+      </a>
+      <a href="/education/"
+         class="mega-link"
+         role="menuitem">
+        Education
+      </a>
+      <a href="/fintech/"
+         class="mega-link"
+         role="menuitem">
+        FinTech
+      </a>
+      <a href="/education/"
+         class="mega-link"
+         role="menuitem">
+        Education
+      </a>
+      <a href="/food-and-grocery/"
+         class="mega-link"
+         role="menuitem">
+        Food & Grocery
+      </a>
+      <a href="/health-and-wellness/"
+         class="mega-link"
+         role="menuitem">
+        Health & Wellness
+      </a>
+      <a href="/marketplaces/"
+         class="mega-link"
+         role="menuitem">
+        Marketplaces
+      </a>
+      <a href="/media-and-publishing/"
+         class="mega-link"
+         role="menuitem">
+        Media & Publishing
+      </a>
+      <a href="/non-profit/"
+         class="mega-link"
+         role="menuitem">
+        Non-Profit
+      </a>
+      <a href="/pet-care/"
+         class="mega-link"
+         role="menuitem">
+        Pet Care
+      </a>
+      <a href="/social-media/"
+         class="mega-link"
+         role="menuitem">
+        Social Media
+      </a>
+      <a href="/space-exploration/"
+         class="mega-link"
+         role="menuitem">
+        Space Exploration
+      </a>
+      <a href="/startups/"
+         class="mega-link"
+         role="menuitem">
+        Startups
+      </a>
+      <a href="/travel/"
+         class="mega-link"
+         role="menuitem">
+        Travel
+      </a>
+      <a href="/web3-and-blockchain/"
+         class="mega-link"
+         role="menuitem">
+        Web3 & Blockchain
+      </a>
+
+    </div>
+
+  </li>
+  <li class="nav-item has-mega">
+
+    <a href="/tools/"
+       class="nav-link has-dropdown" aria-expanded="false">
+      Tools
+      <svg class="chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+      </svg>
+    </a>
+
+    <div class="mega-menu" role="menu">
+
+      <a href="/online-compiler-python/"
+         class="mega-link"
+         role="menuitem">
+        Python Compiler
+      </a>
+      <a href="/json-formatter/"
+         class="mega-link"
+         role="menuitem">
+        JSON Formatter
+      </a>
+      <a href="/sql-generator/"
+         class="mega-link"
+         role="menuitem">
+        SQL Generator
+      </a>
+      <a href="/tools/"
+         class="mega-link"
+         role="menuitem">
+        Explore All Tools
+      </a>
+
+    </div>
+
+  </li>
+  <li class="nav-item has-mega">
+
+    <a href="/"
+       class="nav-link has-dropdown" aria-expanded="false">
+      Company
+      <svg class="chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+      </svg>
+    </a>
+
+    <div class="mega-menu" role="menu">
+
+      <a href="/marketplace/"
+         class="mega-link"
+         role="menuitem">
+        Marketplace
+      </a>
+      <a href="/blog/"
+         class="mega-link"
+         role="menuitem">
+        Blog
+      </a>
+      <a href="/about/"
+         class="mega-link"
+         role="menuitem">
+        About
+      </a>
+      <a href="/contact/"
+         class="mega-link"
+         role="menuitem">
+        Contact
+      </a>
+
+    </div>
+
+  </li>
+
+    <!-- CTA -->
+    <li class="navbar-actions">
+      <a href="/online-compiler-python/"
+         class="btn btn-primary btn-sm">
+        Try Compiler →
+      </a>
+    </li>
+
+</ul>
+
+
+
+  </nav>
+</header>
+  <!-- MAIN CONTENT -->
+  <main id="main-content" tabindex="-1">
+<div class="compiler-page">
+
+<!-- ===== COMPILER HERO ===== -->
+<section class="compiler-hero">
+  <div class="container">
+    <div class="compiler-hero-inner">
+      <div>
+        <div style="margin-bottom:.75rem;">
+          <span class="cbadge cbadge-green">● Live Now</span>
+        </div>
+        <h1>Python Online Compiler</h1>
+        <p>Write, run, and debug Python in your browser. No install. No signup. Powered by Pyodide — your CPU runs the code, not our servers.</p>
+        <div class="compiler-badges">
+          <span class="cbadge cbadge-green">Pyodide Runtime</span>
+          <span class="cbadge cbadge-blue">File Upload/Download</span>
+          <span class="cbadge cbadge-teal">Package Support</span>
+          <span class="cbadge cbadge-amber">Error Intelligence</span>
+          <span class="cbadge cbadge-blue">0ms Server Latency</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+        <a href="#compiler-workspace" class="btn btn-teal btn-lg">Open Compiler ↓</a>
+        <a href="https://circlynkdigital.com/contact/" class="btn btn-ghost btn-lg" style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.7);">Need it built properly? →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPILER WORKSPACE ===== -->
+<section style="padding:2rem 0;" id="compiler-workspace">
+  <div class="container">
+
+    <!-- PACKAGE BAR -->
+    <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem;flex-wrap:wrap;">
+      <span style="font-size:.72rem;color:rgba(255,255,255,.4);letter-spacing:.05em;">PACKAGES:</span>
+      <select class="pkg-select" id="pkg-select" aria-label="Select package to install">
+        <option value="">Install package…</option>
+        <option value="pandas">pandas</option>
+        <option value="numpy">numpy</option>
+        <option value="matplotlib">matplotlib</option>
+        <option value="scipy">scipy</option>
+        <option value="scikit-learn">scikit-learn</option>
+        <option value="pillow">Pillow</option>
+        <option value="sympy">sympy</option>
+        <option value="bokeh">bokeh</option>
+      </select>
+      <button class="tool-btn" id="install-btn" onclick="installPackage()" aria-label="Install selected package">⬇ Install</button>
+      <div id="install-status" style="font-size:.72rem;color:rgba(255,255,255,.35);font-family:var(--font-mono);"></div>
+    </div>
+
+    <!-- WORKSPACE -->
+    <div class="compiler-workspace" role="region" aria-label="Python compiler workspace">
+
+      <!-- EDITOR -->
+      <div class="editor-panel">
+        <div class="panel-header">
+          <span class="panel-title">
+            <span style="color:#4ade80">●</span> editor / main.py
+          </span>
+          <div class="panel-actions">
+            <div class="file-input-btn">
+              <button class="tool-btn" aria-label="Upload file">📂 Upload</button>
+              <input type="file" id="file-upload" accept=".py,.csv,.txt,.json,.xlsx,.tsv" aria-label="Upload file" onchange="uploadFile(this)">
+            </div>
+            <button class="tool-btn" onclick="clearEditor()" aria-label="Clear editor">🗑 Clear</button>
+            <button class="tool-btn" onclick="copyCode()" aria-label="Copy code">📋 Copy</button>
+            <button class="tool-btn run" id="run-btn" onclick="runCode()" aria-label="Run Python code">▶ Run</button>
+          </div>
+        </div>
+        <textarea
+          class="code-editor"
+          id="code-editor"
+          spellcheck="false"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          aria-label="Python code editor"
+          aria-multiline="true"
+          role="textbox"
+          placeholder="# Write your Python code here…&#10;print('Hello from CircLynk Digital! 🚀')"
+        ># CircLynk Digital — Python Compiler
+# Run Python in your browser. No install needed.
+
+import sys
+print(f"Python {sys.version}")
+print("Welcome to CircLynk Digital's Python Compiler!")
+print()
+
+# Try it — automate something real:
+data = [450, 820, 1250, 980, 1100]
+total = sum(data)
+avg   = total / len(data)
+
+print(f"Sales data: {data}")
+print(f"Total: ${total:,}")
+print(f"Average: ${avg:,.0f}")
+print()
+print("✓ Ready — modify the code above and hit Run!")</textarea>
+        <div class="status-bar">
+          <span>
+            <span class="status-dot loading" id="status-dot" aria-hidden="true"></span>
+            <span id="status-text">Loading Python runtime…</span>
+          </span>
+          <span id="exec-time" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <!-- OUTPUT -->
+      <div class="output-panel">
+        <div class="panel-header">
+          <span class="panel-title">
+            <span style="color:#60a5fa">◉</span> output console
+          </span>
+          <div class="panel-actions">
+            <button class="tool-btn" onclick="downloadOutput()" aria-label="Download output">⬇ Save</button>
+            <button class="tool-btn danger" onclick="clearOutput()" aria-label="Clear output">✕ Clear</button>
+          </div>
+        </div>
+        <div class="output-console" id="output-console" role="log" aria-live="polite" aria-label="Code output">
+          <span class="output-line system">● Loading Pyodide runtime…</span>
+          <span class="output-line system">  This may take 5–10 seconds on first load.</span>
+          <span class="output-line system">  Your code runs entirely in this browser tab.</span>
+          <span class="output-line system">  Nothing is sent to any server.</span>
+          <br>
+        </div>
+        <!-- ERROR INTELLIGENCE -->
+        <div id="error-panel" style="display:none;padding:.75rem 1rem;border-top:1px solid rgba(248,113,113,.2);background:rgba(248,113,113,.05);">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem;">
+            <span style="font-size:.72rem;font-weight:700;color:#f87171;letter-spacing:.06em;">ERROR DETECTED</span>
+            <button class="tool-btn danger" id="explain-btn" onclick="explainError()" style="font-size:.68rem;">🤖 Explain Error</button>
+          </div>
+          <div id="error-summary" style="font-family:var(--font-mono);font-size:.75rem;color:#f87171;"></div>
+          <div id="error-explanation" style="display:none;font-size:.78rem;color:rgba(255,255,255,.6);margin-top:.5rem;line-height:1.6;border-top:1px solid rgba(255,255,255,.08);padding-top:.5rem;"></div>
+        </div>
+        <div class="status-bar">
+          <span id="output-status" style="font-size:.68rem;color:rgba(255,255,255,.25);">Waiting…</span>
+          <button class="tool-btn" onclick="downloadOutput()" style="font-size:.65rem;padding:.2rem .5rem;">⬇ Download output</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FILE DOWNLOAD ROW -->
+    <div id="file-download-row" style="display:none;margin-top:.75rem;padding:.75rem 1rem;background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.2);border-radius:var(--radius);font-size:.78rem;color:#4ade80;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+      <span>📁 Virtual file system has files:</span>
+      <div id="file-list" style="display:flex;gap:.5rem;flex-wrap:wrap;"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="compiler-features">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem;">
+      <h2 style="color:var(--white);font-size:1.5rem;font-weight:700;margin-bottom:.5rem;">What's working right now</h2>
+      <p style="color:rgba(255,255,255,.45);font-size:.875rem;">Everything below is live — no hype, no vaporware.</p>
+    </div>
+    <div class="grid-3" style="gap:1.5rem;">
+      <div class="feature-card" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-lg);padding:1.25rem;">
+        <div class="feature-icon-wrap feature-icon-green" style="margin-bottom:.75rem;">🐍</div>
+        <h4 style="color:var(--white);font-size:.9375rem;font-weight:700;margin-bottom:.35rem;">Python 3.11 in Browser</h4>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.65;">Powered by Pyodide + WebAssembly. Your CPU runs the code. Our server does nothing after the page loads.</p>
+      </div>
+      <div class="feature-card" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-lg);padding:1.25rem;">
+        <div class="feature-icon-wrap feature-icon-green" style="margin-bottom:.75rem;">📦</div>
+        <h4 style="color:var(--white);font-size:.9375rem;font-weight:700;margin-bottom:.35rem;">Package Support</h4>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.65;">Install pandas, numpy, matplotlib, scipy, scikit-learn and 100+ packages with one click.</p>
+      </div>
+      <div class="feature-card" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-lg);padding:1.25rem;">
+        <div class="feature-icon-wrap feature-icon-green" style="margin-bottom:.75rem;">📂</div>
+        <h4 style="color:var(--white);font-size:.9375rem;font-weight:700;margin-bottom:.35rem;">File Upload</h4>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.65;">Upload CSV, Excel, JSON, or TXT files. They load into a virtual file system your Python code can read.</p>
+      </div>
+      <div class="feature-card" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-lg);padding:1.25rem;">
+        <div class="feature-icon-wrap feature-icon-green" style="margin-bottom:.75rem;">⬇</div>
+        <h4 style="color:var(--white);font-size:.9375rem;font-weight:700;margin-bottom:.35rem;">File Download</h4>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.65;">Write output files in Python. Download them with one click. No server round-trip.</p>
+      </div>
+      <div class="feature-card" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-lg);padding:1.25rem;">
+        <div class="feature-icon-wrap feature-icon-green" style="margin-bottom:.75rem;">🚨</div>
+        <h4 style="color:var(--white);font-size:.9375rem;font-weight:700;margin-bottom:.35rem;">Error Intelligence</h4>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.65;">Last error is captured automatically. One click generates a structured debugging prompt.</p>
+      </div>
+      <div class="feature-card" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-lg);padding:1.25rem;">
+        <div class="feature-icon-wrap feature-icon-green" style="margin-bottom:.75rem;">💾</div>
+        <h4 style="color:var(--white);font-size:.9375rem;font-weight:700;margin-bottom:.35rem;">Auto-Save</h4>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.65;">Your code is saved to localStorage. Come back anytime — it's still there.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PIPELINE ===== -->
+<section class="pipeline-section">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem;">
+      <span class="section-label">Dated roadmap</span>
+      <h2 style="color:var(--white);font-size:1.5rem;font-weight:700;margin-bottom:.5rem;">What's being built next</h2>
+      <p style="color:rgba(255,255,255,.4);font-size:.875rem;">Transparent, honest, and publicly committed.</p>
+    </div>
+    <div class="pipeline-grid">
+
+      <div class="pipeline-card done">
+        <span class="pipeline-phase phase-done">✓ Phase 1 — Done (MVP)</span>
+        <h4 class="pipeline-title" style="color:var(--white);">Browser Python Runtime</h4>
+        <div class="pipeline-items">
+          <span class="pipeline-item" style="color:rgba(255,255,255,.55);">Pyodide runtime in browser</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.55);">stdout + stderr capture</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.55);">Package installation</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.55);">Error capture + display</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.55);">File upload to virtual FS</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.55);">File download from virtual FS</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.55);">Auto-save to localStorage</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.55);">Error Intelligence prompt generator</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.55);">Basic SaaS landing UI</span>
+        </div>
+      </div>
+
+      <div class="pipeline-card active">
+        <span class="pipeline-phase phase-active">⬡ Phase 2 — In Development (Q3 2025)</span>
+        <h4 class="pipeline-title" style="color:var(--white);">Real IDE Experience</h4>
+        <div class="pipeline-items">
+          <span class="pipeline-item" style="color:rgba(255,255,255,.45);">CodeMirror syntax highlighting</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.45);">Real-time streaming console</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.45);">Package auto-detection from imports</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.45);">One-click dependency install</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.45);">WebLLM AI assistant shell</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.45);">Multiple file tabs</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.45);">IndexedDB persistence</span>
+        </div>
+      </div>
+
+      <div class="pipeline-card planned">
+        <span class="pipeline-phase phase-planned">◎ Phase 3 — Planned (Q4 2025)</span>
+        <h4 class="pipeline-title" style="color:var(--white);">Full IDE + GitHub Sync</h4>
+        <div class="pipeline-items">
+          <span class="pipeline-item" style="color:rgba(255,255,255,.35);">File explorer panel</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.35);">GitHub OAuth login</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.35);">Repo-based project storage</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.35);">FastAPI/Node backend</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.35);">SQLite indexing layer</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.35);">Local WebLLM inference</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.35);">Error debugging assistant</span>
+        </div>
+      </div>
+
+      <div class="pipeline-card future">
+        <span class="pipeline-phase phase-future">◌ Phase 4 — Future Enterprise (2026)</span>
+        <h4 class="pipeline-title" style="color:var(--white);">SaaS Expansion</h4>
+        <div class="pipeline-items">
+          <span class="pipeline-item" style="color:rgba(255,255,255,.25);">Live collaboration (Google Docs-style)</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.25);">Job scheduling + API endpoints</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.25);">Free/Pro/Team tier monetization</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.25);">Regex, JSON, pandas notebook tools</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.25);">Data visualization sandbox</span>
+          <span class="pipeline-item" style="color:rgba(255,255,255,.25);">Deployment layer</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== WAITLIST ===== -->
+<section class="waitlist-section">
+  <div class="container">
+    <div style="max-width:520px;margin:0 auto;">
+      <span class="section-label">Early access</span>
+      <h2 style="color:var(--white);font-size:1.5rem;font-weight:700;margin-bottom:.75rem;">Get notified when Phase 2 drops</h2>
+      <p style="color:rgba(255,255,255,.5);font-size:.875rem;margin-bottom:1.5rem;">Syntax highlighting, streaming console, and AI error debugging — be first to try it.</p>
+      <form id="notify-form" novalidate>
+
+        <div class="email-row">
+
+          <input
+            type="email"
+            id="email"
+            class="email-input"
+            placeholder="your@email.com"
+            required
+            autocomplete="email"
+            maxlength="120"
+            aria-label="Email address"
+          >
+
+          <button type="submit" class="email-submit">
+            Notify me →
+          </button>
+
+        </div>
+
+        <!-- Honeypot -->
+        <input
+          type="text"
+          id="website"
+          name="website"
+          tabindex="-1"
+          autocomplete="off"
+          style="display:none"
+        >
+
+        <div id="success-message" class="ui-message success">
+          ✓ You're on the list.
+        </div>
+
+        <div id="error-message" class="ui-message error">
+          Something went wrong.
+        </div>
+
+      </form>
+      <p class="email-note">No spam. One email when it ships.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section style="padding:3rem 0;border-top:1px solid var(--panel-border);text-align:center;background:#0d1117;">
+  <div class="container">
+    <h2 style="color:var(--white);font-size:1.25rem;font-weight:700;margin-bottom:.5rem;">Need something more powerful built for your business?</h2>
+    <p style="color:rgba(255,255,255,.45);font-size:.875rem;margin-bottom:1.5rem;">CircLynk Digital builds custom Python automation, web apps, and full software solutions.<br>First conversation is free. No pitch.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="https://circlynkdigital.com/contact/" class="btn btn-primary btn-lg">Talk to us about your project →</a>
+      <a href="https://circlynkdigital.com/services/" class="btn btn-ghost btn-lg" style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.6);">View Services</a>
+    </div>
+  </div>
+</section>
+
+</div>
+  </main>
+
+  <!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- BRAND COL -->
+      <div class="footer-brand-col">
+        <a href="https://circlynkdigital.com/" class="navbar-brand" style="margin-bottom:1rem;display:inline-flex;">
+          <div class="brand-logo-text">
+            <span class="brand-circlynk">CircLynk</span>
+            <span class="brand-digital">Digital</span>
+          </div>
+        </a>
+        <p class="footer-tagline">Software delivery and digital transformation for SMEs and startups. Built lean. Delivered right.</p>
+        <div class="footer-social">
+            <a href="https://linkedin.com/company/circlynk" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="linkedin">
+in
+            </a>
+            <a href="https://twitter.com/circlynk" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="twitter">
+𝕏
+            </a>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div>
+        <p class="footer-col-title">Services</p>
+        <a href="https://circlynkdigital.com/services/strategy/" class="footer-link">Strategy</a>
+        <a href="https://circlynkdigital.com/services/product-design/" class="footer-link">Product Design</a>
+        <a href="https://circlynkdigital.com/services/web-development/" class="footer-link">Web Development</a>
+        <a href="https://circlynkdigital.com/services/mobile-apps/" class="footer-link">Mobile Apps</a>
+        <a href="https://circlynkdigital.com/services/custom-software/" class="footer-link">Custom Software</a>
+        <a href="https://circlynkdigital.com/services/cloud-solutions/" class="footer-link">Cloud Solutions</a>
+        <a href="https://circlynkdigital.com/services/itsm--itam/" class="footer-link">ITSM / ITAM</a>
+        <a href="https://circlynkdigital.com/services/enterprise-transformation/" class="footer-link">Enterprise Transformation</a>
+      </div>
+
+      <!-- INDUSTRIES -->
+      <div>
+        <p class="footer-col-title">Industries</p>
+        <a href="https://circlynkdigital.com/industries/fintech/" class="footer-link">FinTech</a>
+        <a href="https://circlynkdigital.com/industries/ecommerce/" class="footer-link">eCommerce</a>
+        <a href="https://circlynkdigital.com/industries/health-and-wellness/" class="footer-link">Health & Wellness</a>
+        <a href="https://circlynkdigital.com/industries/education/" class="footer-link">Education</a>
+        <a href="https://circlynkdigital.com/industries/startups/" class="footer-link">Startups</a>
+        <a href="https://circlynkdigital.com/industries/enterprise/" class="footer-link">Enterprise</a>
+        <a href="https://circlynkdigital.com/industries/web3-and-blockchain/" class="footer-link">Web3 & Blockchain</a>
+        <a href="https://circlynkdigital.com/industries/ai/" class="footer-link">AI</a>
+      </div>
+
+      <!-- TOOLS & PRODUCTS -->
+      <div>
+        <p class="footer-col-title">Tools & Products</p>
+        <a href="https://circlynkdigital.com/online-compiler-python/" class="footer-link">Python Compiler <span style="color:#22c55e;font-size:.65rem">●</span></a>
+        <a href="https://circlynkdigital.com/tools/" class="footer-link">All Free Tools</a>
+        <a href="https://circlynkdigital.com/templates/" class="footer-link">Free Templates</a>
+        <a href="https://circlynkdigital.com/marketplace/" class="footer-link">Premium Apps & Stores</a>
+        <a href="https://circlynkdigital.com/marketplace/" class="footer-link">SaaS Starters</a>
+      </div>
+
+      <!-- COMPANY -->
+      <div>
+        <p class="footer-col-title">Company</p>
+        <a href="https://circlynkdigital.com/about/" class="footer-link">About</a>
+        <a href="https://circlynkdigital.com/blog/" class="footer-link">Blog</a>
+        <a href="https://circlynkdigital.com/contact/" class="footer-link">Contact</a>
+        <a href="https://circlynkdigital.com/privacy/" class="footer-link">Privacy Policy</a>
+        <a href="https://circlynkdigital.com/terms/" class="footer-link">Terms of Service</a>
+        <a href="https://circlynkdigital.com/sitemap.xml" class="footer-link">Sitemap</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 CircLynk Digital · Karachi, Pakistan</p>
+      <div class="footer-bottom-links">
+        <a href="https://circlynkdigital.com/privacy/">Privacy</a>
+        <a href="https://circlynkdigital.com/terms/">Terms</a>
+        <a href="https://circlynkdigital.com/sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+  <!-- SCRIPTS — deferred for Lighthouse -->
+  <script src="/theme/vendor/jquery/jquery.min.js" defer></script>
+  <script src="/theme/vendor/jquery/jquery-4.0.0.min.js" defer></script>
+  <script src="/theme/vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+  <script src="/theme/assets/js/main.js" defer></script>
+<!-- PYODIDE -->
+<script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js" defer></script>
+<script>
+'use strict';
+/* =============================================
+   CIRCLYNK PYTHON COMPILER — RUNTIME
+   ============================================= */
+let pyodide   = null;
+let lastError = null;
+let isRunning = false;
+
+const editor    = () => document.getElementById('code-editor');
+const console_  = () => document.getElementById('output-console');
+const statusDot = () => document.getElementById('status-dot');
+const statusTxt = () => document.getElementById('status-text');
+const runBtn    = () => document.getElementById('run-btn');
+const execTime  = () => document.getElementById('exec-time');
+const errPanel  = () => document.getElementById('error-panel');
+const errSumm   = () => document.getElementById('error-summary');
+
+/* --- CONSOLE OUTPUT --- */
+function appendOutput(text, type = '') {
+  const el = document.createElement('span');
+  el.className = 'output-line' + (type ? ' ' + type : '');
+  el.textContent = text;
+  console_().appendChild(el);
+  console_().scrollTop = console_().scrollHeight;
+}
+
+function clearOutput() {
+  console_().innerHTML = '';
+  errPanel().style.display = 'none';
+  document.getElementById('output-status').textContent = 'Cleared.';
+}
+
+/* --- STATUS --- */
+function setStatus(state, msg) {
+  const dot = statusDot();
+  dot.className = 'status-dot ' + state;
+  statusTxt().textContent = msg;
+}
+
+/* --- LOAD PYODIDE --- */
+async function initPyodide() {
+  setStatus('loading', 'Loading Python runtime (Pyodide)…');
+  try {
+    pyodide = await loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.25.1/full/' });
+
+    // Redirect stdout/stderr
+    pyodide.runPython(`
+import sys, io
+
+class _CLOutput:
+    def __init__(self, typ):
+        self._t = typ
+    def write(self, s):
+        if s.strip():
+            import js
+            js.appendOutputFromPy(s.rstrip('\\n'), self._t)
+    def flush(self): pass
+
+sys.stdout = _CLOutput('success')
+sys.stderr = _CLOutput('error')
+`);
+
+    setStatus('ready', 'Python 3.11 ready · Pyodide');
+    appendOutput('● Python runtime loaded', 'system');
+    appendOutput('  Type your code on the left and press ▶ Run', 'system');
+    appendOutput('', '');
+
+    // Restore saved code
+    const saved = localStorage.getItem('cl_compiler_code');
+    if (saved) { editor().value = saved; appendOutput('  ✓ Previous code restored from localStorage', 'system'); appendOutput('', ''); }
+
+    runBtn().disabled = false;
+  } catch(err) {
+    setStatus('error', 'Failed to load runtime');
+    appendOutput('✗ Failed to load Pyodide: ' + err.message, 'error');
+  }
+}
+
+// Bridge function callable from Python
+window.appendOutputFromPy = function(text, type) {
+  appendOutput(text, type);
+};
+
+/* --- RUN CODE --- */
+async function runCode() {
+  if (!pyodide || isRunning) return;
+  isRunning = true;
+  runBtn().disabled = true;
+  errPanel().style.display = 'none';
+  lastError = null;
+
+  const code = editor().value;
+  localStorage.setItem('cl_compiler_code', code);
+
+  appendOutput('', '');
+  appendOutput('▶ Running…', 'info');
+  setStatus('busy', 'Executing…');
+
+  const start = performance.now();
+
+  try {
+    await pyodide.runPythonAsync(code);
+    const elapsed = ((performance.now() - start) / 1000).toFixed(3);
+    appendOutput('', '');
+    appendOutput('✓ Done in ' + elapsed + 's', 'system');
+    execTime().textContent = elapsed + 's';
+    setStatus('ready', 'Ready');
+    document.getElementById('output-status').textContent = 'Executed in ' + elapsed + 's';
+    checkVirtualFS();
+  } catch(err) {
+    const elapsed = ((performance.now() - start) / 1000).toFixed(3);
+    lastError = err.message;
+    appendOutput('', '');
+    appendOutput('✗ Error:', 'error');
+    appendOutput(err.message, 'error');
+    setStatus('error', 'Error — check output →');
+    errPanel().style.display = 'block';
+    errSumm().textContent = err.message.split('\n').slice(-1)[0];
+    document.getElementById('output-status').textContent = 'Error after ' + elapsed + 's';
+    document.getElementById('error-explanation').style.display = 'none';
+  }
+
+  isRunning = false;
+  runBtn().disabled = false;
+}
+
+/* --- INSTALL PACKAGE --- */
+async function installPackage() {
+  const pkg = document.getElementById('pkg-select').value;
+  if (!pkg || !pyodide) return;
+  const status = document.getElementById('install-status');
+  status.textContent = 'Installing ' + pkg + '…';
+  document.getElementById('install-btn').disabled = true;
+  try {
+    await pyodide.loadPackage(pkg);
+    status.textContent = '✓ ' + pkg + ' installed';
+    appendOutput('✓ Package installed: ' + pkg, 'success');
+  } catch(err) {
+    status.textContent = '✗ Failed: ' + err.message;
+    appendOutput('✗ Install failed: ' + err.message, 'error');
+  }
+  document.getElementById('install-btn').disabled = false;
+  document.getElementById('pkg-select').value = '';
+}
+
+/* --- FILE UPLOAD --- */
+async function uploadFile(input) {
+  if (!input.files.length || !pyodide) return;
+  const file = input.files[0];
+  const buf  = await file.arrayBuffer();
+  const arr  = new Uint8Array(buf);
+  pyodide.FS.writeFile('/home/pyodide/' + file.name, arr);
+  appendOutput('✓ Uploaded: ' + file.name + ' → /home/pyodide/' + file.name, 'success');
+  checkVirtualFS();
+}
+
+/* --- VIRTUAL FS --- */
+function checkVirtualFS() {
+  try {
+    const files = pyodide.FS.readdir('/home/pyodide/').filter(f => f !== '.' && f !== '..');
+    const row   = document.getElementById('file-download-row');
+    const list  = document.getElementById('file-list');
+    if (!files.length) { row.style.display = 'none'; return; }
+    row.style.display = 'flex';
+    list.innerHTML = '';
+    files.forEach(f => {
+      const btn = document.createElement('button');
+      btn.className = 'tool-btn';
+      btn.style.fontSize = '.65rem';
+      btn.textContent = '⬇ ' + f;
+      btn.onclick = () => downloadFile(f);
+      list.appendChild(btn);
+    });
+  } catch(e) {}
+}
+
+/* --- FILE DOWNLOAD --- */
+function downloadFile(filename) {
+  try {
+    const data = pyodide.FS.readFile('/home/pyodide/' + filename);
+    const blob = new Blob([data]);
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url; a.download = filename; a.click();
+    URL.revokeObjectURL(url);
+    appendOutput('✓ Downloaded: ' + filename, 'system');
+  } catch(err) {
+    appendOutput('✗ Download failed: ' + err.message, 'error');
+  }
+}
+
+function downloadOutput() {
+  const text = Array.from(console_().querySelectorAll('.output-line')).map(l => l.textContent).join('\n');
+  const blob = new Blob([text], { type: 'text/plain' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = 'circlynk-output.txt'; a.click();
+  URL.revokeObjectURL(url);
+}
+
+/* --- EDITOR UTILS --- */
+function clearEditor() { if (confirm('Clear the editor?')) { editor().value = ''; localStorage.removeItem('cl_compiler_code'); } }
+function copyCode() {
+  navigator.clipboard.writeText(editor().value).then(() => {
+    const btn = document.querySelector('.tool-btn[onclick="copyCode()"]');
+    if (btn) { const o = btn.textContent; btn.textContent = '✓ Copied'; setTimeout(() => btn.textContent = o, 1500); }
+  });
+}
+
+/* --- ERROR EXPLAIN --- */
+function explainError() {
+  if (!lastError) return;
+  const prompt = `I'm running Python in the browser using Pyodide and got this error:\n\n${lastError}\n\nMy code:\n\`\`\`python\n${editor().value}\n\`\`\`\n\nPlease explain what caused this error in plain English and suggest the fix.`;
+  const exp = document.getElementById('error-explanation');
+  exp.style.display = 'block';
+  exp.textContent = '📋 Debugging prompt copied to clipboard. Paste into Claude or ChatGPT:\n\n' + prompt;
+  navigator.clipboard.writeText(prompt).catch(() => {});
+}
+
+/* --- KEYBOARD SHORTCUT --- */
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); runCode(); }
+});
+
+/* --- TAB IN EDITOR --- */
+editor() && editor().addEventListener('keydown', e => {
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    const s = editor().selectionStart;
+    const v = editor().value;
+    editor().value = v.substring(0, s) + '    ' + v.substring(editor().selectionEnd);
+    editor().selectionStart = editor().selectionEnd = s + 4;
+  }
+});
+
+/* --- EMAIL FORM SUBMISSION --- */
+(() => {
+
+  const form =
+    document.getElementById('notify-form');
+
+  const successEl =
+    document.getElementById('success-message');
+
+  const errorEl =
+    document.getElementById('error-message');
+
+  const emailInput =
+    document.getElementById('email');
+
+  const honeypot =
+    document.getElementById('website');
+
+  const WEBHOOK_URL =
+    'https://script.google.com/macros/s/AKfycbyzY50bpo2-uuA3u9cIgPwXuewAmkKeGdwr1KjAz6NclIDKLFBmvmNPZ4BVaJIsXRNC/exec';
+
+  function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function resetMessages() {
+    successEl.classList.remove('show', 'success', 'error');
+    errorEl.classList.remove('show', 'success', 'error');
+  }
+
+  form.addEventListener('submit', async (e) => {
+
+    e.preventDefault();
+
+    resetMessages();
+
+    const email =
+      emailInput.value.trim();
+
+    const botField =
+      honeypot.value;
+
+    // FRONTEND VALIDATION
+    if (!validateEmail(email)) {
+      errorEl.textContent =
+        'Please enter a valid email address';
+
+      showMessage(errorEl, 'error', 10000);
+      return;
+    }
+
+    // HONEYPOT CHECK
+    if (botField) {
+      errorEl.textContent =
+        'Bot detected';
+
+      showMessage(errorEl, 'error', 10000);
+      return;
+    }
+
+    try {
+
+      const formData =
+        new URLSearchParams();
+
+      formData.append('email', email);
+      formData.append('source', window.location.pathname);
+      formData.append('referrer', document.referrer || '');
+      formData.append(
+        'campaign',
+        new URLSearchParams(window.location.search)
+          .get('utm_campaign') || ''
+      );
+      formData.append('userAgent', navigator.userAgent);
+      formData.append('website', botField);
+
+      const response = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+
+        showMessage(successEl, 'success', 10000);
+        form.reset();
+
+      } else {
+
+        errorEl.textContent =
+          result.message || 'Something went wrong';
+
+        showMessage(errorEl, 'error', 10000);
+      }
+
+    } catch (err) {
+
+      errorEl.textContent =
+        'Network error';
+
+      showMessage(errorEl, 'error', 10000);
+    }
+
+  });
+
+})();
+
+
+
+/* --- Message Disappear --- */
+function showMessage(el, type, duration = 10000) {
+
+  // reset state fully
+  el.classList.remove('show', 'success', 'error');
+
+  // force reflow (fixes transition bugs in some browsers)
+  void el.offsetWidth;
+
+  el.classList.add(type);
+  el.classList.add('show');
+
+  clearTimeout(el._timer);
+
+  el._timer = setTimeout(() => {
+    el.classList.remove('show');
+  }, duration);
+}
+
+/* --- INIT --- */
+window.addEventListener('load', initPyodide);
+</script>
+
+</body>
+</html>

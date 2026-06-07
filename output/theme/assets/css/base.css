@@ -1,0 +1,202 @@
+/* ============================================================
+   CIRCLYNK DIGITAL — BASE.CSS
+   Light theme | CircLynk #185FA5 | DIGITAL #0EA5A4
+   Lighthouse 95+ optimized
+   ============================================================ */
+
+:root {
+  /* Brand */
+  --cl-blue:       #185FA5;
+  --cl-blue-dark:  #0f3d6e;
+  --cl-blue-light: #e8f1fb;
+  --cl-teal:       #0EA5A4;
+  --cl-teal-dark:  #0a7a79;
+  --cl-teal-light: #e6f7f7;
+
+  /* Neutral */
+  --gray-950: #0a0f1a;
+  --gray-900: #111827;
+  --gray-800: #1f2937;
+  --gray-700: #374151;
+  --gray-600: #4b5563;
+  --gray-500: #6b7280;
+  --gray-400: #9ca3af;
+  --gray-300: #d1d5db;
+  --gray-200: #e5e7eb;
+  --gray-100: #f3f4f6;
+  --gray-50:  #f9fafb;
+  --white:    #ffffff;
+
+  /* Semantic */
+  --text-primary:   var(--gray-900);
+  --text-secondary: var(--gray-600);
+  --text-muted:     var(--gray-400);
+  --bg-body:        var(--white);
+  --bg-subtle:      var(--gray-50);
+  --bg-card:        var(--white);
+  --border:         var(--gray-200);
+  --border-strong:  var(--gray-300);
+
+  /* Typography */
+  --font-sans:  'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-mono:  'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Layout */
+  --max-w:       1280px;
+  --max-w-prose: 720px;
+  --radius-sm:   4px;
+  --radius:      8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-full: 9999px;
+
+  /* Shadow */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow:    0 1px 3px rgba(0,0,0,.1), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 6px rgba(0,0,0,.07), 0 2px 4px rgba(0,0,0,.06);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,.1), 0 4px 6px rgba(0,0,0,.05);
+  --shadow-xl: 0 20px 25px rgba(0,0,0,.1), 0 10px 10px rgba(0,0,0,.04);
+
+  /* Transitions */
+  --transition: 0.2s ease;
+  --transition-slow: 0.4s ease;
+}
+
+/* RESET */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--bg-body);
+  -webkit-font-smoothing: antialiased;
+}
+img, video, svg { max-width: 100%; display: block; }
+a { color: var(--cl-blue); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--cl-blue-dark); }
+button { cursor: pointer; font: inherit; }
+ul, ol { list-style: none; }
+input, textarea, select { font: inherit; }
+h1,h2,h3,h4,h5,h6 { line-height: 1.2; font-weight: 700; color: var(--gray-900); }
+p { color: var(--text-secondary); }
+strong { color: var(--text-primary); }
+
+/* LAYOUT */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--space-8); }
+.container-sm { max-width: 860px; margin: 0 auto; padding: 0 var(--space-8); }
+.section { padding: var(--space-20) 0; }
+.section-sm { padding: var(--space-12) 0; }
+
+/* GRID */
+.grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: var(--space-8); }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-6); }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: var(--space-6); }
+
+/* FLEX */
+.flex { display: flex; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-col { display: flex; flex-direction: column; }
+.gap-2 { gap: var(--space-2); }
+.gap-4 { gap: var(--space-4); }
+.gap-6 { gap: var(--space-6); }
+
+/* VISIBILITY */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+
+/* SKIP LINK — Lighthouse accessibility */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: var(--cl-blue);
+  color: #fff;
+  padding: .5rem 1rem;
+  border-radius: var(--radius);
+  font-size: .875rem;
+  z-index: 9999;
+  transition: top var(--transition);
+}
+.skip-link:focus { top: 1rem; }
+
+/* SECTION LABEL */
+.section-label {
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--cl-teal);
+  margin-bottom: var(--space-3);
+}
+
+/* SECTION TITLE */
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--space-4);
+  line-height: 1.15;
+}
+
+.section-title span { color: var(--cl-blue); }
+
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  line-height: 1.75;
+}
+
+/* DIVIDER */
+.divider { height: 1px; background: var(--border); margin: var(--space-8) 0; }
+
+/* BADGE */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .2rem .65rem;
+  border-radius: var(--radius-full);
+}
+.badge-blue  { background: var(--cl-blue-light); color: var(--cl-blue); }
+.badge-teal  { background: var(--cl-teal-light); color: var(--cl-teal-dark); }
+.badge-green { background: #dcfce7; color: #166534; }
+.badge-amber { background: #fef3c7; color: #92400e; }
+
+/* ANIMATE ON SCROLL */
+[data-aos] { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
+[data-aos].aos-visible { opacity: 1; transform: none; }
+
+/* RESPONSIVE UTILITIES */
+@media (max-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(2,1fr); }
+  .grid-3 { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .container { padding: 0 var(--space-5); }
+  .section { padding: var(--space-12) 0; }
+}
