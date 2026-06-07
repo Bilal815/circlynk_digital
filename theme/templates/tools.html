@@ -1,6 +1,8 @@
 {% extends "page.html" %}
 {% from "macros/schema.html" import build_schema %}
 
+{% set obj = page if page is defined and page else None %}
+
 {% block title %}
 {{ obj.title if obj else SITENAME }}
 {% endblock %}
@@ -9,9 +11,7 @@
 {{ obj.description if obj else SITEDESCRIPTION }}
 {% endblock %}
 
-{% block canonical %}
-{{ SITEURL.rstrip('/') }}/{{ obj.slug|replace('index.html','')|trim('/') if obj else obj.url|replace('index.html','')|trim('/') }}/
-{% endblock %}
+{% block canonical %}{{ SITEURL.rstrip('/') }}/{{ obj.slug|replace('index.html','')|trim('/') if obj else obj.url|replace('index.html','')|trim('/') }}/{% endblock %}
 
 {% set robots = 'index, follow' %}
 

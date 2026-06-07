@@ -27,16 +27,7 @@
         {% endblock %}">
 
   <link rel="canonical"
-        href="{% block canonical %}
-        {% set _site = SITEURL.rstrip('/') %}
-        {% set _path = (obj.slug if obj and obj.slug else obj.url if obj and obj.url else '') %}
-
-        {% if _path %}
-          {{ _site }}/{{ _path|replace('index.html','')|trim('/') }}
-        {% else %}
-          {{ _site }}
-        {% endif %}
-        {% endblock %}">
+        href="{% block canonical %}{% set _site = SITEURL.rstrip('/') %}{% set _path = (obj.slug if obj and obj.slug else obj.url if obj and obj.url else '') %}{% if _path %}{{ _site }}/{{ _path|replace('index.html','')|trim('/') }}{% else %}{{ _site }}{% endif %}{% endblock %}">
 
   <meta name="robots"
         content="{% block robots %}

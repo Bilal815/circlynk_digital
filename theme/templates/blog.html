@@ -12,9 +12,7 @@
    |truncate(160, True) }}
 {% endblock %}
 
-{% block canonical %}
-{{ SITEURL.rstrip('/') }}/{{ obj.url|default('blog/')|replace('index.html','')|trim('/') }}/
-{% endblock %}
+{% block canonical %}{{ SITEURL.rstrip('/') }}/{{ obj.url|default('blog/')|replace('index.html','')|trim('/') }}/{% endblock %}
 
 {% block robots %}
 {{ obj.metadata.get('robots', 'noindex, nofollow') if obj and obj.metadata else 'index, follow' }}

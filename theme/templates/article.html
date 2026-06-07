@@ -9,9 +9,7 @@
 {{ article.summary|striptags|truncate(160, True) }}
 {% endblock %}
 
-{% block canonical %}
-{{ SITEURL.rstrip('/') }}/{{ article.url|replace('index.html','')|trim('/') }}/
-{% endblock %}
+{% block canonical %}{{ SITEURL.rstrip('/') }}/{{ article.url|replace('index.html','')|trim('/') }}/{% endblock %}
 
 {% block robots %}
 {{ article.metadata.get('robots', 'noindex, nofollow') }}
