@@ -48,15 +48,15 @@ INDEX_SAVE_AS = 'index.html'
 
 # Category settings
 CATEGORY_URL     = '{slug}/'
-CATEGORY_SAVE_AS = 'category/{slug}.html'
+CATEGORY_SAVE_AS = '{slug}/index.html'
 
 # Tag settings
 TAG_URL          = '{slug}/'
-TAG_SAVE_AS      = 'tags/{slug}.html'
+TAG_SAVE_AS      = '{slug}/index.html'
 
 # Author settings
 AUTHOR_URL       = '{slug}/'
-AUTHOR_SAVE_AS   = 'authors/{slug}.html'
+AUTHOR_SAVE_AS   = '{slug}/index.html'
 
 # Template Page Routing
 TEMPLATE_PAGES = {

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% set obj = page if page is defined and page else None %}
 
 {% block title %}
 {{ obj.title if obj and obj.title else None }}
