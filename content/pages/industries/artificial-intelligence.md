@@ -1,6 +1,8 @@
 Title: Artificial Intelligence
 Slug: artificial-intelligence
+Save_as: artificial-intelligence.html
 Template: industry_detail
+Robots: noindex, nofollow
 Parent_slug: industries
 
 We build AI-powered products — from ML pipelines to LLM integrations. We've worked with AI startups on everything from dataset tooling to inference optimization.

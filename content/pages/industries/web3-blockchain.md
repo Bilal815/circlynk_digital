@@ -1,6 +1,8 @@
 Title: Web3 & Blockchain
 Slug: web3-blockchain
+Save_as: web3-blockchain.html
 Template: industry_detail
+Robots: noindex, nofollow
 Parent_slug: industries
 
 Smart contracts, DeFi protocols, NFT platforms, and blockchain infrastructure. We build with production-grade security and a clear eye for what's hype vs substance.

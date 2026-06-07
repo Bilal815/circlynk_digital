@@ -1,32 +1,28 @@
 {% extends "page.html" %}
-{% from "macros/context.html" import resolve_context %}
 {% from "macros/schema.html" import build_schema %}
 
-{% set base_ctx = resolve_context(page, article) %}
-
-{% set title = "Industries | CircLynk Digital — Sector Solutions" %}
-{% set description = "Explore industry-specific digital transformation solutions across AI, fintech, healthcare, eCommerce, and enterprise systems." %}
-{% set canonical_url = SITEURL ~ "/industries/" %}
-
 {% block title %}
-{{ title }}
+{{ obj.title if obj else SITENAME }}
 {% endblock %}
 
-{% block meta_desc %}
-{{ description
-    | striptags
-    | replace('\n',' ')
-    | replace('\r',' ')
-    | truncate(155, True)
-    | escape }}
+{% block description %}
+{{ obj.description if obj else SITEDESCRIPTION }}
 {% endblock %}
 
 {% block canonical %}
-{{ canonical_url }}
+{{ SITEURL.rstrip('/') }}/{{ obj.slug|replace('index.html','')|trim('/') if obj else obj.url|replace('index.html','')|trim('/') }}/
 {% endblock %}
 
+{% set robots = 'index, follow' %}
+
+{% if page is defined and page and page.metadata %}
+  {% set robots = page.metadata.get('robots', 'noindex, nofollow') %}
+{% elif article is defined and article and article.metadata %}
+  {% set robots = article.metadata.get('robots', 'noindex, nofollow') %}
+{% endif %}
+
 {% block body_class %}
-page-industries
+page-industries page-{{ obj.slug }}
 {% endblock %}
 
 {% block schema %}

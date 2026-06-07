@@ -1,6 +1,8 @@
 Title: Travel
 Slug: travel
+Save_as: travel.html
 Template: industry_detail
+Robots: noindex, nofollow
 Parent_slug: industries
 
 Booking engines, itinerary management, loyalty systems, and travel analytics. We build for the complexity of multi-currency, multi-timezone, multi-provider travel software.

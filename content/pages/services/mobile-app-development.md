@@ -1,7 +1,9 @@
 Title: Mobile App Development
 Slug: mobile-app-development
 Template: service_detail
+Save_as: mobile-app-development.html
 Parent_slug: services
+Robots: noindex, nofollow
 Service_name: Mobile App Development
 
 iOS, Android, and React Native apps with clean architecture and real-world performance. We build apps that get used, not just launched.

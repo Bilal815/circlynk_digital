@@ -1,6 +1,8 @@
 Title: Health & Wellness
 Slug: health-wellness
+Save_as: health-wellness.html
 Template: industry_detail
+Robots: noindex, nofollow
 Parent_slug: industries
 
 Patient portals, clinic management, telehealth platforms, and wellness apps. We build healthcare software with HIPAA awareness and clinical workflow understanding.

@@ -6,38 +6,46 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <!-- PRIMARY META -->
-  {% set _page = page if page is defined else None %}
-{% set _article = article if article is defined else None %}
+  {% set obj = page if page is defined and page else article if article is defined and article else None %}
+  {% set site = SITEURL.rstrip('/') %}
 
-<title>
-{% block title %}
-{{ (_page.title if _page and _page.title)
-   or (_article.title if _article and _article.title)
-   or SITESUBTITLE }}
-{% endblock %}
-</title>
+  <title>
+  {% block title %}
+  {{ obj.title if obj and obj.title else SITENAME }}
+  {% endblock %}
+  </title>
 
-<meta
-  name="description"
-  content="{% block meta_desc %}
-{{ (_page.description if _page and _page.description)
-   or (_page.meta_description if _page and _page.meta_description)
-   or (_page.summary if _page and _page.summary)
-   or (_article.summary if _article and _article.summary)
-   or SITEDESCRIPTION }}
-{% endblock %}"
->
-  <meta name="author" content="{{ AUTHOR | default('CircLynk Digital') }}">
-  <meta name="robots" content="{% block robots %}index, follow{% endblock %}">
-  {% if REL_CANONICAL %}<link rel="canonical" href="{% block canonical %}
-{% if page is defined and page.slug %}
-  {{ SITEURL }}/{{ page.slug }}/
-{% elif article is defined and article.slug %}
-  {{ SITEURL }}/blog/{{ article.slug }}/
-{% else %}
-  {{ SITEURL }}/
-{% endif %}
-{% endblock %}">{% endif %}
+  <meta name="description"
+        content="{% block description %}
+        {% if obj and obj.description %}
+          {{ obj.description|striptags|escape }}
+        {% elif obj and obj.summary %}
+          {{ obj.summary|striptags|escape }}
+        {% else %}
+          {{ SITEDESCRIPTION|escape }}
+        {% endif %}
+        {% endblock %}">
+
+  <link rel="canonical"
+        href="{% block canonical %}
+        {% set _site = SITEURL.rstrip('/') %}
+        {% set _path = (obj.slug if obj and obj.slug else obj.url if obj and obj.url else '') %}
+
+        {% if _path %}
+          {{ _site }}/{{ _path|replace('index.html','')|trim('/') }}
+        {% else %}
+          {{ _site }}
+        {% endif %}
+        {% endblock %}">
+
+  <meta name="robots"
+        content="{% block robots %}
+        {% if obj and obj.metadata and obj.metadata.get('robots') %}
+          {{ obj.metadata.get('robots') }}
+        {% else %}
+          index, follow
+        {% endif %}
+        {% endblock %}">
 
   <!-- OG + TWITTER -->
   {% include "partial/og-tags.html" %}
@@ -56,8 +64,8 @@
 
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": COMPANY_LOCALITY,
-      "addressCountry": COMPANY_COUNTRY
+      "addressLocality": {{COMPANY_LOCALITY }},
+      "addressCountry": {{ COMPANY_LOCALITY }}
     },
 
     "sameAs": [
@@ -110,7 +118,7 @@
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
-
+  
   <!-- HEADER -->
   {% include "partial/header.html" %}
 

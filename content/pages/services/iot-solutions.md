@@ -1,7 +1,9 @@
 Title: IoT Solutions
 Slug: iot-solutions
 Template: service_detail
+Save_as: iot-solutions.html
 Parent_slug: services
+Robots: noindex, nofollow
 Service_name: IoT Solutions
 
 Connected device systems from sensor to dashboard. We prototype, build, and deploy IoT solutions for manufacturing, agriculture, energy, and smart buildings.

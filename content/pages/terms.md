@@ -1,5 +1,6 @@
 Title: Terms of Service
 Slug: terms
+Save_as: terms.html
 Template: page
 
 Last updated: January 2025

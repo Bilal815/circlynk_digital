@@ -1,6 +1,7 @@
 Title: About CircLynk Digital
 Slug: about
 Template: page
+Save_as: about.html
 Eyebrow: Our story
 Subtitle: We don't build software. We solve the problem behind it.
 
@@ -18,5 +19,5 @@ Pakistani software talent is genuinely world-class. The gap isn't capability —
 
 ## Based in Karachi. Working globally.
 
-Pakistani clients: PKR pricing, WhatsApp-first, Urdu where it helps.  
+Pakistani clients: PKR pricing, WhatsApp-first, Urdu where it helps.
 US clients: EST timezone overlap, email and Slack, USD pricing, Payoneer.

@@ -11,7 +11,7 @@ SITEURL = 'https://circlynkdigital.com'
 RELATIVE_URLS = False
 
 DELETE_OUTPUT_DIRECTORY = True
-DEBUG = False
+DEBUG = True
 
 # Disable caching in CI (important for reliability)
 CACHE_CONTENT = False

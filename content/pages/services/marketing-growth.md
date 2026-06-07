@@ -1,7 +1,9 @@
 Title: Marketing & Growth
 Slug: marketing-growth
 Template: service_detail
+Save_as: marketing-growth.html
 Parent_slug: services
+Robots: noindex, nofollow
 Service_name: Marketing & Growth
 
 SEO, content, paid acquisition, and growth engineering for software businesses. We grow the metrics that actually matter to your business model.

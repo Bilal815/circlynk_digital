@@ -5,7 +5,7 @@
   {% for group in config["groups"] %}
   <li class="nav-item has-mega">
 
-    <a href="{{ siteurl }}{{ group['url'] }}"
+    <a href="{{ group['url'] }}"
        class="nav-link has-dropdown" aria-expanded="false">
       {{ group["title"] }}
       <svg class="chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -16,7 +16,7 @@
     <div class="mega-menu" role="menu">
 
       {% for item in group["items"] %}
-      <a href="{{ siteurl }}{{ item[1] }}"
+      <a href="{{ item[1] }}"
          class="mega-link"
          role="menuitem">
         {{ item[0] }}

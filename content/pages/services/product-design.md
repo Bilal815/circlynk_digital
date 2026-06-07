@@ -1,7 +1,9 @@
 Title: Product Design
 Slug: product-design
 Template: service_detail
+Save_as: product-design.html
 Parent_slug: services
+Robots: noindex, nofollow
 Service_name: Product Design
 
 UX/UI design, prototyping, and user research. We design products people actually want to use — intuitive, fast, and built for your specific users.

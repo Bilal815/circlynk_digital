@@ -1,6 +1,8 @@
 Title: Social Media
 Slug: social-media
+Save_as: social-media.html
 Template: industry_detail
+Robots: noindex, nofollow
 Parent_slug: industries
 
 Community platforms, creator tools, content moderation systems, and social analytics. We understand the infrastructure and moderation challenges at scale.

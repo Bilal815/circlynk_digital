@@ -2,10 +2,14 @@
 
 {% set ctx = namespace() %}
 
-{% set ctx.title =
-    page.title if page is defined and page.title
-    else article.title if article is defined and article.title
+{% set raw_title =
+    page.title if page is defined and page and page.title
+    else article.title if article is defined and article and article.title
     else ""
+%}
+
+{% set ctx.title =
+    raw_title() if raw_title is callable else raw_title
 %}
 
 {% set ctx.slug =

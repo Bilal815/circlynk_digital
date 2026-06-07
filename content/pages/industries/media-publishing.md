@@ -1,6 +1,8 @@
 Title: Media & Publishing
 Slug: media-publishing
+Save_as: media-publishing.html
 Template: industry_detail
+Robots: noindex, nofollow
 Parent_slug: industries
 
 CMS platforms, content delivery, subscription systems, and analytics dashboards for media companies navigating the shift to digital-first publishing.

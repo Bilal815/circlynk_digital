@@ -1,6 +1,8 @@
 Title: Food & Grocery
 Slug: food-grocery
+Save_as: food-grocery.html
 Template: industry_detail
+Robots: noindex, nofollow
 Parent_slug: industries
 
 Ordering systems, delivery logistics, inventory management, and supplier integrations. We've built for restaurants, dark kitchens, and grocery delivery startups.

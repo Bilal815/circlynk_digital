@@ -1,7 +1,9 @@
 Title: Strategy
 Slug: strategy
 Template: service_detail
+Save_as: strategy.html
 Parent_slug: services
+Robots: noindex, nofollow
 Service_name: Strategy
 
 We start with your business problem, not technology. Strategy defines what to build, why it matters, and how to measure success before a single line of code is written.

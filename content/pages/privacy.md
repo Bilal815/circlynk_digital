@@ -1,5 +1,6 @@
 Title: Privacy Policy
 Slug: privacy
+Save_as: privacy.html
 Template: page
 
 Last updated: January 2025

@@ -1,7 +1,9 @@
 Title: Custom Software Development
 Slug: custom-software-development
 Template: service_detail
+Save_as: custom-software-development.html
 Parent_slug: services
+Robots: noindex, nofollow
 Service_name: Custom Software Development
 
 When off-the-shelf software doesn't fit your process, we build exactly what you need. CMS, web apps, internal tools, automation systems — scoped right, delivered on time.

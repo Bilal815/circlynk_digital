@@ -1,6 +1,8 @@
 Title: Education
 Slug: education
+Save_as: education.html
 Template: industry_detail
+Robots: noindex, nofollow
 Parent_slug: industries
 
 LMS platforms, student management systems, assessment tools, and content delivery. We understand the compliance, accessibility, and engagement requirements of educational software.

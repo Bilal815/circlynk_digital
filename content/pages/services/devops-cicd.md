@@ -1,7 +1,9 @@
 Title: DevOps & CI/CD
 Slug: devops-cicd
 Template: service_detail
+Save_as: devops-cicd.html
 Parent_slug: services
+Robots: noindex, nofollow
 Service_name: DevOps & CI/CD
 
 CI/CD pipelines, containerization, monitoring, and deployment automation. We get your code from development to production faster and safer.

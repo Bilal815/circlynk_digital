@@ -1,7 +1,9 @@
 Title: Business Process Outsourcing
 Slug: business-process-outsourcing
 Template: service_detail
+Save_as: business-process-outsourcing.html
 Parent_slug: services
+Robots: noindex, nofollow
 Service_name: Business Process Outsourcing
 
 Extend your team with trained specialists for operations, customer support, and back-office functions. Pakistani talent at competitive rates with full quality accountability.

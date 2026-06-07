@@ -1,7 +1,9 @@
 Title: Product Management
 Slug: product-management
 Template: service_detail
+Save_as: product-management.html
 Parent_slug: services
+Robots: noindex, nofollow
 Service_name: Product Management
 
 Fractional product management for startups and SMEs. You get PM expertise — roadmap, prioritization, stakeholder management — without the full-time hire cost.

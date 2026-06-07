@@ -33,23 +33,36 @@ AUTHOR_FEED_RSS       = None
 # Limitting related posts
 #RELATED_POSTS_MAX = 10
 
-# URLs — clean SEO-friendly
+### URLs — clean SEO-friendly
+# Article settings
 ARTICLE_URL      = '{slug}/'
-ARTICLE_SAVE_AS  = '{slug}/index.html'
-PAGE_URL         = '{slug}/'
-PAGE_SAVE_AS     = '{slug}/index.html'
+ARTICLE_SAVE_AS  = 'articles/{slug}.html'
+
+# Page settings
+PAGE_URL = '{slug}/'
+PAGE_SAVE_AS = '{slug}/index.html'
+
+# Index settings
+INDEX_URL = ''
+INDEX_SAVE_AS = 'index.html'
+
+# Category settings
 CATEGORY_URL     = '{slug}/'
-CATEGORY_SAVE_AS = '{slug}/index.html'
+CATEGORY_SAVE_AS = 'category/{slug}.html'
+
+# Tag settings
 TAG_URL          = '{slug}/'
-TAG_SAVE_AS      = '{slug}/index.html'
+TAG_SAVE_AS      = 'tags/{slug}.html'
+
+# Author settings
 AUTHOR_URL       = '{slug}/'
-AUTHOR_SAVE_AS   = '{slug}/index.html'
+AUTHOR_SAVE_AS   = 'authors/{slug}.html'
 
 # Template Page Routing
 TEMPLATE_PAGES = {
     'compiler.html': 'online-compiler-python/index.html',
     'blog.html': 'blog/index.html',
-    'contact.html': 'contact.html',
+    'contact.html': 'contact/index.html',
     '404.html': '404.html',
     'marketplace.html': 'marketplace/index.html',
     'services.html': 'services/index.html',
@@ -76,9 +89,8 @@ EXTRA_PATH_METADATA = {
 # PLUGINS
 PLUGIN_PATHS = ['plugins']
 PLUGINS = [
-    'yuicompressor',
+    #'yuicompressor',
     'sitemap',
-    #'seo',
     #'related_posts',
     #'neighbors',
 ]
@@ -164,7 +176,7 @@ NAVIGATION_CONFIG = {
                 ("Strategy", "/strategy/"),
                 ("Product Design", "/product-design/"),
                 ("Branding", "/branding/"),
-                ("UX/UI Design", "/uxui-design/"),
+                ("UX/UI Design", "/ux-ui-design/"),
                 ("Product Management", "/product-management/"),
                 ("MVP Development", "/mvp-development/"),
                 ("Web Development", "/web-development/"),

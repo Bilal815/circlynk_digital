@@ -2,6 +2,8 @@ Title: Application Security
 Slug: application-security
 Template: service_detail
 Parent_slug: services
+Save_as: application-security.html
+Robots: noindex, nofollow
 Service_name: Application Security
 
 Security audits, penetration testing, and OWASP-based code reviews. We find vulnerabilities before attackers do and give you a clear remediation roadmap.

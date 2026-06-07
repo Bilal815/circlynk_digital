@@ -1,4 +1,7 @@
-Title: Services
+Title: Services | CircLynk Digital
 Slug: services
 Template: services
-Subtitle: From strategy to deployment — we cover the full digital product lifecycle.
+Save_As: services.html
+H1: Our Services
+Subtitle: We strive to provide the highest quality services
+Description: Full-cycle digital product development, automation, and engineering services.

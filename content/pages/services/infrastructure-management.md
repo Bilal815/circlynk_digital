@@ -1,7 +1,9 @@
 Title: Infrastructure Management
 Slug: infrastructure-management
 Template: service_detail
+Save_as: infrastructure-management.html
 Parent_slug: services
+Robots: noindex, nofollow
 Service_name: Infrastructure Management
 
 Server, network, and cloud infrastructure management. We keep your systems running so your team can focus on the product.

@@ -1,28 +1,28 @@
 {% extends "page.html" %}
-{% from "macros/context.html" import resolve_context %}
 {% from "macros/schema.html" import build_schema %}
 
-{% set ctx = resolve_context(page, article) %}
-
 {% block title %}
-{{ ctx.title }} | CircLynk Digital — Industry Solutions
+{{ obj.title if obj else SITENAME }}
 {% endblock %}
 
-{% block meta_desc %}
-{{ ctx.description
-    | striptags
-    | replace('\n',' ')
-    | replace('\r',' ')
-    | truncate(155, True)
-    | escape }}
+{% block description %}
+{{ obj.description if obj else SITEDESCRIPTION }}
 {% endblock %}
 
 {% block canonical %}
-{{ SITEURL }}/{{ ctx.base_path+"/" if ctx.base_path is defined else '' }}{{ ctx.slug }}/
+{{ SITEURL.rstrip('/') }}/{{ obj.slug|replace('index.html','')|trim('/') if obj else obj.url|replace('index.html','')|trim('/') }}/
 {% endblock %}
 
+{% set robots = 'index, follow' %}
+
+{% if page is defined and page and page.metadata %}
+  {% set robots = page.metadata.get('robots', 'noindex, nofollow') %}
+{% elif article is defined and article and article.metadata %}
+  {% set robots = article.metadata.get('robots', 'noindex, nofollow') %}
+{% endif %}
+
 {% block body_class %}
-page-industry industry-{{ ctx.slug }}
+page-industry industry-{{ obj.slug }}
 {% endblock %}
 
 {% block schema %}

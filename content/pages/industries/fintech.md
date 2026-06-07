@@ -1,6 +1,8 @@
 Title: FinTech
 Slug: fintech
+Save_as: fintech.html
 Template: industry_detail
+Robots: noindex, nofollow
 Parent_slug: industries
 
 Payment systems, lending platforms, portfolio tools, and financial dashboards. We build fintech with the security and compliance standards the industry requires.

@@ -1,7 +1,9 @@
 Title: Branding
 Slug: branding
 Template: service_detail
+Save_as: branding.html
 Parent_slug: services
+Robots: noindex, nofollow
 Service_name: Branding
 
 Brand strategy, identity, naming, and digital branding. We make you memorable in crowded markets with visual systems that scale from a business card to a full product suite.

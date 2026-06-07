@@ -1,6 +1,8 @@
 Title: Marketplaces
 Slug: marketplaces
+Save_as: marketplaces.html
 Template: industry_detail
+Robots: noindex, nofollow
 Parent_slug: industries
 
 Two-sided and multi-vendor marketplace platforms. Trust systems, payment splitting, search, reviews, and seller management — we've built them all.

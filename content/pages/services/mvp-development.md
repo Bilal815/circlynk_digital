@@ -1,7 +1,9 @@
 Title: MVP Development
 Slug: mvp-development
 Template: service_detail
+Save_as: mvp-development.html
 Parent_slug: services
+Robots: noindex, nofollow
 Service_name: MVP Development
 
 Fastest path from idea to working product. We scope it right, build it lean, and launch it fast — so you get real user feedback before over-investing.
