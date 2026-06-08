@@ -1,7 +1,6 @@
 Title: Cloud Solutions
 Slug: cloud-solutions
 Template: service_detail
-Save_as: cloud-solutions.html
 Parent_slug: services
 Robots: noindex, nofollow
 Service_name: Cloud Solutions

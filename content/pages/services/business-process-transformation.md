@@ -1,7 +1,6 @@
 Title: Business Process Transformation
 Slug: business-process-transformation
 Template: service_detail
-Save_as: business-process-transformation.html
 Parent_slug: services
 Robots: noindex, nofollow
 Service_name: Business Process Transformation

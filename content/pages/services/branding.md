@@ -1,7 +1,6 @@
 Title: Branding
 Slug: branding
 Template: service_detail
-Save_as: branding.html
 Parent_slug: services
 Robots: noindex, nofollow
 Service_name: Branding

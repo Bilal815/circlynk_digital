@@ -36,7 +36,7 @@ AUTHOR_FEED_RSS       = None
 ### URLs — clean SEO-friendly
 # Article settings
 ARTICLE_URL      = '{slug}/'
-ARTICLE_SAVE_AS  = '{slug}/index .html'
+ARTICLE_SAVE_AS  = '{slug}/index.html'
 
 # Page settings
 PAGE_URL = '{slug}/'
@@ -60,7 +60,6 @@ AUTHOR_SAVE_AS   = '{slug}/index.html'
 
 # Template Page Routing
 TEMPLATE_PAGES = {
-    'compiler.html': 'online-compiler-python/index.html',
     'tools.html': 'tools/index.html',
     #'about.html': 'about/index.html',
     'blog.html': 'blog.html',
