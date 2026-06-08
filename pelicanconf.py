@@ -208,7 +208,7 @@ NAVIGATION_CONFIG = {
                 ("Space Exploration", "/space-exploration/"),
                 ("Startups", "/startups/"),
                 ("Travel", "/travel/"),
-                ("Web3 & Blockchain", "/web3-and-blockchain/")
+                ("Web3 & Blockchain", "/web3--blockchain/")
             ]
         },
         {
