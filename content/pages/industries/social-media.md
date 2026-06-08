@@ -1,6 +1,5 @@
 Title: Social Media
 Slug: social-media
-Save_as: social-media.html
 Template: industry_detail
 Robots: noindex, nofollow
 Parent_slug: industries

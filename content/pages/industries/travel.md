@@ -1,6 +1,5 @@
 Title: Travel
 Slug: travel
-Save_as: travel.html
 Template: industry_detail
 Robots: noindex, nofollow
 Parent_slug: industries

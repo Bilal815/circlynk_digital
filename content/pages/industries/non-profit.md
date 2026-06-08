@@ -1,6 +1,5 @@
 Title: Non-Profit
 Slug: non-profit
-Save_as: non-profit.html
 Template: industry_detail
 Robots: noindex, nofollow
 Parent_slug: industries

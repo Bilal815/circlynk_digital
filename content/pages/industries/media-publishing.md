@@ -1,6 +1,5 @@
 Title: Media & Publishing
 Slug: media-publishing
-Save_as: media-publishing.html
 Template: industry_detail
 Robots: noindex, nofollow
 Parent_slug: industries

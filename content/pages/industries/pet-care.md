@@ -1,6 +1,5 @@
 Title: Pet Care
 Slug: pet-care
-Save_as: pet-care.html
 Template: industry_detail
 Robots: noindex, nofollow
 Parent_slug: industries

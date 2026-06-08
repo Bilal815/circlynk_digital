@@ -1,6 +1,5 @@
 Title: Startups
 Slug: startups
-Save_as: startups.html
 Template: industry_detail
 Robots: noindex, nofollow
 Parent_slug: industries
