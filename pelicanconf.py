@@ -61,12 +61,10 @@ AUTHOR_SAVE_AS   = '{slug}/index.html'
 # Template Page Routing
 TEMPLATE_PAGES = {
     'compiler.html': 'online-compiler-python/index.html',
+    'tools.html': 'tools/index.html',
+    #'about.html': 'about/index.html',
     'blog.html': 'blog.html',
     'contact.html': 'contact.html',
-    '404.html': '404.html',
-    'marketplace.html': 'marketplace.html',
-    'services.html': 'services.html',
-    'industries.html': 'industries.html',
 }
 
 # PAGINATION

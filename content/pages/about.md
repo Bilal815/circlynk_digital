@@ -1,7 +1,6 @@
 Title: About CircLynk Digital
 Slug: about
 Template: page
-Save_as: about.html
 Eyebrow: Our story
 Subtitle: We don't build software. We solve the problem behind it.
 
