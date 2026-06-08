@@ -1,6 +1,5 @@
 Title: Artificial Intelligence
 Slug: artificial-intelligence
-Save_as: artificial-intelligence.html
 Template: industry_detail
 Robots: noindex, nofollow
 Parent_slug: industries

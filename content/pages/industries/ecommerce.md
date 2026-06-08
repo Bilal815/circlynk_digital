@@ -1,6 +1,5 @@
 Title: eCommerce
 Slug: ecommerce
-Save_as: ecommerce.html
 Template: industry_detail
 Robots: noindex, nofollow
 Parent_slug: industries

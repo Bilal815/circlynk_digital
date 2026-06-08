@@ -1,6 +1,5 @@
 Title: FinTech
 Slug: fintech
-Save_as: fintech.html
 Template: industry_detail
 Robots: noindex, nofollow
 Parent_slug: industries

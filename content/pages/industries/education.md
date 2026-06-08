@@ -1,6 +1,5 @@
 Title: Education
 Slug: education
-Save_as: education.html
 Template: industry_detail
 Robots: noindex, nofollow
 Parent_slug: industries

@@ -1,6 +1,5 @@
 Title: Food & Grocery
 Slug: food-grocery
-Save_as: food-grocery.html
 Template: industry_detail
 Robots: noindex, nofollow
 Parent_slug: industries

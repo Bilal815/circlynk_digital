@@ -1,6 +1,5 @@
 Title: Health & Wellness
 Slug: health-wellness
-Save_as: health-wellness.html
 Template: industry_detail
 Robots: noindex, nofollow
 Parent_slug: industries

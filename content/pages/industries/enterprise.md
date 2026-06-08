@@ -1,6 +1,5 @@
 Title: Enterprise
 Slug: enterprise
-Save_as: enterprise.html
 Template: industry_detail
 Robots: noindex, nofollow
 Parent_slug: industries
