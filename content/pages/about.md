@@ -1,8 +1,9 @@
 Title: About CircLynk Digital
 Slug: about
 Template: page
-Eyebrow: Our story
 Subtitle: We don't build software. We solve the problem behind it.
+Eyebrow: Our story
+Description: We don't build software. We solve the problem behind it.
 
 Most software projects fail before they start — not because of bad code, but because nobody agreed on what the software was actually supposed to do.
 

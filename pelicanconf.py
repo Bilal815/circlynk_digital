@@ -36,7 +36,7 @@ AUTHOR_FEED_RSS       = None
 ### URLs — clean SEO-friendly
 # Article settings
 ARTICLE_URL      = '{slug}/'
-ARTICLE_SAVE_AS  = '{slug}.html'
+ARTICLE_SAVE_AS  = '{slug}/index.html'
 
 # Page settings
 PAGE_URL = '{slug}/'
