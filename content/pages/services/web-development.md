@@ -1,7 +1,6 @@
 Title: Web Development
 Slug: web-development
 Template: service_detail
-Save_as: web-development.html
 Robots: noindex, nofollow
 Parent_slug: services
 Service_name: Web Development

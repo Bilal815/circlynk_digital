@@ -1,7 +1,6 @@
 Title: UX/UI Design
 Slug: ux-ui-design
 Template: service_detail
-Save_as: ux-ui-design.html
 Parent_slug: services
 Robots: noindex, nofollow
 Service_name: UX/UI Design

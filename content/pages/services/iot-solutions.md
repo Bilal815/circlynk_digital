@@ -1,7 +1,6 @@
 Title: IoT Solutions
 Slug: iot-solutions
 Template: service_detail
-Save_as: iot-solutions.html
 Parent_slug: services
 Robots: noindex, nofollow
 Service_name: IoT Solutions

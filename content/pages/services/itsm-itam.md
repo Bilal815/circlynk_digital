@@ -1,7 +1,6 @@
 Title: ITSM / ITAM
 Slug: itsm-itam
 Template: service_detail
-Save_as: itsm-itam.html
 Parent_slug: services
 Robots: noindex, nofollow
 Service_name: ITSM / ITAM

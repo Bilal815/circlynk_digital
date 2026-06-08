@@ -1,9 +1,7 @@
 Title: Video Analytics
 Slug: video-analytics
 Template: service_detail
-Save_as: video-analytics.html
 Parent_slug: services
-Robots: noindex, nofollow
 Robots: noindex, nofollow
 Service_name: Video Analytics
 

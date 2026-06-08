@@ -1,7 +1,6 @@
 Title: Strategy
 Slug: strategy
 Template: service_detail
-Save_as: strategy.html
 Parent_slug: services
 Robots: noindex, nofollow
 Service_name: Strategy
