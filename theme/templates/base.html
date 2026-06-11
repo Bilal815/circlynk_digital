@@ -27,34 +27,8 @@
   {% include "partial/og-tags.html" %}
   {% include "partial/twitter-tags.html" %}
 
-  <!-- SCHEMA.ORG -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "{% block schema_type %}Organization{% endblock %}",
-
-    "name": "{{ SITENAME }}",
-    "url": "{{ SITEURL }}",
-    "logo": "{{ SITEURL }}/theme/assets/images/logo.svg",
-    "description": "{{ SITEDESCRIPTION | default('') }}",
-
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": {{COMPANY_LOCALITY }},
-      "addressCountry": {{ COMPANY_LOCALITY }}
-    },
-
-    "sameAs": [
-      {% if SOCIAL_MEDIA_LINKS %}
-        {% for icon, url in SOCIAL_MEDIA_LINKS %}
-          "{{ url }}"{% if not loop.last %},{% endif %}
-        {% endfor %}
-      {% endif %}
-    ]
-
-    {% block schema_extra %}{% endblock %}
-  }
-  </script>
+  <!-- SCHEMA -->
+  {% include "partial/schema.html" %}
 
   <!-- PERFORMANCE: Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>

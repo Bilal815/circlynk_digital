@@ -1,43 +1,148 @@
-{% macro build_schema(ctx, page=None, article=None, SITEURL="") %}
+{% set path = output_file if output_file is defined else '' %}
 
-{% set schema_type = ctx.type if ctx.type is defined else "WebPage" %}
+{% set is_home = (page is not defined and article is not defined) %}
+{% set is_service_hub = page is defined and page.metadata.get('template') == 'services' %}
+{% set is_industry_hub = page is defined and page.metadata.get('template') == 'industries' %}
+{% set is_service_page = page is defined and page.metadata.get('template') == 'service' %}
+{% set is_industry_page = page is defined and page.metadata.get('template') == 'industry' %}
 
+{% macro organization_schema(url, name, logo, socials) %}
 {
   "@context": "https://schema.org",
-  "@type": "{{ schema_type }}",
+  "@type": "Organization",
+  "@id": "{{ url }}/#organization",
+  "name": "{{ name }}",
+  "url": "{{ url }}",
+  "logo": "{{ url }}{{ logo }}",
+  "sameAs": [
+    {% for icon, url in socials %}
+      "{{ url }}"{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+{% endmacro %}
 
-  "@id": "{{ SITEURL }}/{{ ctx.slug }}",
-  "url": "{{ SITEURL }}/{{ ctx.slug }}",
 
-  "name": "{{ ctx.title | default('CircLynk Digital') }}",
-  "description": "{{ ctx.description | default('') | striptags | replace('\n',' ') | truncate(160) }}",
+{% macro website_schema(url, name, desc) %}
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "{{ url }}/#website",
+  "url": "{{ url }}",
+  "name": "{{ name }}",
+  "description": "{{ desc }}"
+}
+{% endmacro %}
 
-  "inLanguage": LANGUAGE[0],
-
+{% macro webpage_schema(obj, url, base, desc) %}
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "{{ url }}#webpage",
+  "url": "{{ url }}",
+  "name": "{{ obj.title if obj else SITENAME }}",
+  "description": "{{ obj.description if obj and obj.description else desc }}",
   "isPartOf": {
-    "@type": "WebSite",
-    "name": "CircLynk Digital",
-    "url": "{{ SITEURL }}"
+    "@id": "{{ base }}/#website"
   },
-
-  "publisher": {
-    "@type": "Organization",
-    "name": "CircLynk Digital",
-    "url": "{{ SITEURL }}"
+  "about": {
+    "@id": "{{ base }}/#organization"
   }
+}
+{% endmacro %}
 
-  {% if schema_type == "Service" %}
-  ,
-  "serviceType": "{{ ctx.service_type if ctx.service_type is defined else 'Digital Service' }}",
-  "category": "Technology Services"
-  {% endif %}
+{% macro breadcrumb_schema(obj, url, base) %}
+{
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ base }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ obj.title if obj else 'Page' }}",
+      "item": "{{ url }}"
+    }
+  ]
+}
+{% endmacro %}
 
-  {% if schema_type == "Article" %}
-  ,
-  "headline": "{{ ctx.title }}",
-  "datePublished": "{{ article.date if article and article.date is defined else '' }}",
-  "dateModified": "{{ article.modified if article and article.modified is defined else article.date if article and article.date is defined else '' }}"
-  {% endif %}
+{% macro itemlist_schema(url, type) %}
+{
+  "@type": "ItemList",
+  "@id": "{{ url }}/{{ type }}/#itemlist",
+  "name": "{{ type|capitalize }} List",
+  "itemListElement": [
+    {% if type == 'services' %}
+      {% for item in NAVIGATION_CONFIG.groups[0].items %}
+      {
+        "@type": "ListItem",
+        "position": {{ loop.index }},
+        "url": "{{ url }}{{ item[1] }}"
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    {% endif %}
 
+    {% if type == 'industries' %}
+      {% for item in NAVIGATION_CONFIG.groups[1].items %}
+      {
+        "@type": "ListItem",
+        "position": {{ loop.index }},
+        "url": "{{ item }}{{ item[1] }}"
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    {% endif %}
+  ]
+}
+{% endmacro %}
+
+{% macro image_schema(url, obj) %}
+{
+  "@type": "ImageObject",
+  "url": "{{ item }}/theme/assets/images/og-default.jpg",
+  "caption": "{{ obj.title if obj else SITENAME }}"
+}
+{% endmacro %}
+
+{% macro service_schema(obj, SITENAME) %}
+{
+  "@type": "Service",
+  "name": "{{ obj.title }}",
+  "description": "{{ obj.description }}",
+  "provider": {
+    "@type": "Organization",
+    "name": "{{ SITENAME }}"
+  }
+}
+{% endmacro %}
+
+{% macro faq_schema(obj) %}
+{
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is this service?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ obj.description if obj else '' }}"
+      }
+    }
+  ]
+}
+{% endmacro %}
+
+{% macro website_search_action_schema(url) %}
+{
+  "@type": "WebSite",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ url }}/search?q={query}",
+    "query-input": "required name=query"
+  }
 }
 {% endmacro %}

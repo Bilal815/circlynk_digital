@@ -61,7 +61,6 @@ AUTHOR_SAVE_AS   = '{slug}/index.html'
 # Template Page Routing
 TEMPLATE_PAGES = {
     'tools.html': 'tools/index.html',
-    #'about.html': 'about/index.html',
     'blog.html': 'blog.html',
     'contact.html': 'contact.html',
 }

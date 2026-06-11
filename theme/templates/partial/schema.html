@@ -1,0 +1,67 @@
+{% from "macros/schema.html" import organization_schema, website_schema, webpage_schema, breadcrumb_schema, itemlist_schema, image_schema, service_schema, faq_schema, website_search_action_schema %}
+
+{% set obj = page if page is defined and page else article if article is defined and article else None %}
+
+{% set base = SITEURL.rstrip('/') %}
+{% set slug = obj.slug if obj and obj.slug else '' %}
+{% set url = base if slug == 'index' else base ~ '/' ~ slug ~ '/' %}
+
+<script type="application/ld+json">
+{{ organization_schema(base, SITENAME, SITELOGO, SOCIAL_MEDIA_LINKS) }}
+</script>
+
+
+<script type="application/ld+json">
+{{ website_schema(base, SITENAME, SITEDESCRIPTION) }}
+</script>
+
+<script type="application/ld+json">
+{{ webpage_schema(obj, url, base) }}
+</script>
+
+{# ================= SITE-WIDE ================= #}
+{% if not is_home %}
+<script type="application/ld+json">
+{{ breadcrumb_schema(obj, url) }}
+</script>
+{% endif %}
+
+<script type="application/ld+json">
+{{ image_schema(base, obj) }}
+</script>
+
+{# ================= PAGE TYPES ================= #}
+
+{% if is_home %}
+<script type="application/ld+json">
+{{ website_search_action_schema(base) }}
+</script>
+{% endif %}
+
+{% if is_service_hub %}
+<script type="application/ld+json">
+{{ itemlist_schema(base, 'services') }}
+</script>
+{% endif %}
+
+{% if is_industry_hub %}
+<script type="application/ld+json">
+{{ itemlist_schema(base, 'industries') }}
+</script>
+{% endif %}
+
+{% if is_service_page %}
+<script type="application/ld+json">
+{{ service_schema(obj, SITENAME) }}
+</script>
+
+<script type="application/ld+json">
+{{ faq_schema(obj) }}
+</script>
+{% endif %}
+
+{% if is_industry_page %}
+<script type="application/ld+json">
+{{ faq_schema(obj) }}
+</script>
+{% endif %}
