@@ -83,7 +83,7 @@ EXTRA_PATH_METADATA = {
 # PLUGINS
 PLUGIN_PATHS = ['plugins']
 PLUGINS = [
-    #'yuicompressor',
+    'yuicompressor',
     'sitemap',
     #'related_posts',
     #'neighbors',
