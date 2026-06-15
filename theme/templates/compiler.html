@@ -18,7 +18,7 @@
    | escape }}
 {% endblock %}
 
-{% block canonical %}{% set _site = SITEURL.rstrip('/') %}{% set _path = obj.slug if obj and obj.slug else obj.url if obj and obj.url else '' %}{% if _path %}{{ _site }}/{{ _path|replace('index.html','')|trim('/') }}{% else %}{{ _site }}{% endif %}{% endblock %}
+{% block canonical %}{% set _site = SITEURL.rstrip('/') %}{% set _path = obj.slug if obj and obj.slug else obj.url if obj and obj.url else '' %}{% set _clean_path = _path|replace('index.html','')|trim('/') %}{% if _clean_path %}{{ _site }}/{{ _clean_path }}/{% else %}{{ _site }}{% endif %}{% endblock %}
 
 {% set robots = 'index, follow' %}
 

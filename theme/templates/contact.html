@@ -12,17 +12,9 @@
    |truncate(160, True) }}
 {% endblock %}
 
-{% block canonical %}
-{% if obj and obj.slug %}
-{{ SITEURL.rstrip('/') }}/{{ obj.slug|trim('/') }}/
-{% elif obj and obj.url %}
-{{ SITEURL.rstrip('/') }}/{{ obj.url|replace('index.html','')|trim('/') }}/
-{% endif %}
-{% endblock %}
+{% block canonical %}{% if obj and obj.slug %}{{ SITEURL.rstrip('/') }}/{{ obj.slug|trim('/') }}/{% elif obj and obj.url %}{{ SITEURL.rstrip('/') }}/{{ obj.url|replace('index.html','')|trim('/') }}/{% endif %}{% endblock %}
 
-{% block robots %}
-{{ obj.metadata.get('robots', 'noindex, nofollow') if obj and obj.metadata else 'index, follow' }}
-{% endblock %}
+{% block robots %}{{ obj.metadata.get('robots', 'noindex, nofollow') if obj and obj.metadata else 'index, follow' }}{% endblock %}
 
 {% block body_class %}page-{{ obj.slug if obj and obj.slug else 'unknown' }}{% endblock %}
 

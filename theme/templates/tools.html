@@ -11,7 +11,7 @@
 {{ obj.description if obj else SITEDESCRIPTION }}
 {% endblock %}
 
-{% block canonical %}{{ SITEURL.rstrip('/') }}/{{ obj.slug|replace('index.html','')|trim('/') if obj else obj.url|replace('index.html','')|trim('/') }}/{% endblock %}
+{% block canonical %}{{ SITEURL.rstrip('/') }}{% set _path = obj.slug|replace('index.html','')|trim('/') if obj and obj.slug else obj.url|replace('index.html','')|trim('/') if obj and obj.url else '' %}{% if _path %}/{{ _path }}/{% endif %}{% endblock %}
 
 {% set robots = 'index, follow' %}
 

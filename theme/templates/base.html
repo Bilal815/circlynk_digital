@@ -18,7 +18,7 @@
   <meta name="description"
         content="{% block description %}{% if obj and obj.description %}{{ obj.description|striptags|escape }}{% elif obj and obj.summary %}{{ obj.summary|striptags|escape }}{% else %}{{ SITEDESCRIPTION|escape }}{% endif %}{% endblock %}">
 
-  <link rel="canonical"href="{% block canonical %}{% set _site = SITEURL.rstrip('/') %}{% set _path = (obj.slug if obj and obj.slug else obj.url if obj and obj.url else '') %}{% if _path %}{{ _site }}/{{ _path|replace('index.html','')|trim('/') }}{% else %}{{ _site }}{% endif %}{% endblock %}">
+  <link rel="canonical" href="{% block canonical %}{% set _site = SITEURL.rstrip('/') %}{% set _path = obj.slug if obj and obj.slug else obj.url if obj and obj.url else '' %}{% set _clean_path = _path|replace('index.html','')|trim('/') %}{% if _clean_path %}{{ _site }}/{{ _clean_path }}/{% else %}{{ _site }}{% endif %}{% endblock %}">
 
   <meta name="robots"
         content="{% block robots %}{% if obj and obj.metadata and obj.metadata.get('robots') %}{{ obj.metadata.get('robots') }}{% else %}index, follow{% endif %}{% endblock %}">
