@@ -1,6 +1,6 @@
 Title: Terms of Service
 Slug: terms
-Save_as: terms.html
+Robots: noindex, nofollow
 Template: page
 
 Last updated: January 2025
