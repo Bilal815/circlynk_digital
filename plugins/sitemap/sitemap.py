@@ -238,8 +238,8 @@ class SitemapGenerator(object):
                 standard_page_save_as = self.context.get('{}_SAVE_AS'.format(standard_page.upper()))
                 fake = FakePage(status='published',
                                 date=self.now,
-                                url=standard_page_url or '{}.html'.format(standard_page),
-                                save_as=standard_page_save_as or '{}.html'.format(standard_page))
+                                url=standard_page_url or '{}'.format(standard_page),
+                                save_as=standard_page_save_as or '{}'.format(standard_page))
                 self.write_url(fake, fd)
 
             # add template pages

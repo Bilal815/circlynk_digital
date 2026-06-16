@@ -1,5 +1,40 @@
+# Allow all standard Google web crawlers and Agentic Bots
+User-agent: Googlebot
+Allow: /
+
+# Allow Google-InspectionTool (used in Google Search Console)
+User-agent: Google-InspectionTool
+Allow: /
+
+# Allow the Google AdSense and Ads bots
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+# Allow SEO bots (Semrush and Ahrefs)
+User-agent: SemrushBot
+Allow: /
+
+User-agent: AhrefsBot
+Allow: /
+
+User-agent: AhrefsSiteAudit
+Allow: /
+
+# Allow Agentic Bots and other Google AI Agents
+User-agent: Google-Agent
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Global rules for all other crawlers
 User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /editor/
+
+# XML Sitemap Location
 Sitemap: https://circlynkdigital.com/sitemap.xml
